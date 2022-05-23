@@ -36,4 +36,5 @@ public class Bullet{
     fill(0);
     ellipse(x, y, 10, 10);
   }
+  
 }

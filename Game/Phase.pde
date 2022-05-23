@@ -1,8 +1,10 @@
 import java.util.Queue;
+import java.util.LinkedList;
+
 
 public class Phase {
-  public Queue<Bullet> bullets;
-  public Queue<Float> delay;
+  public Queue<Bullet> bullets = new LinkedList<Bullet>();
+  public Queue<Float> delay = new LinkedList<Float>();
   public String name;
 }
 
