@@ -10,7 +10,7 @@ public class Bullet{
   }
   
   public Bullet(float x, float y){
-    this(x, y, 0, 5);
+    this(x, y, 20, PI / 2);
   }
     
   public Bullet(float x, float y, float speed, float angle){
