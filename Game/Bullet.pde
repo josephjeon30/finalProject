@@ -3,7 +3,7 @@ public class Bullet{
   int dmg;
   float dmgCooldown;
   float duration;
-  PImage img;
+  //PImage img;
   
   public Bullet(){
     this(width / 2, 0);
@@ -14,10 +14,10 @@ public class Bullet{
   }
     
   public Bullet(float x, float y, float speed, float angle){
-    this(x, y, speed * cos(angle), speed * sin(angle), 100, 10.0, 200.0, null);
+    this(x, y, speed * cos(angle), speed * sin(angle), 100, 10.0, 200.0);
   }
   
-  public Bullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, float duration, PImage img){
+  public Bullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, float duration){
     this.x = x;
     this.y = y;
     this.dx = dx;
@@ -25,6 +25,14 @@ public class Bullet{
     this.dmg = dmg;
     this.dmgCooldown = dmgCooldown;
     this.duration = duration;
-    this.img = img;
+  }
+  
+  public void move(){
+    x += dx;
+    y += dy;
+  }
+  
+  public void display(){
+    
   }
 }
