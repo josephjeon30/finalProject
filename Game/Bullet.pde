@@ -12,10 +12,9 @@ public class Bullet{
   public Bullet(float x, float y){
     this(x, y, 0, 5);
   }
-  
-  
-  public Bullet(float x, float y, float dx, float dy){
-    this(x, y, dx, dy, 100, 10.0, 200.0, null);
+    
+  public Bullet(float x, float y, float speed, float angle){
+    this(x, y, speed * cos(angle), speed * sin(angle), 100, 10.0, 200.0, null);
   }
   
   public Bullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, float duration, PImage img){
