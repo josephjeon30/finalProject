@@ -20,8 +20,12 @@ public class Player implements Damageable{
     fill(255,234,156);
     ellipse(x, y, 25, 60);
   }
-  public void dealDamage(Damageable other){}
-  public void takeDamage(int dmg){}
+  public void dealDamage(Damageable other,int dmg){
+    other.takeDamage(dmg);
+  }
+  public void takeDamage(int dmg){
+    HP-=dmg;  
+  }
   public void shoot(){}
   public void setX(float k){}
   public void setY(float k){}

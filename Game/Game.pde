@@ -1,5 +1,11 @@
 BulletManager bm = new BulletManager();
 float angle = 0;
+boolean alive = true;
+Stage currentstage;
+int moveX=0;
+int moveY=0;
+Player yoi;
+Boss current;
 
 void setup(){
   size(1000, 750);
