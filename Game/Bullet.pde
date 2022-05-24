@@ -38,3 +38,11 @@ public class Bullet{
   }
   
 }
+
+public class EnemyBullet extends Bullet{
+  //Player player;
+}
+
+public class PlayerBullet extends Bullet{
+  //Enemy enemy;
+}
