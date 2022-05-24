@@ -41,8 +41,17 @@ public class Bullet{
 
 public class EnemyBullet extends Bullet{
   //Player player;
+    
+  public EnemyBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, float duration){
+    super(x, y, dx, dy, dmg, dmgCooldown, duration);
+    bm.enemyBullets.add(this);
+  }
 }
 
 public class PlayerBullet extends Bullet{
   //Enemy enemy;
+  public PlayerBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, float duration){
+    super(x, y, dx, dy, dmg, dmgCooldown, duration);
+    bm.playerBullets.add(this);
+  }
 }
