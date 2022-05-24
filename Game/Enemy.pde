@@ -15,3 +15,9 @@ public class Enemy implements Damageable{
   public void setDY(float k){}
   
 }
+
+public class Boss extends Enemy{
+  public Phase[] phases;
+  public int currentPhase;
+  public Boss(){}
+}
