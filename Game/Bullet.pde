@@ -33,7 +33,7 @@ public class Bullet{
   }
   
   public void display(){
-    fill(0);
+    fill(255);
     ellipse(x, y, 10, 10);
   }
   
