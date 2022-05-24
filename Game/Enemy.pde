@@ -3,4 +3,9 @@ public class Enemy{
   public int HP;
   public Phase attack;
   
+  public Enemy(){}
+  
+  public void move(){}
+  public void display(){}
+  public void dealDamage(Damageable other){}
 }
