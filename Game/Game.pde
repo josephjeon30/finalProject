@@ -1,19 +1,19 @@
-Shotgun sh;
+BulletManager bm = new BulletManager();
+float angle = 0;
 
 void setup(){
   size(1000, 750);
   noStroke();
-  sh = new Shotgun(width / 2, height / 2, 80, 5, PI / 2, PI/40);
 }
 
 void keyPressed(){
-  sh = new Shotgun(width / 2, height/2, 80, 5, PI / 2, PI/40);
+  Shotgun sh = new Shotgun(30, 30, 5, 1, angle, 2 * PI/5);
+  Shotgun sh2 = new Shotgun(width - 30, 30, 5, 1, -angle, 2 * PI/5);
 }
 
 void draw(){
   background(0);
-  for (Bullet b: sh.bullets){
-    b.move();
-    b.display();
-  }
+  bm.move();
+  bm.display();
+  angle += 0.5;
 }
