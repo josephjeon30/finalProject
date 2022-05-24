@@ -12,6 +12,6 @@ Development Log:
 		5/--
 
 	Joseph
-		5/23: Filled out basic information for the README file
+		5/23: Filled out basic information for the README file, and created Game, Bullet, and Phase classes, filling out a few methods. A basic shotgun is able to be fired
 
 Link to Design Document Google Doc: https://docs.google.com/document/d/1C8VrfNshymGc3sOVWaJeR7DfTx7KVn6Xtgiy1MUR6_M/edit?usp=sharing
