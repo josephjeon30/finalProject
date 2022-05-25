@@ -7,13 +7,17 @@ void setup(){
 }
 
 void keyPressed(){
-  Shotgun sh = new Shotgun(30, 30, 5, 1, angle, 2 * PI/5);
-  Shotgun sh2 = new Shotgun(width - 30, 30, 5, 1, -angle, 2 * PI/5);
+  Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
+  Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
 }
 
 void draw(){
-  background(0);
+  fill(color(0, 0, 0, 100));
+  rect(0,0,width, height);
   bm.move();
   bm.display();
-  angle += 0.5;
+  angle += 0.05;
+  float k = mouseX;
+  if (k == 0) k = 0.001;
+  
 }
