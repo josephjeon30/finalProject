@@ -12,55 +12,40 @@ void setup(){
 
 void keyPressed(){
 
-  Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
-  Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
-  yoi.shoot();
+  //Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
+  //Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
+  //yoi.shoot();
+  
   if (key==CODED){
-    if(keyCode==UP){
-      if(down!=0){
-      down=1;}
-      up+=2;
+    if(keyCode==UP) {
+      yoi.dy = -1;
     }
-    if(keyCode==DOWN){
-      if(up!=0){
-      up=1;}
-      down+=2;
+    if(keyCode==DOWN) {
+      yoi.dy = 1;
     }
     if(keyCode==LEFT){
-      if(right!=0){
-      right=1;}
-      left+=2;
+      yoi.dx = -1;
     }
     if(keyCode==RIGHT){
-      if(left!=0){
-      left=1;}
-      right+=2;
+      yoi.dx = 1;
     }
   }
 }
 void keyReleased(){
-   if (key==CODED){
+  if (key == CODED){
     if(keyCode==UP){
-     // down*=-1;
-      up=0;
-      //down--;
+      yoi.dy = 0;
     }
     if(keyCode==DOWN){
-      //up*=-1;
-      down=0;
-      //up--;
+      yoi.dy = 0;
     }
     if(keyCode==LEFT){
-     // right*=-1;
-      left=0;
-      //right--;
+      yoi.dx = 0;
     }
     if(keyCode==RIGHT){
-      right=0;
-      //left--;
-    //  left*=-1;
+      yoi.dx = 0;
     }
-   }
+  }
 }
 
 void draw(){
@@ -73,37 +58,9 @@ void draw(){
   
   bm.move();
   bm.display();
-<<<<<<< HEAD
   
-  angle += 0.01;
-  
-=======
-  //float k = mouseX;
-  //if (k == 0) k = 0.001;
-  angle -= 5;
->>>>>>> 68d7d3090d5bd27b21218b0dee29df40923fb729
-  if(up>0||down>0){
-    if(up>down){
-      moveY=-5;
-    }else if(down>up){
-      moveY=5;
-    }
-  }else{
-    moveY=0;
-  }
-  if(left>0||right>0){
-    if(left>right){
-      moveX=-5;
-    }else if(right>left){
-      moveX=5;
-    }
-  }else{
-    moveX=0;
-  }
-        
+  angle += 0.01;    
     
-    
-    
-  }
+}
 
   
