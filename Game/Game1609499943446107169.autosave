@@ -51,7 +51,7 @@ void keyReleased(){
 
 void draw(){
   
-  fill(color(0, 0, 0, 50));
+  fill(color(0, 0, 0, 20));
   rect(0,0,width, height);
   
   yoi.move();
@@ -61,12 +61,12 @@ void draw(){
   bm.display();
 
   if(keyPressed){
-    Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
-    Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
-    yoi.shoot();
+  Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
+  Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
+  yoi.shoot();
   }
-  
-  angle += 0.01;
+  angle -= 5;
+
   if(up>0||down>0){
     if(up>down){
       moveY=-5;
