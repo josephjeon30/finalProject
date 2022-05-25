@@ -1,0 +1,18 @@
+public class Player implements Damageable{
+  public float x, y, dx, dy;
+  public int HP;
+  public Phase attack;
+  
+  public Player(){}
+  
+  public void move(){}
+  public void display(){}
+  public void dealDamage(Damageable other){}
+  public void takeDamage(int dmg){}
+  public void shoot(){}
+  public void setX(float k){}
+  public void setY(float k){}
+  public void setDX(float k){}
+  public void setDY(float k){}
+  
+}
