@@ -22,17 +22,24 @@ void keyPressed(){
   yoi.shoot();
   if (key==CODED){
     if(keyCode==UP){
-      up++;
+      if(down!=0){
+      down=1;}
+      up+=2;
     }
     if(keyCode==DOWN){
-      
-      down++;
+      if(up!=0){
+      up=1;}
+      down+=2;
     }
     if(keyCode==LEFT){
-      left++;
+      if(right!=0){
+      right=1;}
+      left+=2;
     }
     if(keyCode==RIGHT){
-      right++;
+      if(left!=0){
+      left=1;}
+      right+=2;
     }
   }//else{
   ////  moveX=0;
@@ -43,16 +50,24 @@ void keyPressed(){
 void keyReleased(){
    if (key==CODED){
     if(keyCode==UP){
+     // down*=-1;
       up=0;
+      //down--;
     }
     if(keyCode==DOWN){
+      //up*=-1;
       down=0;
+      //up--;
     }
     if(keyCode==LEFT){
+     // right*=-1;
       left=0;
+      //right--;
     }
     if(keyCode==RIGHT){
       right=0;
+      //left--;
+    //  left*=-1;
     }
    }
 }
@@ -67,18 +82,18 @@ void draw(){
   angle += 0.5;
   if(up>0||down>0){
     if(up>down){
-      moveY=-1;
+      moveY=-5;
     }else if(down>up){
-      moveY=1;
+      moveY=5;
     }
   }else{
     moveY=0;
   }
   if(left>0||right>0){
     if(left>right){
-      moveX=-1;
+      moveX=-5;
     }else if(right>left){
-      moveX=1;
+      moveX=5;
     }
   }else{
     moveX=0;
