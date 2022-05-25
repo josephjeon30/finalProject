@@ -3,16 +3,45 @@ public class Player implements Damageable{
   public int HP;
   public Phase attack;
   
-  public Player(){}
+  public Player(){
+  x=500;
+  y=680;
+  dx=0;
+  dy=0;
+  HP=100;
+  //attack = doubleshot or whatever itl be called;
+  }
   
-  public void move(){}
-  public void display(){}
-  public void dealDamage(Damageable other){}
-  public void takeDamage(int dmg){}
-  public void shoot(){}
-  public void setX(float k){}
-  public void setY(float k){}
-  public void setDX(float k){}
-  public void setDY(float k){}
+  public void move(){
+    setDX(moveX);
+    setDY(moveY);
+    x+=dx;
+    y+=dy;
+  }
+  public void display(){
+    fill(255,234,156);
+    ellipse(x, y, 25, 60);
+    fill(240);
+    text("HP: "+HP,900,100);
+  }
+  public void dealDamage(Damageable other,int dmg){
+    other.takeDamage(dmg);
+  }
+  public void takeDamage(int dmg){
+    HP-=dmg;  
+  }
+  public void shoot(){
+    bm.addPlayerBullet(new PlayerBullet(x, y-25, 5, 3*PI/2));
+    //placeholder until phases work 
+  }
+  //public void setX(float k){}
+  //public void setY(float k){}
+  public void setDX(float k){
+    
+    dx=k;
+  }
+  public void setDY(float k){
+    dy=k;
+  }
   
 }
