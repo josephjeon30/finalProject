@@ -2,6 +2,8 @@ BulletManager bm = new BulletManager();
 float angle = 0;
 boolean alive = true;
 
+int ticks = 0;
+
 int moveX = 0;
 int moveY = 0;
 int up = 0;
@@ -12,7 +14,6 @@ int right = 0;
 Stage currentStage;
 
 Player yoi = new Player();
-
 
 void setup(){
   size(1000, 750);
@@ -50,8 +51,7 @@ void keyReleased(){
 }
 
 void draw(){
-  
-  fill(color(0, 0, 0, 20));
+  fill(color(0, 0, 0, 30));
   rect(0,0,width, height);
   
   yoi.move();
@@ -59,10 +59,15 @@ void draw(){
   
   bm.move();
   bm.display();
+  
+  if (ticks % 20 == 0){
+    //Wall wall1 = new Wall(0, height/2.0, 39, 1, 0, 20.0);
+    //Wall wall2 = new Wall(width, 10 + height/2.0, 39, 1, PI, 20.0);
+  }
 
   if(keyPressed){
-    Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
-    Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
+    //Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
+    //Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
     yoi.shoot();
   }
   
@@ -76,13 +81,6 @@ void draw(){
   }else{
     moveY=0;
   }
-
-  
-  if(keyPressed){
-    //Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
-    //Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
-    yoi.shoot();
-  }
   
   angle -= 5;
   if(up > 0 || down > 0){
@@ -94,5 +92,7 @@ void draw(){
     if(left > right) moveX=-5;
     else if(right > left) moveX = 5;
   }
-  else moveX = 0;   
+  else moveX = 0; 
+  
+  ticks++;
 }
