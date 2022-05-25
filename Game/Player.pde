@@ -13,8 +13,6 @@ public class Player implements Damageable{
   }
   
   public void move(){
-    setDX(moveX);
-    setDY(moveY);
     x+=dx;
     y+=dy;
   }
