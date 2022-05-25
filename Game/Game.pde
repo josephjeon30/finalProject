@@ -17,8 +17,9 @@ void setup(){
 }
 
 void keyPressed(){
-  Shotgun sh = new Shotgun(30, 30, 5, 1, angle, 2 * PI/5);
-  Shotgun sh2 = new Shotgun(width - 30, 30, 5, 1, -angle, 2 * PI/5);
+
+  Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
+  Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
   yoi.shoot();
   if (key==CODED){
     if(keyCode==UP){
@@ -74,13 +75,15 @@ void keyReleased(){
 
 void draw(){
   
-  background(0);
+  fill(color(0, 0, 0, 50));
+  rect(0,0,width, height);
   yoi.move();
   yoi.display();
   bm.move();
   bm.display();
-  
-  angle += 0.5;
+  //float k = mouseX;
+  //if (k == 0) k = 0.001;
+  angle -= 5;
   if(up>0||down>0){
     if(up>down){
       moveY=-5;
@@ -104,4 +107,5 @@ void draw(){
     
     
   }
+
   
