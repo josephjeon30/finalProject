@@ -25,4 +25,7 @@ public class BulletManager{
   public void addEnemyBullet(EnemyBullet eb){
     enemyBullets.add(eb);
   }
+  public void addPlayerBullet(PlayerBullet pb){
+    playerBullets.add(pb);
+  }
 }

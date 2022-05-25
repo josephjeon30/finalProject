@@ -26,9 +26,11 @@ public class Player implements Damageable{
   public void takeDamage(int dmg){
     HP-=dmg;  
   }
-  public void shoot(){}
-  public void setX(float k){}
-  public void setY(float k){}
+  public void shoot(){
+    bm.addPlayerBullet(new PlayerBullet(x, y-25, 5, 3*PI/2));
+  }
+  //public void setX(float k){}
+  //public void setY(float k){}
   public void setDX(float k){}
   public void setDY(float k){}
   
