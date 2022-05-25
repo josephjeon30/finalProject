@@ -75,10 +75,11 @@ void keyReleased(){
 void draw(){
   
   background(0);
-  bm.move();
-  bm.display();
   yoi.move();
   yoi.display();
+  bm.move();
+  bm.display();
+  
   angle += 0.5;
   if(up>0||down>0){
     if(up>down){
