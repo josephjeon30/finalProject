@@ -17,7 +17,5 @@ void draw(){
   bm.move();
   bm.display();
   angle += 0.05;
-  float k = mouseX;
-  if (k == 0) k = 0.001;
   
 }
