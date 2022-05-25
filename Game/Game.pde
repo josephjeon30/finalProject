@@ -65,7 +65,7 @@ void keyReleased(){
 
 void draw(){
   
-  fill(color(0, 0, 0, 69));
+  fill(color(0, 0, 0, 50));
   rect(0,0,width, height);
   
   yoi.move();
@@ -73,9 +73,15 @@ void draw(){
   
   bm.move();
   bm.display();
+<<<<<<< HEAD
   
   angle += 0.01;
   
+=======
+  //float k = mouseX;
+  //if (k == 0) k = 0.001;
+  angle -= 5;
+>>>>>>> 68d7d3090d5bd27b21218b0dee29df40923fb729
   if(up>0||down>0){
     if(up>down){
       moveY=-5;
