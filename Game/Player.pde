@@ -13,6 +13,8 @@ public class Player implements Damageable{
   }
   
   public void move(){
+    setDX(moveX);
+    setDY(moveY);
     x+=dx;
     y+=dy;
   }
@@ -31,7 +33,11 @@ public class Player implements Damageable{
   }
   //public void setX(float k){}
   //public void setY(float k){}
-  public void setDX(float k){}
-  public void setDY(float k){}
+  public void setDX(float k){
+    dx=k;
+  }
+  public void setDY(float k){
+    dy=k;
+  }
   
 }
