@@ -34,6 +34,7 @@ public class Player implements Damageable{
   //public void setX(float k){}
   //public void setY(float k){}
   public void setDX(float k){
+    
     dx=k;
   }
   public void setDY(float k){
