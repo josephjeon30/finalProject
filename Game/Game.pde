@@ -1,6 +1,13 @@
 BulletManager bm = new BulletManager();
 float angle = 0;
 boolean alive = true;
+int moveX = 0;
+int moveY = 0;
+int up = 0;
+int down = 0;
+int left = 0;
+int right = 0;
+
 Stage currentStage;
 
 Player yoi = new Player();
@@ -11,61 +18,38 @@ void setup(){
 }
 
 void keyPressed(){
-
-  Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
-  Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
-  yoi.shoot();
-  if (key==CODED){
-    if(keyCode==UP){
-      if(down!=0){
-      down=1;}
-      up+=2;
+  if (key == CODED){
+    if(keyCode == UP){
+      if(down != 0) down = 1;
+      up += 2;
     }
-    if(keyCode==DOWN){
-      if(up!=0){
-      up=1;}
-      down+=2;
+    if(keyCode == DOWN){
+      if(up != 0) up = 1;
+      down += 2;
     }
-    if(keyCode==LEFT){
-      if(right!=0){
-      right=1;}
-      left+=2;
+    if(keyCode == LEFT){
+      if(right != 0) right = 1;
+      left += 2;
     }
     if(keyCode==RIGHT){
-      if(left!=0){
-      left=1;}
-      right+=2;
+      if(left != 0) left=1;
+      right += 2;
     }
   }
 }
+
 void keyReleased(){
-   if (key==CODED){
-    if(keyCode==UP){
-     // down*=-1;
-      up=0;
-      //down--;
-    }
-    if(keyCode==DOWN){
-      //up*=-1;
-      down=0;
-      //up--;
-    }
-    if(keyCode==LEFT){
-     // right*=-1;
-      left=0;
-      //right--;
-    }
-    if(keyCode==RIGHT){
-      right=0;
-      //left--;
-    //  left*=-1;
-    }
-   }
+  if (key==CODED){
+    if(keyCode==UP) up=0;
+    if(keyCode==DOWN) down=0;
+    if(keyCode==LEFT) left=0;
+    if(keyCode==RIGHT) right=0;
+  }
 }
 
 void draw(){
   
-  fill(color(0, 0, 0, 50));
+  fill(color(0, 0, 0, 20));
   rect(0,0,width, height);
   
   yoi.move();
@@ -73,15 +57,8 @@ void draw(){
   
   bm.move();
   bm.display();
-<<<<<<< HEAD
   
   angle += 0.01;
-  
-=======
-  //float k = mouseX;
-  //if (k == 0) k = 0.001;
-  angle -= 5;
->>>>>>> 68d7d3090d5bd27b21218b0dee29df40923fb729
   if(up>0||down>0){
     if(up>down){
       moveY=-5;
@@ -91,19 +68,23 @@ void draw(){
   }else{
     moveY=0;
   }
-  if(left>0||right>0){
-    if(left>right){
-      moveX=-5;
-    }else if(right>left){
-      moveX=5;
-    }
-  }else{
-    moveX=0;
-  }
-        
-    
-    
-    
-  }
 
   
+  if(keyPressed){
+    //Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
+    //Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
+    yoi.shoot();
+  }
+  
+  angle -= 5;
+  if(up > 0 || down > 0){
+    if(up > down) moveY = -5;
+    else if(down>up) moveY = 5;
+  }
+  else moveY=0;
+  if(left>0 || right>0){
+    if(left > right) moveX=-5;
+    else if(right > left) moveX = 5;
+  }
+  else moveX = 0;   
+}

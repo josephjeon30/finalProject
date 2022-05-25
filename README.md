@@ -13,5 +13,6 @@ Development Log:
 
 	Joseph
 		5/23: Filled out basic information for the README file, and created Game, Bullet, and Phase classes, filling out a few methods. A basic shotgun is able to be fired
+		5/24: A basic pattern using the Shotgun class is made. BulletManager moves and displays all bullets, but cannot pool or remove bullets yet
 
 Link to Design Document Google Doc: https://docs.google.com/document/d/1C8VrfNshymGc3sOVWaJeR7DfTx7KVn6Xtgiy1MUR6_M/edit?usp=sharing
