@@ -3,6 +3,7 @@ public class Bullet{
   int dmg;
   float dmgCooldown;
   float duration;
+  boolean outOfBounds = false;;
   //PImage img;
   
   public Bullet(){
@@ -30,6 +31,7 @@ public class Bullet{
   public void move(){
     x += dx;
     y += dy;
+    if (x < 0 || x > width || y < 0 || y > height) outOfBounds = true;
   }
   
   public void display(){
@@ -48,7 +50,7 @@ public class EnemyBullet extends Bullet{
   
   public EnemyBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, float duration){
     super(x, y, dx, dy, dmg, dmgCooldown, duration);
-    bm.enemyBullets.add(this);
+    bm.addEnemyBullet(this);
   }
 }
 
@@ -61,6 +63,6 @@ public class PlayerBullet extends Bullet{
   
   public PlayerBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, float duration){
     super(x, y, dx, dy, dmg, dmgCooldown, duration);
-    bm.playerBullets.add(this);
+    bm.addPlayerBullet(this);
   }
 }

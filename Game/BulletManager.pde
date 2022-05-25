@@ -5,11 +5,13 @@ public class BulletManager{
   LinkedList<PlayerBullet> playerBullets = new LinkedList<PlayerBullet>();
   
   public void move(){
-    for (EnemyBullet enemyBullet: enemyBullets){
-      enemyBullet.move();
+    for (int i = 0; i < enemyBullets.size(); i++){
+      enemyBullets.get(i).move();
+      if (enemyBullets.get(i).outOfBounds) enemyBullets.remove(enemyBullets.get(i));
     }
-    for (PlayerBullet playerBullet: playerBullets){
-      playerBullet.move();
+    for (int i = 0; i < playerBullets.size(); i++){
+      playerBullets.get(i).move();
+      if (playerBullets.get(i).outOfBounds) playerBullets.remove(playerBullets.get(i));
     }
   }
   
@@ -28,4 +30,5 @@ public class BulletManager{
   public void addPlayerBullet(PlayerBullet pb){
     playerBullets.add(pb);
   }
+  
 }
