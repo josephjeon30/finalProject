@@ -4,12 +4,12 @@ public class Player implements Damageable{
   public Phase attack;
   
   public Player(){
-  x=500;
-  y=680;
-  dx=0;
-  dy=0;
-  HP=100;
-  //attack = doubleshot or whatever itl be called;
+    x=500;
+    y=680;
+    dx=0;
+    dy=0;
+    HP=100;
+    //attack = doubleshot or whatever itl be called;
   }
   
   public void move(){

@@ -1,15 +1,9 @@
 BulletManager bm = new BulletManager();
 float angle = 0;
 boolean alive = true;
-Stage currentstage;
-int moveX=0;
-int moveY=0;
-int up=0;
-int down=0;
-int left=0;
-int right=0;
-Player yoi=new Player();
-Boss current;
+Stage currentStage;
+
+Player yoi = new Player();
 
 void setup(){
   size(1000, 750);
@@ -42,11 +36,7 @@ void keyPressed(){
       left=1;}
       right+=2;
     }
-  }//else{
-  ////  moveX=0;
- 
-  ////  moveY=0;
-  ////}
+  }
 }
 void keyReleased(){
    if (key==CODED){
@@ -75,15 +65,17 @@ void keyReleased(){
 
 void draw(){
   
-  fill(color(0, 0, 0, 100));
+  fill(color(0, 0, 0, 69));
   rect(0,0,width, height);
+  
   yoi.move();
   yoi.display();
+  
   bm.move();
   bm.display();
-  float k = mouseX;
-  if (k == 0) k = 0.001;
-  angle += 0.5;
+  
+  angle += 0.01;
+  
   if(up>0||down>0){
     if(up>down){
       moveY=-5;
