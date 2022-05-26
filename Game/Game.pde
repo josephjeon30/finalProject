@@ -57,13 +57,15 @@ void draw(){
   
   yoi.move();
   yoi.display();
-  
+  Enemy egg=new fairy(80,500,20);
+  egg.display();
+  egg.shoot();
   bm.move();
   bm.display();
 
   if(keyPressed){
-    Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
-    Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
+    //Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
+    //Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
     yoi.shoot();
   }
   

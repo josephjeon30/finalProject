@@ -5,11 +5,10 @@ public class Enemy implements Damageable{
   public Phase attack;
   
   public Enemy(){
-    this(80,1,0,0);
+    this(80,0,0);
   }
-  public Enemy(int hp,int kind,int spawnX,int spawnY){
+  public Enemy(int hp,int spawnX,int spawnY){
     HP=hp;
-    type=kind;
     x=spawnX;
     y=spawnY;
   }
@@ -34,17 +33,29 @@ public class Enemy implements Damageable{
   public void takeDamage(int dmg){
     HP-=dmg;
   }
+  public void shoot(){}
+    
   public void setX(float k){}
   public void setY(float k){}
   public void setDX(float k){}
   public void setDY(float k){}
   
 }
-
+public class fairy extends Enemy{
+  public fairy(){
+    super();
+  }
+  public fairy(int h, int x, int y){
+    super(h,x,y);
+  }
+  public void shoot(){
+    attack = new Shotgun(x,y+20,3,4,PI/2,PI/4);
+  }  
+}
 public class Boss extends Enemy{
   public Phase[] phases;
   public int currentPhase;
   public Boss(){
-    super(500,1,500,0);
+    super(500,500,0);
   }
 }
