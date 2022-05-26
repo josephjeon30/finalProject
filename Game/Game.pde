@@ -1,6 +1,7 @@
 BulletManager bm = new BulletManager();
 float angle = 0;
 boolean alive = true;
+boolean bossisdead = false;
 
 int moveX = 0;
 int moveY = 0;
