@@ -2,7 +2,7 @@ BulletManager bm = new BulletManager();
 float angle = 0;
 boolean alive = true;
 
-int ticks = 0;
+static int ticks = 0;
 
 int moveX = 0;
 int moveY = 0;
@@ -68,6 +68,8 @@ void draw(){
   bm.move();
   bm.display();
   
+  bm.detectCollision();
+  
   if (shooting){
     if (ticks % 5 == 0) yoi.shoot();
   }
@@ -80,8 +82,8 @@ void draw(){
   **/
   if (ticks % 20 == 0){
     //Phase sh = new Shotgun(width/2, height/4, 5, 2, angle, 2 * PI/5);
-    Phase sh2 = new Wall(width/2, height/3, 10, 2, 0.5 * angle, 100);
-    Phase sh3 = new Wall(width/2, height/3, 19, 2, 0.5 * angle + PI, 100);
+    Phase sh2 = new Wall(width/2, height/3, 10, 2, 0.5 * angle, 50);
+    Phase sh3 = new Wall(width/2, height/3, 10, 2, 0.5 * angle + PI, 50);
   }
   /**
   angle += 0.01;
