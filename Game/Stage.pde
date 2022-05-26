@@ -9,3 +9,9 @@ public class Stage{
   
   public void spawn(){}
 }
+
+public class Stage1 extends Stage{
+  public Stage1(){
+    enemies.add(new Enemy());
+  }
+}
