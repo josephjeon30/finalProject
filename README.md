@@ -8,8 +8,9 @@ How to compile: No external libraries used (TBD)
 How to run: Open the file using Processing and click the play button
 
 Development Log:
+
 	Aiden
-		5/--
+		5/24: Created the player, enemy, boss, and stage class files and instance vars and method temps. Player movement with arrow keys completed, as well as boundaries so that the player doesn't leave the screen.
 
 	Joseph
 		5/23: Filled out basic information for the README file, and created Game, Bullet, and Phase classes, filling out a few methods. A basic shotgun is able to be fired
