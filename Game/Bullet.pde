@@ -4,7 +4,8 @@ public class Bullet{
   int dmg;
   float dmgCooldown;
   float duration;
-  boolean outOfBounds = false;;
+  boolean outOfBounds = false;
+  float hitRadius = 10;
   //PImage img;
   
   public Bullet(){
@@ -16,7 +17,7 @@ public class Bullet{
   }
     
   public Bullet(float x, float y, float speed, float angle){
-    this(x, y, speed * cos(angle), speed * sin(angle), 100, 10.0, 200.0);
+    this(x, y, speed * cos(angle), speed * sin(angle), 10, 10.0, 200.0);
   }
   
   public Bullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, float duration){
@@ -43,7 +44,7 @@ public class Bullet{
 }
 
 public class EnemyBullet extends Bullet{
-  //Player player;
+  Player player;
    
   public EnemyBullet(float x, float y, float speed, float angle){
     this(x, y, speed * cos(angle), speed * sin(angle), 100, 10.0, 200.0);
@@ -56,7 +57,7 @@ public class EnemyBullet extends Bullet{
 }
 
 public class PlayerBullet extends Bullet{
-  //Enemy enemy;
+  Enemy enemy;
   
   public PlayerBullet(float x, float y, float speed, float angle){
     this(x, y, speed * cos(angle), speed * sin(angle), 100, 10.0, 200.0);

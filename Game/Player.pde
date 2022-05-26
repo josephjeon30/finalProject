@@ -2,6 +2,7 @@ public class Player implements Damageable{
   public float x, y, dx, dy;
   public int HP;
   public Phase attack;
+  float hitRadius = 10;
   
   public Player(){
     x=500;
@@ -20,7 +21,9 @@ public class Player implements Damageable{
   }
   public void display(){
     fill(255,234,156);
-    ellipse(x, y, 25, 60);
+    ellipse(x, y+5, 25, 60);
+    fill(255,0,0);
+    ellipse(x,y,hitRadius,hitRadius);
     fill(240);
     text("HP: "+HP,900,100);
   }

@@ -31,4 +31,11 @@ public class BulletManager{
     playerBullets.add(pb);
   }
   
+  public void detectCollision(){
+    for (EnemyBullet eb: enemyBullets){
+      if (dist(eb.x,eb.y, eb.player.x, eb.player.y) < eb.hitRadius + eb.player.hitRadius){
+        eb.player.takeDamage(eb.dmg);
+      }
+    } 
+  }
 }
