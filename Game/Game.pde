@@ -79,8 +79,9 @@ void draw(){
   }
   **/
   if (ticks % 5 == 0){
-    Shotgun sh = new Shotgun(width/2, height/4, 5, 2, angle, 2 * PI/5);
-    Shotgun sh2 = new Shotgun(width/2, height/4, 5, 2, -angle, 2 * PI/5);
+    //Phase sh = new Shotgun(width/2, height/4, 5, 2, angle, 2 * PI/5);
+    Phase sh2 = new Wall(width/2, height/3, 7, 2, 2 * angle, 50);
+    Phase sh3 = new Wall(width/2, height/3, 7, 2, 2 * angle + PI, 50);
   }
   /**
   angle += 0.01;
