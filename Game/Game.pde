@@ -11,6 +11,8 @@ int down = 0;
 int left = 0;
 int right = 0;
 
+boolean shooting = false;
+
 Stage currentStage;
 
 Player yoi = new Player();
@@ -39,6 +41,9 @@ void keyPressed(){
       right += 2;
     }
   }
+  if (key == 'z'){
+    shooting = true;
+  }
 }
 
 void keyReleased(){
@@ -47,6 +52,9 @@ void keyReleased(){
     if(keyCode==DOWN) down=0;
     if(keyCode==LEFT) left=0;
     if(keyCode==RIGHT) right=0;
+  }
+  if (key == 'z'){
+    shooting = false;
   }
 }
 
@@ -60,24 +68,35 @@ void draw(){
   bm.move();
   bm.display();
   
+  if (shooting){
+    if (ticks % 5 == 0) yoi.shoot();
+  }
+  
+  /**
   if (ticks % 20 == 0){
     //Wall wall1 = new Wall(0, height/2.0, 39, 1, 0, 20.0);
     //Wall wall2 = new Wall(width, 10 + height/2.0, 39, 1, PI, 20.0);
   }
-
-  if(keyPressed){
-    //Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
-    //Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
-    yoi.shoot();
+  **/
+  if (ticks % 5 == 0){
+    Shotgun sh = new Shotgun(width/2, height/4, 5, 2, angle, 2 * PI/5);
+    Shotgun sh2 = new Shotgun(width/2, height/4, 5, 2, -angle, 2 * PI/5);
   }
-  
+  /**
   angle += 0.01;
+  **/
+  
+  checkStuff();
+  ticks++;
+}
+
+public void checkStuff(){
   if(up>0||down>0){
-    if(up>down){
-      moveY=-5;
-    }else if(down>up){
-      moveY=5;
-    }
+  if(up>down){
+    moveY=-5;
+  }else if(down>up){
+    moveY=5;
+  }
   }else{
     moveY=0;
   }
@@ -93,6 +112,4 @@ void draw(){
     else if(right > left) moveX = 5;
   }
   else moveX = 0; 
-  
-  ticks++;
 }

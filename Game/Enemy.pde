@@ -10,9 +10,11 @@ public class Enemy implements Damageable{
   public void move(){
     
   }
+  
   public void display(){
     
   }
+  
   public void dealDamage(Damageable other,int dmg){}
   public void takeDamage(int dmg){}
   public void setX(float k){}
