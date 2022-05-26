@@ -42,6 +42,8 @@ public class Enemy implements Damageable{
   
 }
 public class fairy extends Enemy{
+  int tick = 0;
+  
   public fairy(){
     super();
   }
@@ -51,6 +53,10 @@ public class fairy extends Enemy{
   public void shoot(){
     attack = new Shotgun(x,y+20,3,4,PI/2,PI/4);
   }  
+  public void move(){
+    tick ++;
+    x+=2;
+    
 }
 public class Boss extends Enemy{
   public Phase[] phases;
