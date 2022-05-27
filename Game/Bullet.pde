@@ -50,7 +50,7 @@ public class EnemyBullet extends Bullet{
   Player player;
    
   public EnemyBullet(float x, float y, float speed, float angle){
-    this(x, y, speed * cos(angle), speed * sin(angle), 1, 10.0, 20);
+    this(x, y, speed * cos(angle), speed * sin(angle), 1, 10.0, 200);
   }
   
   public EnemyBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration){
