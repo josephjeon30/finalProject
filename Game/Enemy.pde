@@ -60,14 +60,16 @@ public class fairy extends Enemy{
     dy=0;
   }
   public void shoot(){
-    if(ticks%10==0){
-    attack = new Shotgun(x,y+20,3,4,PI/2,PI/4);
+    if(ticks%2==0){
+      int v = 5;
+      attack = new Shotgun(x, y, 5, v, 0.01*angle, PI/24);
+      attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/24);
     }
   }  
   public void move(){
-    if(x<5||x>995) dx*=-1;
-      
-    x+=dx;
+    //if(x<5||x>995) dx*=-1;
+    y = 150+50*sin(0.1* ((float)ticks));
+    x = 500 + 500*sin(0.012*((float)ticks));
   }
 }
 public class Boss extends Enemy{

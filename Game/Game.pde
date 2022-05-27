@@ -68,31 +68,20 @@ void draw(){
   fill(color(0, 0, 0, 50));
 
   rect(0,0,width, height);
-  
+  bm.move();
+  bm.display();
   yoi.move();
   yoi.display();
   
   currentStage.spawn();
   currentStage.processenemies();
-  bm.move();
-  bm.display();
+  
 
   
   bm.detectCollision();
   
   if (shooting){
     if (ticks % 5 == 0) yoi.shoot();
-  }
-  
-
-  /**if (ticks % 20 == 0){
-    Wall wall1 = new Wall(0, height/2.0, 39, 1, 0, 20.0);
-    Wall wall2 = new Wall(width, 10 + height/2.0, 39, 1, PI, 20.0);
-  }**/
-
-  if (ticks % 10 == 0){
-    Phase sh = new Wall(width/2, height/4, 6, 2, angle, 20);
-    sh = new Wall(width/2, height/4, 6, 2, angle+PI, 20);
   }
   
   

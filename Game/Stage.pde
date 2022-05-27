@@ -11,7 +11,7 @@ public class Stage{
   public Stage(){
     switch(stagenum){
       default:
-        Enemy egg=new fairy(80,500,20);
+        Enemy egg=new fairy(80,500,500);
         enemies.add(egg);
     }
   }

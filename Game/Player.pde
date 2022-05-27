@@ -40,7 +40,7 @@ public class Player implements Damageable{
   }
   public void shoot(){
     //bm.addPlayerBullet(new PlayerBullet(x, y-25, 5, 3*PI/2));
-    Phase p = new PWall(x,y,4,5,-PI/2,30);
+    Phase p = new PWall(x,y,4,20,-PI/2,30);
   }
   //public void setX(float k){}
   //public void setY(float k){}
