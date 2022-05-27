@@ -12,13 +12,12 @@ int down = 0;
 int left = 0;
 int right = 0;
 
-<<<<<<< HEAD
+
 Stage currentStage = new Stage();
-=======
+
 boolean shooting = false;
 
-Stage currentStage;
->>>>>>> main
+
 
 Player yoi = new Player();
 
@@ -64,12 +63,10 @@ void keyReleased(){
 }
 
 void draw(){
-<<<<<<< HEAD
+
   
   fill(color(0, 0, 0, 50));
-=======
-  fill(color(0, 0, 0, 30));
->>>>>>> main
+
   rect(0,0,width, height);
   
   yoi.move();
@@ -79,15 +76,7 @@ void draw(){
   currentStage.processenemies();
   bm.move();
   bm.display();
-<<<<<<< HEAD
 
- 
-  
-  if(keyPressed){
-    //Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
-    //Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
-    yoi.shoot();
-=======
   
   bm.detectCollision();
   
@@ -123,7 +112,7 @@ public void checkStuff(){
   }
   }else{
     moveY=0;
->>>>>>> main
+
   }
   
   angle -= 5;
