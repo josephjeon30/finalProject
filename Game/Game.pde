@@ -63,23 +63,7 @@ void draw(){
   bm.move();
   bm.display();
 
-  if(keyPressed){
-    //Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
-    //Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
-    yoi.shoot();
-  }
-  
-  angle += 0.01;
-  if(up>0||down>0){
-    if(up>down){
-      moveY=-5;
-    }else if(down>up){
-      moveY=5;
-    }
-  }else{
-    moveY=0;
-  }
-
+ 
   
   if(keyPressed){
     //Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
