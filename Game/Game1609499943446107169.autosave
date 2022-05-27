@@ -1,9 +1,6 @@
 BulletManager bm = new BulletManager();
 float angle = 0;
 boolean alive = true;
-boolean bossisdead = false;
-
-static int ticks = 0;
 
 int moveX = 0;
 int moveY = 0;
@@ -12,14 +9,10 @@ int down = 0;
 int left = 0;
 int right = 0;
 
-
-Stage currentStage = new Stage();
-
-boolean shooting = false;
-
-
+Stage currentStage;
 
 Player yoi = new Player();
+
 
 void setup(){
   size(1000, 750);
@@ -45,9 +38,6 @@ void keyPressed(){
       right += 2;
     }
   }
-  if (key == 'z'){
-    shooting = true;
-  }
 }
 
 void keyReleased(){
@@ -57,63 +47,44 @@ void keyReleased(){
     if(keyCode==LEFT) left=0;
     if(keyCode==RIGHT) right=0;
   }
-  if (key == 'z'){
-    shooting = false;
-  }
 }
 
 void draw(){
-
   
-  fill(color(0, 0, 0, 50));
-
+  fill(color(0, 0, 0, 20));
   rect(0,0,width, height);
   
   yoi.move();
   yoi.display();
   
-  currentStage.spawn();
-  currentStage.processenemies();
   bm.move();
   bm.display();
 
-  
-  bm.detectCollision();
-  
-  if (shooting){
-    if (ticks % 5 == 0) yoi.shoot();
+  if(keyPressed){
+  Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
+  Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
+  yoi.shoot();
   }
-  
+  angle -= 5;
 
-  /**if (ticks % 20 == 0){
-    Wall wall1 = new Wall(0, height/2.0, 39, 1, 0, 20.0);
-    Wall wall2 = new Wall(width, 10 + height/2.0, 39, 1, PI, 20.0);
-  }**/
-
-  if (ticks % 10 == 0){
-    Phase sh = new Wall(width/2, height/4, 6, 2, angle, 20);
-    sh = new Wall(width/2, height/4, 6, 2, angle+PI, 20);
-  }
-  
-  
-  checkStuff();
-  ticks++;
-}
-
-public void checkStuff(){
   if(up>0||down>0){
-  if(up>down){
-    moveY=-5;
-  }else if(down>up){
-    moveY=5;
-  }
+    if(up>down){
+      moveY=-5;
+    }else if(down>up){
+      moveY=5;
+    }
   }else{
     moveY=0;
+  }
 
+  
+  if(keyPressed){
+    //Shotgun sh = new Shotgun(width/2, height/2, 5, 2, angle, 2 * PI/5);
+    //Shotgun sh2 = new Shotgun(width/2, height/2, 5, 2, -angle, 2 * PI/5);
+    yoi.shoot();
   }
   
-  angle -= 0.7;
-  
+  angle -= 5;
   if(up > 0 || down > 0){
     if(up > down) moveY = -5;
     else if(down>up) moveY = 5;
@@ -123,5 +94,5 @@ public void checkStuff(){
     if(left > right) moveX=-5;
     else if(right > left) moveX = 5;
   }
-  else moveX = 0; 
+  else moveX = 0;   
 }

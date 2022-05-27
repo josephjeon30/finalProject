@@ -18,7 +18,7 @@ public class Bullet{
   }
     
   public Bullet(float x, float y, float speed, float angle){
-    this(x, y, speed * cos(angle), speed * sin(angle), 10, 10.0, 1);
+    this(x, y, speed * cos(angle), speed * sin(angle), 10, 10.0, 5);
   }
   
   public Bullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration){
