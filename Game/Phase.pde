@@ -24,3 +24,11 @@ public class Wall extends Phase{
     }
   }
 }
+
+public class PWall extends Phase{
+  public PWall(float x, float y, int count, float speed, float dir, float spread){
+    for (int i = -count/2+1; i < count/2; i++){
+      bm.addPlayerBullet(new PlayerBullet(x + spread * i * cos(dir - PI/2), y + spread * i * sin(dir - PI/2), speed, dir));
+    }
+  }
+}

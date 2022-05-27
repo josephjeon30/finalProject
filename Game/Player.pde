@@ -32,10 +32,15 @@ public class Player implements Damageable{
   }
   public void takeDamage(int dmg){
     HP-=dmg;  
+    fill(155,134,56);
+    ellipse(x, y+5, 25, 60);
+    fill(255,0,0);
+    ellipse(x,y,hitRadius,hitRadius);
+    
   }
   public void shoot(){
-    bm.addPlayerBullet(new PlayerBullet(x, y-25, 5, 3*PI/2));
-    //placeholder until phases work 
+    //bm.addPlayerBullet(new PlayerBullet(x, y-25, 5, 3*PI/2));
+    Phase p = new PWall(x,y,4,5,-PI/2,30);
   }
   //public void setX(float k){}
   //public void setY(float k){}
