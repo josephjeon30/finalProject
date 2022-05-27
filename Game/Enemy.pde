@@ -28,7 +28,7 @@ public class Enemy implements Damageable{
         fill(40,234,156);
         ellipse(x, y, 25, 60);
         fill(240);
-      text("HP: "+HP,900,200);
+        text("HP: "+HP,900,200);
     }
   }
   public void dealDamage(Damageable other,int dmg){
@@ -38,7 +38,6 @@ public class Enemy implements Damageable{
     HP-=dmg;
   }
   public void shoot(){}
-    
 
   public void setX(float k){}
   public void setY(float k){}
