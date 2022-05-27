@@ -74,19 +74,17 @@ void draw(){
     if (ticks % 5 == 0) yoi.shoot();
   }
   
-  /**
-  if (ticks % 20 == 0){
-    //Wall wall1 = new Wall(0, height/2.0, 39, 1, 0, 20.0);
-    //Wall wall2 = new Wall(width, 10 + height/2.0, 39, 1, PI, 20.0);
+
+  /**if (ticks % 20 == 0){
+    Wall wall1 = new Wall(0, height/2.0, 39, 1, 0, 20.0);
+    Wall wall2 = new Wall(width, 10 + height/2.0, 39, 1, PI, 20.0);
+  }**/
+
+  if (ticks % 10 == 0){
+    Phase sh = new Wall(width/2, height/4, 6, 2, angle, 20);
+    sh = new Wall(width/2, height/4, 6, 2, angle+PI, 20);
   }
-  **/
-  if (ticks % 5 == 0){
-    Phase sh = new Wall(width/2, height/4, 6, 2, 0.5*angle, 20);
-    sh = new Wall(width/2, height/4, 6, 2, 0.5*angle + PI, 20);
-  }
-  /**
-  angle += 0.01;
-  **/
+  
   
   checkStuff();
   ticks++;
@@ -103,7 +101,8 @@ public void checkStuff(){
     moveY=0;
   }
   
-  angle -= 0.1;
+  angle -= 0.7;
+  
   if(up > 0 || down > 0){
     if(up > down) moveY = -5;
     else if(down>up) moveY = 5;
