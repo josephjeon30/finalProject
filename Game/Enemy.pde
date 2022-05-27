@@ -5,6 +5,7 @@ public class Enemy implements Damageable{
   public Phase attack;
   
   public Enemy(){
+<<<<<<< HEAD
     this(80,0,0);
   }
   public Enemy(int hp,int spawnX,int spawnY){
@@ -35,6 +36,21 @@ public class Enemy implements Damageable{
   }
   public void shoot(){}
     
+=======
+    attack = new Shotgun(x, y, 3, 5, atan((yoi.y - y) / (yoi.x - x)), PI/4);
+  }
+  
+  public void move(){
+    
+  }
+  
+  public void display(){
+    
+  }
+  
+  public void dealDamage(Damageable other,int dmg){}
+  public void takeDamage(int dmg){}
+>>>>>>> main
   public void setX(float k){}
   public void setY(float k){}
   public void setDX(float k){}
