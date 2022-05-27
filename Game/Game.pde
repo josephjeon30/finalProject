@@ -13,7 +13,7 @@ int right = 0;
 Stage currentStage;
 
 Player yoi = new Player();
-
+Enemy egg=new fairy(80,500,20);
 
 void setup(){
   size(1000, 750);
@@ -57,9 +57,10 @@ void draw(){
   
   yoi.move();
   yoi.display();
-  Enemy egg=new fairy(80,500,20);
+  
   egg.display();
   egg.shoot();
+  egg.move();
   bm.move();
   bm.display();
 

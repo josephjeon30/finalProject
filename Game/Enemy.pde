@@ -46,17 +46,22 @@ public class fairy extends Enemy{
   
   public fairy(){
     super();
+    dx=5;
+    dy=0;
   }
   public fairy(int h, int x, int y){
     super(h,x,y);
+    dx=5;
+    dy=0;
   }
   public void shoot(){
     attack = new Shotgun(x,y+20,3,4,PI/2,PI/4);
   }  
   public void move(){
-    tick ++;
-    x+=2;
-    
+    if(x<5||x>995) dx*=-1;
+      
+    x+=dx;
+  }
 }
 public class Boss extends Enemy{
   public Phase[] phases;
