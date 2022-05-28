@@ -75,14 +75,16 @@ public class fairy extends Enemy{
 }
 public class Boss extends Enemy{
   public Phase[] phases;
-  public int currentPhase;
+  public int[] phaseDur;
+  public int currentPhase=0;
   public int phasecooldown=0;
   public Boss(){
     super(500,500,20);
   }
-  public Boss(Phase[] moves){
+  public Boss(Phase[] moves, int[] time){
     super(500,500,20);
     phases=moves;
+    phaseDur=time;
   }
   public void move(){
     switch(currentPhase){
@@ -91,5 +93,13 @@ public class Boss extends Enemy{
         x = 500 + 500*sin(0.012*timer);
         timer++;
     } 
+  }
+  public void shoot(){
+    if(phasecooldown==phaseDur[currentPhase]){//each phase should have it's own duration
+      currentPhase=(int)(Math.random()*phases.length);
+      phasecooldown=0;
+    }
+    if(timer%5==0) attack = phases[currentPhase];
+    phasecooldown++;
   }
 }
