@@ -8,19 +8,23 @@ public class Stage{
   //int enemycount=0;
   int stagenum;
   
+  
   public Stage(){
     switch(stagenum){
       default:
         Enemy egg=new fairy(80,500,500);
         enemies.add(egg);
+        delay.add(00.0);
     }
   }
   
   public void spawn(){
     if(enemies.size()>0){
-      
-      enemyonfield.add(enemies.remove());
-      
+      if(spawndelay==delay.peek()){
+        enemyonfield.add(enemies.remove());
+        spawndelay=0;
+        delay.remove();
+      }
     }
   }
   public void processenemies(){
@@ -36,6 +40,7 @@ public class Stage{
     }
   }
   public void proceed(){
+    if(enemies.size()==0)
     if(bossisdead){
       stagenum++;
       bossisdead=false;
