@@ -1,7 +1,7 @@
 BulletManager bm = new BulletManager();
 float angle = 0;
 boolean alive = true;
-boolean bossisdead = false;
+//boolean bossisdead = false;
 
 static int ticks = 0;
 static int spawndelay = 0;
@@ -63,11 +63,8 @@ void keyReleased(){
   }
 }
 
-void draw(){
-
-  
+void draw(){  
   fill(color(0, 0, 0, 100));
-
   rect(0,0,width, height);
   bm.move();
   bm.display();
@@ -76,16 +73,10 @@ void draw(){
   
   currentStage.spawn();
   currentStage.processenemies();
-  
-
-  
   bm.detectCollision();
-  
   if (shooting){
     if (ticks % 5 == 0) yoi.shoot();
   }
-  
-  
   checkStuff();
   ticks++;
   spawndelay++;

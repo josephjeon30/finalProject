@@ -40,11 +40,11 @@ public class Stage{
     }
   }
   public void proceed(){
-    if(enemies.size()==0)
-    if(bossisdead){
-      stagenum++;
-      bossisdead=false;
-    }
+    if(enemies.size()==0){}
+    //if(bossisdead){
+    //  stagenum++;
+    //  bossisdead=false;
+    //}
   }
 }
 

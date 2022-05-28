@@ -40,14 +40,14 @@ public class Enemy implements Damageable{
   }
   public void shoot(){}
 
-  public void setX(float k){}
-  public void setY(float k){}
-  public void setDX(float k){}
-  public void setDY(float k){}
+  //public void setX(float k){}
+  //public void setY(float k){}
+  //public void setDX(float k){}
+  //public void setDY(float k){}
   
 }
 public class fairy extends Enemy{
-  int tick = 0;
+  //int tick = 0;
   
   public fairy(){
     super();
@@ -60,7 +60,7 @@ public class fairy extends Enemy{
     dy=0;
   }
   public void shoot(){
-    if(ticks%2==0){
+    if(timer%2==0){
       int v = 3;
       attack = new Shotgun(x, y, 5, v, 0.01*angle, PI/24);
       attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/24);
@@ -76,7 +76,20 @@ public class fairy extends Enemy{
 public class Boss extends Enemy{
   public Phase[] phases;
   public int currentPhase;
+  public int phasecooldown=0;
   public Boss(){
-    super(500,500,0);
+    super(500,500,20);
+  }
+  public Boss(Phase[] moves){
+    super(500,500,20);
+    phases=moves;
+  }
+  public void move(){
+    switch(currentPhase){
+      default: 
+        y = 150+50*sin(0.1* timer);
+        x = 500 + 500*sin(0.012*timer);
+        timer++;
+    } 
   }
 }

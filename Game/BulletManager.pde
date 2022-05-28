@@ -42,6 +42,7 @@ public class BulletManager{
       for(Enemy e : currentStage.enemyonfield){
         if (dist(eb.x,eb.y, e.x, e.y) < eb.hitRadius + e.hitRadius){
           e.takeDamage(eb.dmg);
+          eb.dmg=0;
         }
       }
     } 
