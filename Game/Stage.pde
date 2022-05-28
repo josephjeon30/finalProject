@@ -14,7 +14,7 @@ public class Stage{
       default:
         Enemy egg=new fairy(80,500,500);
         enemies.add(egg);
-        delay.add(00.0);
+        delay.add(200.0);
     }
   }
   

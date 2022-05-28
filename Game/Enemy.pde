@@ -4,6 +4,7 @@ public class Enemy implements Damageable{
   public int type;
   public Phase attack;
   float hitRadius = 10;
+  public float timer = 0;
   
   public Enemy(){
 
@@ -67,8 +68,9 @@ public class fairy extends Enemy{
   }  
   public void move(){
     //if(x<5||x>995) dx*=-1;
-    y = 150+50*sin(0.1* ((float)ticks));
-    x = 500 + 500*sin(0.012*((float)ticks));
+    y = 150+50*sin(0.1* timer);
+    x = 500 + 500*sin(0.012*timer);
+    timer++;
   }
 }
 public class Boss extends Enemy{
