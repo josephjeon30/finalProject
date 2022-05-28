@@ -73,7 +73,7 @@ public class PlayerBullet extends Bullet{
   }
   
   public void display(){
-    fill(0,255,0);
-    ellipse(x, y, 10, 10);
-  }
+    fill(0,255,0,100);
+    ellipse(x, y, 10, 100);
+  } 
 }
