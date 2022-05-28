@@ -26,9 +26,13 @@ public class Stage{
   public void processenemies(){
     for (int e = 0; e < enemyonfield.size(); e++){
       Enemy egg = enemyonfield.get(e);
-      egg.move();
-      egg.display();
-      egg.shoot();
+      if (egg.HP<=0){
+        enemyonfield.remove(e);
+      }else{
+        egg.move();
+        egg.display();
+        egg.shoot();
+      }
     }
   }
   public void proceed(){

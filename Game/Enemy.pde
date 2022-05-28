@@ -60,7 +60,7 @@ public class fairy extends Enemy{
   }
   public void shoot(){
     if(ticks%2==0){
-      int v = 5;
+      int v = 3;
       attack = new Shotgun(x, y, 5, v, 0.01*angle, PI/24);
       attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/24);
     }

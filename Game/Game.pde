@@ -65,7 +65,7 @@ void keyReleased(){
 void draw(){
 
   
-  fill(color(0, 0, 0, 50));
+  fill(color(0, 0, 0, 100));
 
   rect(0,0,width, height);
   bm.move();
