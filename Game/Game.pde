@@ -4,6 +4,7 @@ boolean alive = true;
 boolean bossisdead = false;
 
 static int ticks = 0;
+static int spawndelay = 0;
 
 int moveX = 0;
 int moveY = 0;
@@ -65,7 +66,7 @@ void keyReleased(){
 void draw(){
 
   
-  fill(color(0, 0, 0, 50));
+  fill(color(0, 0, 0, 100));
 
   rect(0,0,width, height);
   bm.move();
@@ -87,6 +88,7 @@ void draw(){
   
   checkStuff();
   ticks++;
+  spawndelay++;
 }
 
 public void checkStuff(){

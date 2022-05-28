@@ -4,6 +4,7 @@ public class Enemy implements Damageable{
   public int type;
   public Phase attack;
   float hitRadius = 10;
+  public float timer = 0;
   
   public Enemy(){
 
@@ -28,7 +29,7 @@ public class Enemy implements Damageable{
         fill(40,234,156);
         ellipse(x, y, 25, 60);
         fill(240);
-      text("HP: "+HP,900,200);
+        text("HP: "+HP,900,200);
     }
   }
   public void dealDamage(Damageable other,int dmg){
@@ -38,7 +39,6 @@ public class Enemy implements Damageable{
     HP-=dmg;
   }
   public void shoot(){}
-    
 
   public void setX(float k){}
   public void setY(float k){}
@@ -61,15 +61,16 @@ public class fairy extends Enemy{
   }
   public void shoot(){
     if(ticks%2==0){
-      int v = 5;
+      int v = 3;
       attack = new Shotgun(x, y, 5, v, 0.01*angle, PI/24);
       attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/24);
     }
   }  
   public void move(){
     //if(x<5||x>995) dx*=-1;
-    y = 150+50*sin(0.1* ((float)ticks));
-    x = 500 + 500*sin(0.012*((float)ticks));
+    y = 150+50*sin(0.1* timer);
+    x = 500 + 500*sin(0.012*timer);
+    timer++;
   }
 }
 public class Boss extends Enemy{
