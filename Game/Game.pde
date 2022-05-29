@@ -38,7 +38,7 @@ void mouseReleased(){
 **/
 
 void keyPressed(){
-  if (key == 'z'){
+  if (key == 'i'){
     shooting = !shooting;
   }
   if(key == 'w'){
