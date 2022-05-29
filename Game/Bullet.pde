@@ -1,5 +1,5 @@
 public class Bullet{
-  float border = 0;
+  float border = -50;
   float x, y, dx, dy;
   int dmg;
   float dmgCooldown;
@@ -58,6 +58,11 @@ public class EnemyBullet extends Bullet{
     player = yoi;
     bm.addEnemyBullet(this);
   }
+  
+  public void display(){
+    fill(255);
+    ellipse(x, y, 10, 10);
+  }
 }
 
 public class PlayerBullet extends Bullet{
@@ -74,6 +79,6 @@ public class PlayerBullet extends Bullet{
   
   public void display(){
     fill(0,255,0,100);
-    ellipse(x, y, 10, 100);
+    ellipse(x, y, 10, 10);
   } 
 }

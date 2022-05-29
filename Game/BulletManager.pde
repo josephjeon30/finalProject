@@ -38,11 +38,20 @@ public class BulletManager{
         eb.dmg = 0;
       }
     } 
-    for (PlayerBullet eb: playerBullets){
-      for(Enemy e : currentStage.enemyonfield){
-        if (dist(eb.x,eb.y, e.x, e.y) < eb.hitRadius + e.hitRadius){
-          e.takeDamage(eb.dmg);
-          eb.dmg=0;
+//<<<<<<< HEAD
+//    for (PlayerBullet eb: playerBullets){
+//      for(Enemy e : currentStage.enemyonfield){
+//        if (dist(eb.x,eb.y, e.x, e.y) < eb.hitRadius + e.hitRadius){
+//          e.takeDamage(eb.dmg);
+//          eb.dmg=0;
+//=======
+    for (int i = 0; i < playerBullets.size(); i++){
+      for (Enemy e : currentStage.enemyonfield){
+        PlayerBullet pb = playerBullets.get(i);
+        if (dist(pb.x,pb.y, e.x, e.y) < pb.hitRadius + e.hitRadius){
+          e.takeDamage(pb.dmg);
+          playerBullets.remove(i);
+
         }
       }
     } 
