@@ -74,14 +74,15 @@ public class fairy extends Enemy{
   }
 }
 public class Boss extends Enemy{
-  public Phase[] phases;
+  public int[] phases;
   public int[] phaseDur;
   public int currentPhase=0;
   public int phasecooldown=0;
   public Boss(){
     super(500,500,20);
+    //phases = {new Shotgun(x, y, 5, v, 0.01*angle, PI/24)};
   }
-  public Boss(Phase[] moves, int[] time){
+  public Boss(int[] moves, int[] time){
     super(500,500,20);
     phases=moves;
     phaseDur=time;
@@ -99,7 +100,14 @@ public class Boss extends Enemy{
       currentPhase=(int)(Math.random()*phases.length);
       phasecooldown=0;
     }
-    if(timer%5==0) attack = phases[currentPhase];
+    switch(currentPhase){
+      default:
+        if(timer%5==0) {
+          int v = 3;
+          attack = new Shotgun(x, y, 5, v, 0.01*angle, PI/24);
+          attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/24);
+        }
+    }
     phasecooldown++;
   }
 }
