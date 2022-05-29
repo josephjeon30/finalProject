@@ -101,11 +101,15 @@ public class Boss extends Enemy{
       phasecooldown=0;
     }
     switch(currentPhase){
+      case 1 :
+      case 2:
+      //etc
       default:
         if(timer%5==0) {
           int v = 3;
           attack = new Shotgun(x, y, 5, v, 0.01*angle, PI/24);
           attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/24);
+          
         }
     }
     phasecooldown++;

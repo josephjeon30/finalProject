@@ -12,7 +12,9 @@ public class Stage{
   public Stage(){
     switch(stagenum){
       default:
-        Enemy egg=new fairy(80,500,500);
+        int[] moves = {4,5};
+        int[] time = {500,500};
+        Boss egg=new Boss(moves,time);
         enemies.add(egg);
         delay.add(200.0);
     }
