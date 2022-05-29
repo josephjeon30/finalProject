@@ -25,7 +25,7 @@ public class Enemy implements Damageable{
   public void display(){
     switch(type){
       default:
-        fill(40,234,156);
+        fill(234,234,40);
         ellipse(x, y, 25, 60);
         fill(240);
       text("HP: "+HP,900,200);
@@ -68,8 +68,8 @@ public class fairy extends Enemy{
   }  
   public void move(){
     //if(x<5||x>995) dx*=-1;
-    y = 150+50*sin(0.1* ((float)ticks));
-    x = 500 + 500*sin(0.012*((float)ticks));
+    y = 350 + 150*sin(0.07* ((float)ticks));
+    x = 500 + 400*sin(0.012*((float)ticks));
   }
 }
 public class Boss extends Enemy{

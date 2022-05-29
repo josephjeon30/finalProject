@@ -1,5 +1,5 @@
 public class Bullet{
-  float border = 0;
+  float border = -50;
   float x, y, dx, dy;
   int dmg;
   float dmgCooldown;
@@ -58,13 +58,18 @@ public class EnemyBullet extends Bullet{
     player = yoi;
     bm.addEnemyBullet(this);
   }
+  
+  public void display(){
+    fill(255);
+    ellipse(x, y, 10, 10);
+  }
 }
 
 public class PlayerBullet extends Bullet{
   Enemy enemy;
   
   public PlayerBullet(float x, float y, float speed, float angle){
-    this(x, y, speed * cos(angle), speed * sin(angle), 100, 10.0, 200);
+    this(x, y, speed * cos(angle), speed * sin(angle), 1, 10.0, 200);
   }
   
   public PlayerBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration){
@@ -74,6 +79,6 @@ public class PlayerBullet extends Bullet{
   
   public void display(){
     fill(0,255,0,100);
-    ellipse(x, y, 10, 100);
+    ellipse(x, y, 10, 10);
   } 
 }
