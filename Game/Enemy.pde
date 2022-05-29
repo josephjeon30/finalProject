@@ -68,8 +68,8 @@ public class fairy extends Enemy{
   }  
   public void move(){
     //if(x<5||x>995) dx*=-1;
-    y = 150+50*sin(0.1* timer);
-    x = 500 + 500*sin(0.012*timer);
+    y = 350 + 100*sin(0.1* timer);
+    x = 500 + 400*sin(0.012*timer);
     timer++;
   }
 }
@@ -90,14 +90,14 @@ public class Boss extends Enemy{
   public void move(){
     switch(currentPhase){
       default: 
-        y = 150+50*sin(0.1* timer);
-        x = 500 + 500*sin(0.012*timer);
+        y = 350 + 150 * sin(0.1* timer);
+        x = 500 + 400 * sin(0.012*timer);
         timer++;
     } 
   }
   public void shoot(){
     if(phasecooldown==phaseDur[currentPhase]){//each phase should have it's own duration
-      currentPhase=(int)(Math.random()*phases.length);
+      currentPhase=(int)(Math.random() * phases.length);
       phasecooldown=0;
     }
     switch(currentPhase){
@@ -105,10 +105,10 @@ public class Boss extends Enemy{
       case 2:
       //etc
       default:
-        if(timer%5==0) {
-          int v = 3;
-          attack = new Shotgun(x, y, 5, v, 0.01*angle, PI/24);
-          attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/24);
+        if(timer%2==0) {
+          int v = 5;
+          attack = new Shotgun(x, y, 5, v, 0.01*angle, PI / 20);
+          attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/20);
           
         }
     }
