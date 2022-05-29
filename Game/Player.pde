@@ -45,13 +45,13 @@ public class Player implements Damageable{
   //public void setX(float k){}
   //public void setY(float k){}
   public void setDX(float k){
-    if(x<10||x>width-10){
+    if(x<35||x>700){
      dx*=-1;
     }else{
     dx=k;}
   }
   public void setDY(float k){
-    if(y<20||y>height-20){
+    if(y<40||y>height-70){
      dy*=-1;
     }else{
     dy=k;}

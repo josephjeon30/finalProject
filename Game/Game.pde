@@ -12,9 +12,10 @@ int up = 0;
 int down = 0;
 int left = 0;
 int right = 0;
+int xbound=700;
+int ybound=730;
 
-
-Stage currentStage = new Stage();
+Stage currentStage = new Stage(0);
 
 boolean shooting = false;
 
@@ -26,6 +27,8 @@ void setup(){
   size(1000, 750);
   noCursor();
   noStroke();
+  fill(128,0,0);
+  rect(0,0,width, height);
 }
 
 /**
@@ -96,9 +99,11 @@ void keyReleased(){
 }
 
 
-void draw(){  
-  fill(color(0, 0, 0, 100));
-  rect(0,0,width, height);
+void draw(){ 
+  fill(0,0,0,50);
+  rect(20,20,700, 710);
+  
+
   bm.move();
   bm.display();
   yoi.move();
@@ -106,6 +111,7 @@ void draw(){
   
   currentStage.spawn();
   currentStage.processenemies();
+
 
   
   fill(color(255,0,0));
@@ -116,6 +122,7 @@ void draw(){
   ellipse(mouseX,mouseY,10,10);
   
 
+
   bm.detectCollision();
   if (shooting){
     if (ticks % 5 == 0) yoi.shoot();
@@ -123,6 +130,19 @@ void draw(){
   checkStuff();
   ticks++;
   spawndelay++;
+  //text(currentStage.stagenum,50,50);
+  renderGUI();
+}
+
+void renderGUI(){
+  
+  fill(color(128, 0, 0));
+  rect(0,0,20, height);
+  rect(0,0,width, 20);
+  rect(0,height-20,width, height);
+  rect(720,0,width, height);
+  fill(255);
+  text("HP: "+yoi.HP,900,100);
 }
 
 public void checkStuff(){

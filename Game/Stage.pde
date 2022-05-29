@@ -9,14 +9,17 @@ public class Stage{
   int stagenum;
   
   
-  public Stage(){
+  public Stage(int num){
+    stagenum=num;
+    spawndelay=0;
     switch(stagenum){
       default:
         int[] moves = {4,5};
         int[] time = {500,500};
         Boss egg=new Boss(moves,time);
-        enemies.add(egg);
         delay.add(200.0);
+        enemies.add(egg);
+        
     }
   }
   
@@ -34,6 +37,7 @@ public class Stage{
       Enemy egg = enemyonfield.get(e);
       if (egg.HP<=0){
         enemyonfield.remove(e);
+        if(enemies.size()==0&&enemyonfield.size()==0) currentStage = new Stage(stagenum+1);
       }else{
         egg.move();
         egg.display();
@@ -41,17 +45,15 @@ public class Stage{
       }
     }
   }
-  public void proceed(){
-    if(enemies.size()==0){}
-    //if(bossisdead){
-    //  stagenum++;
-    //  bossisdead=false;
-    //}
-  }
-}
-
-public class Stage1 extends Stage{
-  public Stage1(){
-    enemies.add(new Enemy());
-  }
+  //public void proceed(){
+  //  if(enemies.size()==0){
+  //    if(enemyonfield.get(0).HP<=0){
+        
+  //    }
+  //  }
+  //  //if(bossisdead){
+  //  //  stagenum++;
+  //  //  bossisdead=false;
+  //  //}
+  //}
 }
