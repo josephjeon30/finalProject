@@ -14,7 +14,7 @@ int left = 0;
 int right = 0;
 
 
-Stage currentStage = new Stage();
+Stage currentStage = new Stage(0);
 
 boolean shooting = false;
 
@@ -73,6 +73,7 @@ void draw(){
   
   currentStage.spawn();
   currentStage.processenemies();
+  //currentStage.proceed();
   bm.detectCollision();
   if (shooting){
     if (ticks % 5 == 0) yoi.shoot();
@@ -80,6 +81,7 @@ void draw(){
   checkStuff();
   ticks++;
   spawndelay++;
+  text(currentStage.stagenum,50,50);
 }
 
 public void checkStuff(){
