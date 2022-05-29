@@ -36,7 +36,7 @@ public class Bullet{
     x += dx;
     y += dy;
     if (Game.ticks - this.spawnTick >= duration) outOfBounds = true;
-    if (x < border || x > width - border || y < border || y > height - border) outOfBounds = true;
+    if (x < 10 || x > width - 270 || y < 10 || y > height - 10) outOfBounds = true;
   }
   
   public void display(){

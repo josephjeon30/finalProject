@@ -12,7 +12,8 @@ int up = 0;
 int down = 0;
 int left = 0;
 int right = 0;
-
+int xbound=700;
+int ybound=730;
 
 Stage currentStage = new Stage(0);
 
@@ -25,6 +26,8 @@ Player yoi = new Player();
 void setup(){
   size(1000, 750);
   noStroke();
+  fill(128,0,0);
+  rect(0,0,width, height);
 }
 
 void keyPressed(){
@@ -63,9 +66,10 @@ void keyReleased(){
   }
 }
 
-void draw(){  
-  fill(color(0, 0, 0, 100));
-  rect(0,0,width, height);
+void draw(){ 
+  fill(0,0,0,50);
+  rect(20,20,700, 710);
+  
   bm.move();
   bm.display();
   yoi.move();
@@ -81,7 +85,19 @@ void draw(){
   checkStuff();
   ticks++;
   spawndelay++;
-  text(currentStage.stagenum,50,50);
+  //text(currentStage.stagenum,50,50);
+  renderGUI();
+}
+
+void renderGUI(){
+  
+  fill(color(128, 0, 0));
+  rect(0,0,20, height);
+  rect(0,0,width, 20);
+  rect(0,height-20,width, height);
+  rect(720,0,width, height);
+  fill(255);
+  text("HP: "+yoi.HP,900,100);
 }
 
 public void checkStuff(){

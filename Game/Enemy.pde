@@ -29,7 +29,7 @@ public class Enemy implements Damageable{
         fill(40,234,156);
         ellipse(x, y, 25, 60);
         fill(240);
-        text("HP: "+HP,900,200);
+        text("HP: "+HP,30,height-30);
     }
   }
   public void dealDamage(Damageable other,int dmg){
@@ -91,7 +91,7 @@ public class Boss extends Enemy{
     switch(currentPhase){
       default: 
         y = 150+50*sin(0.1* timer);
-        x = 500 + 500*sin(0.012*timer);
+        x = 370 + 330*sin(0.012*timer);
         timer++;
     } 
   }
