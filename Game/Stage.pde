@@ -39,9 +39,11 @@ public class Stage{
         enemyonfield.remove(e);
         if(enemies.size()==0&&enemyonfield.size()==0) currentStage = new Stage(stagenum+1);
       }else{
-        egg.move();
         egg.display();
-        egg.shoot();
+        if (alive){
+          egg.move();
+          egg.shoot();
+        }
       }
     }
   }
@@ -57,3 +59,27 @@ public class Stage{
   //  //}
   //}
 }
+public class titlestage extends Stage{
+  public titlestage(){
+    super(0);
+  }
+  public void spawn(){
+    //visuals
+    
+  }
+  public void processenemies(){
+    //menu navigation
+  }
+}
+//public class dedScreen extends Stage{
+//  public dedScreen(){
+//    super(0);
+//  }
+//  public void spawn(){
+//    //visuals
+    
+//  }
+//  public void processenemies(){
+//    //menu navigation
+//  }
+//}

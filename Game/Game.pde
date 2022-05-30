@@ -31,6 +31,15 @@ void setup(){
 }
 
 void keyPressed(){
+  if (!alive){
+    if (key== 'r'){
+      yoi = new Player();
+      int x = currentStage.stagenum;
+      currentStage = new Stage(x);
+      bm = new BulletManager();
+      alive = true;
+    }
+  }
   if (key == CODED){
     if(keyCode == UP){
       if(down != 0) down = 1;
@@ -67,20 +76,20 @@ void keyReleased(){
 }
 
 void draw(){ 
-  fill(0,0,0,50);
+  fill(0,0,0,110);
   rect(20,20,700, 710);
-  
-  bm.move();
   bm.display();
-  yoi.move();
-  yoi.display();
-  
-  currentStage.spawn();
   currentStage.processenemies();
-  //currentStage.proceed();
-  bm.detectCollision();
-  if (shooting){
-    if (ticks % 5 == 0) yoi.shoot();
+  if (alive){
+    bm.move();
+    yoi.display();
+    yoi.move();
+    currentStage.spawn();
+    //currentStage.proceed();
+    bm.detectCollision();
+    if (shooting){
+      if (ticks % 5 == 0) yoi.shoot();
+    }
   }
   checkStuff();
   ticks++;
@@ -90,14 +99,22 @@ void draw(){
 }
 
 void renderGUI(){
-  
   fill(color(128, 0, 0));
   rect(0,0,20, height);
   rect(0,0,width, 20);
   rect(0,height-20,width, height);
-  rect(720,0,width, height);
-  fill(255);
-  text("HP: "+yoi.HP,900,100);
+  rect(720,0,width, height);  
+  if (alive){
+    fill(255);
+    text("HP: "+yoi.HP,900,100);
+  }else{
+    fill(0,ticks);
+    rect(20,20,700, 710);
+    fill(255,ticks);
+    text("thats unfortunate",320,320);
+    text("press r to restart",321,340);
+  }
+  
 }
 
 public void checkStuff(){

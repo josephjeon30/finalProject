@@ -18,6 +18,10 @@ public class Player implements Damageable{
     setDY(moveY);
     x+=dx;
     y+=dy;
+    if(HP<=0) {
+      alive=false;
+      ticks = 0;
+    }
   }
   public void display(){
     fill(255,234,156);
