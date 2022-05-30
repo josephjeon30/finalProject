@@ -39,9 +39,11 @@ public class Stage{
         enemyonfield.remove(e);
         if(enemies.size()==0&&enemyonfield.size()==0) currentStage = new Stage(stagenum+1);
       }else{
-        egg.move();
         egg.display();
-        egg.shoot();
+        if (alive){
+          egg.move();
+          egg.shoot();
+        }
       }
     }
   }
@@ -56,4 +58,18 @@ public class Stage{
   //  //  bossisdead=false;
   //  //}
   //}
+}
+public class titlestage extends Stage{
+  public titlestage(){
+    super(0);
+  }
+  public void spawn(){
+    //visuals
+    fill(50);
+    rect(0,0,width,height);
+    text("game lol", 495,500);
+  }
+  public void processenemies(){
+    //menu navigation
+  }
 }

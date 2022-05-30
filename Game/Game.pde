@@ -1,7 +1,7 @@
 BulletManager bm = new BulletManager();
 float angle = 0;
 boolean alive = true;
-//boolean bossisdead = false;
+boolean gamestart = false;
 
 static int ticks = 0;
 static int spawndelay = 0;
@@ -15,7 +15,7 @@ int right = 0;
 int xbound=700;
 int ybound=730;
 
-Stage currentStage = new Stage(0);
+Stage currentStage = new titlestage();
 
 boolean shooting = false;
 
@@ -42,6 +42,7 @@ void mouseReleased(){
 **/
 
 void keyPressed(){
+
   if (key == 'i'){
     shooting = !shooting;
   }
@@ -61,7 +62,26 @@ void keyPressed(){
     if(left != 0) left=1;
     right += 2;
   }
+  if (!gamestart){
+    if (keyCode==ENTER){
+      gamestart=true;
+      ticks=0;
+      currentStage=new Stage(0);
+      yoi = new Player();
+    }
+  }
+  if (!alive){
+    if (key== 'r'){
+      yoi = new Player();
+      int x = currentStage.stagenum;
+      currentStage = new Stage(x);
+      bm = new BulletManager();
+      alive = true;
+      ticks=0;
+    }
+  }
   /**
+  
   if (key == CODED){
     if(keyCode == UP){
       if(down != 0) down = 1;
@@ -100,32 +120,27 @@ void keyReleased(){
 
 
 void draw(){ 
-  fill(0,0,0,50);
+  fill(0,0,0,110);
   rect(20,20,700, 710);
-  
-
-  bm.move();
   bm.display();
-  yoi.move();
-  yoi.display();
-  
-  currentStage.spawn();
   currentStage.processenemies();
-
-
-  
   fill(color(255,0,0));
   ellipse(mouseX,mouseY,30,30);
   fill(color(255));
   ellipse(mouseX,mouseY,3,30);
   ellipse(mouseX,mouseY,30,3);
   ellipse(mouseX,mouseY,10,10);
-  
+  if (alive){
+    bm.move();
+    yoi.display();
+    yoi.move();
+    currentStage.spawn();
+    //currentStage.proceed();
+    bm.detectCollision();
+    if (shooting){
+      if (ticks % 5 == 0) yoi.shoot();
+    }
 
-
-  bm.detectCollision();
-  if (shooting){
-    if (ticks % 5 == 0) yoi.shoot();
   }
   checkStuff();
   ticks++;
@@ -135,14 +150,28 @@ void draw(){
 }
 
 void renderGUI(){
-  
-  fill(color(128, 0, 0));
-  rect(0,0,20, height);
-  rect(0,0,width, 20);
-  rect(0,height-20,width, height);
-  rect(720,0,width, height);
-  fill(255);
-  text("HP: "+yoi.HP,900,100);
+  if (gamestart){
+    fill(color(128, 0, 0));
+    rect(0,0,20, height);
+    rect(0,0,width, 20);
+    rect(0,height-20,width, height);
+    rect(720,0,width, height);  
+    if (alive){
+      fill(255);
+      text("HP: "+yoi.HP,900,100);
+    }else{
+      fill(0,ticks*2);
+      rect(20,20,700, 710);
+      fill(255,ticks*2);
+      text("thats unfortunate",320,320);
+      text("press r to restart",321,340);
+    }
+  }else{
+    fill(50);
+    rect(0,0,width,height);
+    fill(255);
+    text("game lol", 475,350); 
+  }
 }
 
 public void checkStuff(){

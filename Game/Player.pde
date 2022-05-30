@@ -5,8 +5,8 @@ public class Player implements Damageable{
   float hitRadius = 10;
   
   public Player(){
-    x=500;
-    y=680;
+    x=370;
+    y=800;
     dx=0;
     dy=0;
     HP=100;
@@ -14,10 +14,18 @@ public class Player implements Damageable{
   }
   
   public void move(){
+    if(ticks<=40){
+      y-=4;
+    }else{
     setDX(moveX);
     setDY(moveY);
     x+=dx;
     y+=dy;
+    if(HP<=0) {
+      alive=false;
+      ticks = 0;
+    }
+    }
   }
   public void display(){
     fill(255,234,156);
