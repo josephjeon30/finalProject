@@ -1,7 +1,7 @@
 BulletManager bm = new BulletManager();
 float angle = 0;
 boolean alive = true;
-//boolean bossisdead = false;
+boolean gamestart = false;
 
 static int ticks = 0;
 static int spawndelay = 0;
@@ -15,7 +15,7 @@ int right = 0;
 int xbound=700;
 int ybound=730;
 
-Stage currentStage = new Stage(0);
+Stage currentStage = new titlestage();
 
 boolean shooting = false;
 
@@ -31,6 +31,14 @@ void setup(){
 }
 
 void keyPressed(){
+  if (!gamestart){
+    if (keyCode==ENTER){
+      gamestart=true;
+      ticks=0;
+      currentStage=new Stage(0);
+      yoi = new Player();
+    }
+  }
   if (!alive){
     if (key== 'r'){
       yoi = new Player();
@@ -38,6 +46,7 @@ void keyPressed(){
       currentStage = new Stage(x);
       bm = new BulletManager();
       alive = true;
+      ticks=0;
     }
   }
   if (key == CODED){
@@ -99,22 +108,28 @@ void draw(){
 }
 
 void renderGUI(){
-  fill(color(128, 0, 0));
-  rect(0,0,20, height);
-  rect(0,0,width, 20);
-  rect(0,height-20,width, height);
-  rect(720,0,width, height);  
-  if (alive){
-    fill(255);
-    text("HP: "+yoi.HP,900,100);
+  if (gamestart){
+    fill(color(128, 0, 0));
+    rect(0,0,20, height);
+    rect(0,0,width, 20);
+    rect(0,height-20,width, height);
+    rect(720,0,width, height);  
+    if (alive){
+      fill(255);
+      text("HP: "+yoi.HP,900,100);
+    }else{
+      fill(0,ticks*2);
+      rect(20,20,700, 710);
+      fill(255,ticks*2);
+      text("thats unfortunate",320,320);
+      text("press r to restart",321,340);
+    }
   }else{
-    fill(0,ticks);
-    rect(20,20,700, 710);
-    fill(255,ticks);
-    text("thats unfortunate",320,320);
-    text("press r to restart",321,340);
+    fill(50);
+    rect(0,0,width,height);
+    fill(255);
+    text("game lol", 475,350); 
   }
-  
 }
 
 public void checkStuff(){

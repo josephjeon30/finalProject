@@ -65,21 +65,11 @@ public class titlestage extends Stage{
   }
   public void spawn(){
     //visuals
-    
+    fill(50);
+    rect(0,0,width,height);
+    text("game lol", 495,500);
   }
   public void processenemies(){
     //menu navigation
   }
 }
-//public class dedScreen extends Stage{
-//  public dedScreen(){
-//    super(0);
-//  }
-//  public void spawn(){
-//    //visuals
-    
-//  }
-//  public void processenemies(){
-//    //menu navigation
-//  }
-//}
