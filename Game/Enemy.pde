@@ -192,6 +192,7 @@ public class Boss extends Enemy{
         countDown = (countDown + 1)%100;
         if (timer % 50 == 0){
           r = (PI/4)*(int)random(4);
+          //r = random(PI);
         }
         if (countDown > 50){
           if (timer % 5 == 0){

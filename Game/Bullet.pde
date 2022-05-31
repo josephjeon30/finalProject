@@ -1,5 +1,5 @@
 public class Bullet{
-  float border = 500;
+  float border = 250;
   float x, y, dx, dy;
   int dmg;
   float dmgCooldown;
@@ -37,7 +37,7 @@ public class Bullet{
     x += dx;
     y += dy;
     if (Game.ticks - this.spawnTick >= duration) outOfBounds = true;
-    if (x < 0 - border || x > 280 + border || y < 0 - border || y > height + border) outOfBounds = true;
+    if (x < 0 - border || x > 700 + border || y < 0 - border || y > height + border) outOfBounds = true;
   }
   
   public void display(){
