@@ -11,7 +11,14 @@ Development Log:
 
 	Aiden
 		5/24: Created the player, enemy, boss, and stage class files and instance vars and method temps. Player movement with arrow keys completed, as well as boundaries so that the player doesn't leave the screen.
-
+        5/25: filled something in for the enemy constructor and enemy move.
+        5/26: made a fairy subclass of enemy and filled in the shoot and move function to see if the enemy can move and shoot stuff.
+        5/27: worked on the spawn method of the stage class so that the stage class manages the enemies on the field and spawns them in when its their turn. filled in the damageable methods in the enemy and made enemies disappear when they die. 
+        Created the boss subclass of enemy.
+        5/28: Boss phase cycling system, stage spawns in a boss, stage loops (progresses to a new but identical stage) when the boss dies.
+        5/29: changed the visuals of the game screen. when the player dies, the game switches to a game over screen and allows you to restart the stage you died on.
+        5/30: created a "title screen". The player character moves into the screen instead of just spawning in.
+    
 	Joseph
 		5/23: Filled out basic information for the README file, and created Game, Bullet, and Phase classes, filling out a few methods. A basic shotgun is able to be fired
 		5/24: A basic pattern using the Shotgun class is made. BulletManager moves and displays all bullets, but cannot pool or remove bullets yet
