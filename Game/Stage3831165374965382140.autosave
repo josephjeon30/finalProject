@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.*;
 
 public class Stage{
   public Queue<Enemy> enemies = new LinkedList<Enemy>();
@@ -63,12 +64,9 @@ public class titlestage extends Stage{
     super(0);
   }
   public void spawn(){
-    //visuals
-    fill(50);
-    rect(0,0,width,height);
-    text("game lol", 495,500);
+    //nothing
   }
   public void processenemies(){
-    //menu navigation
+    //nada
   }
 }

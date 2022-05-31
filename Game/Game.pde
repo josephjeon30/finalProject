@@ -25,12 +25,43 @@ Player yoi = new Player();
 
 void setup(){
   size(1000, 750);
+  noCursor();
   noStroke();
   fill(128,0,0);
   rect(0,0,width, height);
 }
 
+/**
+void mousePressed(){
+  shooting = true;
+}
+
+void mouseReleased(){
+  shooting = false;
+}
+**/
+
 void keyPressed(){
+
+  if (key == 'i'){
+    shooting = !shooting;
+  }
+  if(key == 'w'){
+    if(down != 0) down = 1;
+    up += 2;
+  }
+  if(key == 's'){
+    if(up != 0) up = 1;
+    down += 2;
+  }
+  if(key == 'a'){
+    if(right != 0) right = 1;
+    left += 2;
+  }
+  if(key=='d'){
+    if(left != 0) left=1;
+    right += 2;
+  }
   if (!gamestart){
     if (keyCode==ENTER){
       gamestart=true;
@@ -49,6 +80,8 @@ void keyPressed(){
       ticks=0;
     }
   }
+  /**
+  
   if (key == CODED){
     if(keyCode == UP){
       if(down != 0) down = 1;
@@ -66,29 +99,32 @@ void keyPressed(){
       if(left != 0) left=1;
       right += 2;
     }
-  }
-  if (key == 'z'){
-    shooting = true;
-  }
+  }**/
+  
 }
 
 void keyReleased(){
+  if(key=='w') up=0;
+  if(key=='s') down=0;
+  if(key=='a') left=0;
+  if(key=='d') right=0;
+  /**
   if (key==CODED){
     if(keyCode==UP) up=0;
     if(keyCode==DOWN) down=0;
     if(keyCode==LEFT) left=0;
     if(keyCode==RIGHT) right=0;
   }
-  if (key == 'z'){
-    shooting = false;
-  }
+  **/
 }
+
 
 void draw(){ 
   fill(0,0,0,110);
   rect(20,20,700, 710);
   bm.display();
   currentStage.processenemies();
+  
   if (alive){
     bm.move();
     yoi.display();
@@ -99,7 +135,17 @@ void draw(){
     if (shooting){
       if (ticks % 5 == 0) yoi.shoot();
     }
+
   }
+  
+  //crosshair
+  fill(color(0));
+  ellipse(mouseX,mouseY,4,31);
+  ellipse(mouseX,mouseY,31,4);
+  fill(color(255));
+  ellipse(mouseX,mouseY,3,30);
+  ellipse(mouseX,mouseY,30,3);
+  
   checkStuff();
   ticks++;
   spawndelay++;
@@ -113,14 +159,29 @@ void renderGUI(){
     rect(0,0,20, height);
     rect(0,0,width, 20);
     rect(0,height-20,width, height);
-    rect(720,0,width, height);  
+    rect(720,0,width, height); 
+    fill(150);
+    rect(750,250,220,30);
+    fill(255);
+    textSize(75);
+    text("bozo",765,90);
+    text("project",733,180);
+    textSize(11);
+    text("HP: "+yoi.HP,760,269);
+    
+    
     if (alive){
+      
+      fill(255,0,0);
+      rect(755,255,210*((float)yoi.HP/100),20);
       fill(255);
-      text("HP: "+yoi.HP,900,100);
+      textSize(11);
+      text("HP: "+yoi.HP,760,269);
     }else{
       fill(0,ticks*2);
       rect(20,20,700, 710);
       fill(255,ticks*2);
+      textSize(11);
       text("thats unfortunate",320,320);
       text("press r to restart",321,340);
     }
@@ -128,7 +189,9 @@ void renderGUI(){
     fill(50);
     rect(0,0,width,height);
     fill(255);
+    textSize(11);
     text("game lol", 475,350); 
+    text("press enter", 468,370); 
   }
 }
 

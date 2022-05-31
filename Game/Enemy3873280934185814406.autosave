@@ -1,6 +1,5 @@
 public class Enemy implements Damageable{
   public float x, y, dx, dy;
-  public int maxHP;
   public int HP;
   public int type;
   public Phase attack;
@@ -12,7 +11,6 @@ public class Enemy implements Damageable{
     this(80,0,0);
   }
   public Enemy(int hp,int spawnX,int spawnY){
-    maxHP=hp;
     HP=hp;
     x=spawnX;
     y=spawnY;
@@ -31,8 +29,7 @@ public class Enemy implements Damageable{
         fill(234,234,40);
         ellipse(x, y, 25, 60);
         fill(240);
-        textSize(11);
-        text("HP: "+HP,30,height-30);
+        text("HP: "+HP,900,200);
     }
   }
   public void dealDamage(Damageable other,int dmg){
@@ -65,8 +62,8 @@ public class fairy extends Enemy{
   public void shoot(){
     if(timer%2==0){
       int v = 3;
-      attack = new Shotgun(x, y, 5, v, 0.01*angle, PI/24,10);
-      attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/24,10);
+      attack = new Shotgun(x, y, 5, v, 0.01*angle, PI/24);
+      attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/24);
     }
   }  
   public void move(){
@@ -81,52 +78,40 @@ public class Boss extends Enemy{
   public int[] phaseDur;
   public int currentPhase=0;
   public int phasecooldown=0;
-  float r = 0;
-  int countDown = 0;
-  
   public Boss(){
-    super(10000,370,20);
+    super(10000,500,20);
     //phases = {new Shotgun(x, y, 5, v, 0.01*angle, PI/24)};
   }
   public Boss(int[] moves, int[] time){
-    super(10000,370,20);
+    super(10000,500,20);
     phases=moves;
     phaseDur=time;
-  }
-  public void display(){
-    super.display();
-    fill(150,timer*2);
-    rect(60,670,620,30);
-    fill(255,0,0,timer*2);
-    rect(65,675,610*((float)HP/maxHP),20);
   }
   public void move(){
     switch(currentPhase){
       case 0:  //reset
-        timer++;
-        if (dist(x,y,370,height/2)>10 || timer < 100){
-          dx = 0.03*(370 - x);
+        if (dist(x,y,width/2,height/2)>10){
+          dx = 0.03*(width/2 - x);
           dy = 0.03*(height/2 - y);
           x += dx;
           y += dy;
         }
         else{
           currentPhase = 1;
-          timer = 0;
         }
         break;
       case 1:   //wings
-        y = height/2+50*sin(0.1* timer);
-        x = 370 + 330*sin(0.012*timer);
+        y = 350 + 150 * sin(0.1* timer);
+        x = 500 + 400 * sin(0.012*timer);
         timer++;
-        if (timer > 1000){
+        if (timer > 200){
           currentPhase = 2;
         }
         break;
       case 2:   //reset
-        if (dist(x,y,370,100)>5){
-          dx = 0.05*(370 - x);
-          dy = 0.05*(100 - y);
+        if (dist(x,y,width/2,100)>10){
+          dx = 0.03*(width/2 - x);
+          dy = 0.03*(100 - y);
           x += dx;
           y += dy;
         }
@@ -136,34 +121,9 @@ public class Boss extends Enemy{
         }
         break;
       case 3:  //walls
-        x = 25*(-cos(0.01*timer)+1)*cos(0.1*timer)+370;
+        x = 25*(-cos(0.01*timer)+1)*cos(0.1*timer)+width/2;
         y = 25*(-cos(0.01*timer)+1)*sin(0.1*timer) + 100;
         timer++;
-        if (timer > 1000){
-          currentPhase = 4;
-          timer = 0;
-        }
-        break;
-      case 4:  //reset
-        if (dist(x,y,370,height/2)>10){
-          dx = 0.03*(370 - x);
-          dy = 0.03*(height/2 - y);
-          x += dx;
-          y += dy;
-        }
-        else{
-          currentPhase = 5;
-          timer = 0;
-        }
-        break;
-      case 5:
-        timer++;
-        x = 25*(-cos(0.01*timer)+1)*cos(0.1*timer)+370;
-        y = 25*(-cos(0.01*timer)+1)*sin(0.1*timer) + height/2;
-        if (timer > 1000){
-          currentPhase = 0;
-          timer = 0;
-        }
         break;
     } 
   }
@@ -177,27 +137,14 @@ public class Boss extends Enemy{
       case 1: //wings
         if(timer%2==0) {
           int v = 5;
-          attack = new Shotgun(x, y, 5, v, 0.01*angle, PI / 20,10);
-          attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/20,10);
+          attack = new Shotgun(x, y, 5, v, 0.01*angle, PI / 20);
+          attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/20);
+          
         }
         break;
       case 3: //walls
-        countDown = (countDown + 1)%100;
-        if (timer % 50 == 0){
-          r = (PI/4)*(int)random(4);
-        }
-        if (countDown > 50){
-          if (timer % 5 == 0){
-            attack = new Wall(370 - 400*cos(r) + 35*cos(r + PI/2), 350 - 400*sin(r)+35*sin(r + PI/2), 20, 3, r, 70,20);
-            attack = new Wall(370 + 400*cos(r), 350 + 400*sin(r), 20, 3, r+PI, 70,20);
-          }
-        }
-        break;
-      case 5:  //absolute bs (bachelor of science)
-        if (timer % 2 == 0){
-          int k = 2+(int)random(4);
-          attack = new Shotgun(x, y, k,3,random(PI), 2 * PI / k, 10);
-        }
+        float r = random(PI);
+        attack = new Wall(width/2, height/2
         break;
       default:
         break;

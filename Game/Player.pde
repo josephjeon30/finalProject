@@ -1,6 +1,7 @@
 public class Player implements Damageable{
   public float x, y, dx, dy;
   public int HP;
+  public int wallLevel;
   public Phase attack;
   float hitRadius = 10;
   
@@ -10,7 +11,7 @@ public class Player implements Damageable{
     dx=0;
     dy=0;
     HP=100;
-    //attack = doubleshot or whatever itl be called;
+    wallLevel = 10;
   }
   
   public void move(){
@@ -32,8 +33,7 @@ public class Player implements Damageable{
     ellipse(x, y+5, 25, 60);
     fill(255,0,0);
     ellipse(x,y,hitRadius,hitRadius);
-    fill(240);
-    text("HP: "+HP,900,100);
+    
   }
   public void dealDamage(Damageable other,int dmg){
     other.takeDamage(dmg);
@@ -48,7 +48,7 @@ public class Player implements Damageable{
   }
   public void shoot(){
     //bm.addPlayerBullet(new PlayerBullet(x, y-25, 5, 3*PI/2));
-    Phase p = new PWall(x,y,4,20,-PI/2,30);
+    Phase p = new PWall(x,y,wallLevel,5,-PI/2,30);
   }
   //public void setX(float k){}
   //public void setY(float k){}

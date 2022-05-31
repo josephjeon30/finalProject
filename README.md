@@ -11,9 +11,21 @@ Development Log:
 
 	Aiden
 		5/24: Created the player, enemy, boss, and stage class files and instance vars and method temps. Player movement with arrow keys completed, as well as boundaries so that the player doesn't leave the screen.
-
+        5/25: filled something in for the enemy constructor and enemy move.
+        5/26: made a fairy subclass of enemy and filled in the shoot and move function to see if the enemy can move and shoot stuff.
+        5/27: worked on the spawn method of the stage class so that the stage class manages the enemies on the field and spawns them in when its their turn. filled in the damageable methods in the enemy and made enemies disappear when they die. 
+        Created the boss subclass of enemy.
+        5/28: Boss phase cycling system, stage spawns in a boss, stage loops (progresses to a new but identical stage) when the boss dies.
+        5/29: changed the visuals of the game screen. when the player dies, the game switches to a game over screen and allows you to restart the stage you died on.
+        5/30: created a "title screen". The player character moves into the screen instead of just spawning in.
+    
 	Joseph
 		5/23: Filled out basic information for the README file, and created Game, Bullet, and Phase classes, filling out a few methods. A basic shotgun is able to be fired
 		5/24: A basic pattern using the Shotgun class is made. BulletManager moves and displays all bullets, but cannot pool or remove bullets yet
+		5/25: Formatting changes; implemented outOfBounds: when a bullet is out of bounds, it is removed from the bulletManager. Also created the Wall class: a class that summons a wall of bullets
+		5/26: A basic tick system, a demo for a wall pattern, worked on collisions, worked on bullet duration and damage
+		5/27: Player now displays when it is taking damage, and new Boss phase is added: wings (because it looks like wings)
+		5/28: PlayerBullet disappears after hitting an enemy
+		5/30: Added two new phases: walls and B.S. (Bachelor of Science)
 
 Link to Design Document Google Doc: https://docs.google.com/document/d/1C8VrfNshymGc3sOVWaJeR7DfTx7KVn6Xtgiy1MUR6_M/edit?usp=sharing
