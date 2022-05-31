@@ -123,7 +123,7 @@ void draw(){
   fill(0,0,0,110);
   rect(20,20,700, 710);
   
-  currentStage.processenemies();
+
   
   if (alive){
     bm.move();
@@ -138,6 +138,7 @@ void draw(){
 
   }
   bm.display();
+  currentStage.processenemies();
   //crosshair
   fill(color(0));
   ellipse(mouseX,mouseY,4,31);
@@ -189,9 +190,9 @@ void renderGUI(){
     fill(50);
     rect(0,0,width,height);
     fill(255);
-    textSize(11);
+    textSize(20);
     text("game lol", 475,350); 
-    text("press enter", 468,370); 
+    text("press enter", 460,379); 
   }
 }
 
