@@ -32,7 +32,7 @@ public class Enemy implements Damageable{
         ellipse(x, y, 25, 60);
         fill(240);
         textSize(11);
-        text("HP: "+HP,30,height-30);
+        text("HP: "+HP,30,40);
     }
   }
   public void dealDamage(Damageable other,int dmg){
@@ -201,9 +201,12 @@ public class Boss extends Enemy{
         }
         break;
       case 5:  //absolute bs (bachelor of science)
-        if (timer % 2 == 0){
+        if (timer % 3 == 0){
           int k = 2+(int)random(4);
           attack = new Shotgun(x, y, k,3,random(PI), 2 * PI / k, 10);
+        }
+        if (timer % 40 == 0){
+          attack = new Shotgun(x,y,13,4,random(PI),2 * PI / 13,50);
         }
         break;
       default:
