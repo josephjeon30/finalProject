@@ -1,13 +1,53 @@
-import java.util.Queue;
-import java.util.LinkedList;
+import java.util.*;
+import java.util.*;
 
 public class Stage{
   public Queue<Enemy> enemies = new LinkedList<Enemy>();
   public Queue<Float> delay = new LinkedList<Float>();
+  public ArrayList<Enemy> enemyonfield = new ArrayList<Enemy>();
+  //int enemycount=0;
+  int stagenum;
   
-  public Stage(){}
   
-  public void spawn(){}
+  public Stage(){
+    switch(stagenum){
+      default:
+        int[] moves = {4,5};
+        int[] time = {500,500};
+        Boss egg=new Boss(moves,time);
+        enemies.add(egg);
+        delay.add(200.0);
+    }
+  }
+  
+  public void spawn(){
+    if(enemies.size()>0){
+      if(spawndelay==delay.peek()){
+        enemyonfield.add(enemies.remove());
+        spawndelay=0;
+        delay.remove();
+      }
+    }
+  }
+  public void processenemies(){
+    for (int e = 0; e < enemyonfield.size(); e++){
+      Enemy egg = enemyonfield.get(e);
+      if (egg.HP<=0){
+        enemyonfield.remove(e);
+      }else{
+        egg.move();
+        egg.display();
+        egg.shoot();
+      }
+    }
+  }
+  public void proceed(){
+    if(enemies.size()==0){}
+    //if(bossisdead){
+    //  stagenum++;
+    //  bossisdead=false;
+    //}
+  }
 }
 
 public class Stage1 extends Stage{

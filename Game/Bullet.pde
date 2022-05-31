@@ -1,11 +1,11 @@
 public class Bullet{
-  float border = 0;
+  float border = -50;
   float x, y, dx, dy;
   int dmg;
   float dmgCooldown;
   int duration;
   boolean outOfBounds = false;
-  float hitRadius = 10;
+  float hitRadius;
   int spawnTick;
   //PImage img;
   
@@ -18,10 +18,10 @@ public class Bullet{
   }
     
   public Bullet(float x, float y, float speed, float angle){
-    this(x, y, speed * cos(angle), speed * sin(angle), 10, 10.0, 1);
+    this(x, y, speed * cos(angle), speed * sin(angle), 10, 10.0, 5, 10.0);
   }
   
-  public Bullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration){
+  public Bullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration, float hitRadius){
     this.x = x;
     this.y = y;
     this.dx = dx;
@@ -29,6 +29,7 @@ public class Bullet{
     this.dmg = dmg;
     this.dmgCooldown = dmgCooldown;
     this.duration = duration;
+    this.hitRadius = hitRadius;
     spawnTick = Game.ticks;
   }
   
@@ -41,7 +42,7 @@ public class Bullet{
   
   public void display(){
     fill(255);
-    ellipse(x, y, 10, 10);
+    ellipse(x, y, hitRadius, hitRadius);
   }
   
 }
@@ -50,13 +51,18 @@ public class EnemyBullet extends Bullet{
   Player player;
    
   public EnemyBullet(float x, float y, float speed, float angle){
-    this(x, y, speed * cos(angle), speed * sin(angle), 1, 10.0, 200);
+    this(x, y, speed * cos(angle), speed * sin(angle), 1, 10.0, 200, 13.0);
   }
   
-  public EnemyBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration){
-    super(x, y, dx, dy, dmg, dmgCooldown, duration);
+  public EnemyBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration, float hitRadius){
+    super(x, y, dx, dy, dmg, dmgCooldown, duration, hitRadius);
     player = yoi;
     bm.addEnemyBullet(this);
+  }
+  
+  public void display(){
+    fill(255);
+    ellipse(x, y, hitRadius, hitRadius);
   }
 }
 
@@ -64,16 +70,16 @@ public class PlayerBullet extends Bullet{
   Enemy enemy;
   
   public PlayerBullet(float x, float y, float speed, float angle){
-    this(x, y, speed * cos(angle), speed * sin(angle), 100, 10.0, 200);
+    this(x, y, speed * cos(angle), speed * sin(angle), 1, 10.0, 200);
   }
   
   public PlayerBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration){
-    super(x, y, dx, dy, dmg, dmgCooldown, duration);
+    super(x, y, dx, dy, dmg, dmgCooldown, duration, 20.0);
     bm.addPlayerBullet(this);
   }
   
   public void display(){
-    fill(0,255,0);
-    ellipse(x, y, 10, 10);
-  }
+    fill(0,255,0,50);
+    ellipse(x, y, hitRadius, hitRadius);
+  } 
 }

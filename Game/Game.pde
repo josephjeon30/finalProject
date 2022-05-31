@@ -1,8 +1,10 @@
 BulletManager bm = new BulletManager();
 float angle = 0;
 boolean alive = true;
+//boolean bossisdead = false;
 
 static int ticks = 0;
+static int spawndelay = 0;
 
 int moveX = 0;
 int moveY = 0;
@@ -11,18 +13,52 @@ int down = 0;
 int left = 0;
 int right = 0;
 
+
+Stage currentStage = new Stage();
+
 boolean shooting = false;
 
-Stage currentStage;
+
 
 Player yoi = new Player();
 
 void setup(){
   size(1000, 750);
+  noCursor();
   noStroke();
 }
 
+/**
+void mousePressed(){
+  shooting = true;
+}
+
+void mouseReleased(){
+  shooting = false;
+}
+**/
+
 void keyPressed(){
+  if (key == 'i'){
+    shooting = !shooting;
+  }
+  if(key == 'w'){
+    if(down != 0) down = 1;
+    up += 2;
+  }
+  if(key == 's'){
+    if(up != 0) up = 1;
+    down += 2;
+  }
+  if(key == 'a'){
+    if(right != 0) right = 1;
+    left += 2;
+  }
+  if(key=='d'){
+    if(left != 0) left=1;
+    right += 2;
+  }
+  /**
   if (key == CODED){
     if(keyCode == UP){
       if(down != 0) down = 1;
@@ -40,54 +76,53 @@ void keyPressed(){
       if(left != 0) left=1;
       right += 2;
     }
-  }
-  if (key == 'z'){
-    shooting = true;
-  }
+  }**/
+  
 }
 
 void keyReleased(){
+  if(key=='w') up=0;
+  if(key=='s') down=0;
+  if(key=='a') left=0;
+  if(key=='d') right=0;
+  /**
   if (key==CODED){
     if(keyCode==UP) up=0;
     if(keyCode==DOWN) down=0;
     if(keyCode==LEFT) left=0;
     if(keyCode==RIGHT) right=0;
   }
-  if (key == 'z'){
-    shooting = false;
-  }
+  **/
 }
 
-void draw(){
-  fill(color(0, 0, 0, 30));
+
+void draw(){  
+  fill(color(0, 0, 0, 100));
   rect(0,0,width, height);
-  
+  bm.move();
+  bm.display();
   yoi.move();
   yoi.display();
   
-  bm.move();
-  bm.display();
+  currentStage.spawn();
+  currentStage.processenemies();
+
   
+  fill(color(255,0,0));
+  ellipse(mouseX,mouseY,30,30);
+  fill(color(255));
+  ellipse(mouseX,mouseY,3,30);
+  ellipse(mouseX,mouseY,30,3);
+  ellipse(mouseX,mouseY,10,10);
+  
+
   bm.detectCollision();
-  
   if (shooting){
     if (ticks % 5 == 0) yoi.shoot();
   }
-  
-
-  /**if (ticks % 20 == 0){
-    Wall wall1 = new Wall(0, height/2.0, 39, 1, 0, 20.0);
-    Wall wall2 = new Wall(width, 10 + height/2.0, 39, 1, PI, 20.0);
-  }**/
-
-  if (ticks % 10 == 0){
-    Phase sh = new Wall(width/2, height/4, 6, 2, angle, 20);
-    sh = new Wall(width/2, height/4, 6, 2, angle+PI, 20);
-  }
-  
-  
   checkStuff();
   ticks++;
+  spawndelay++;
 }
 
 public void checkStuff(){
@@ -99,6 +134,7 @@ public void checkStuff(){
   }
   }else{
     moveY=0;
+
   }
   
   angle -= 0.7;
