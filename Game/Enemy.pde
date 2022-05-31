@@ -82,6 +82,7 @@ public class Boss extends Enemy{
   public int currentPhase=0;
   public int phasecooldown=0;
   float r = 0;
+  float s = 0;
   int countDown = 0;
   
   public Boss(){
@@ -119,7 +120,7 @@ public class Boss extends Enemy{
         y = height/2+50*sin(0.1* timer);
         x = 370 + 300*sin(0.012*timer);
         timer++;
-        if (timer > 1000){
+        if (timer > 100){
           currentPhase = 2;
         }
         break;
@@ -139,7 +140,7 @@ public class Boss extends Enemy{
         x = 25*(-cos(0.01*timer)+1)*cos(0.1*timer)+370;
         y = 25*(-cos(0.01*timer)+1)*sin(0.1*timer) + 100;
         timer++;
-        if (timer > 1000){
+        if (timer > 100){
           currentPhase = 4;
           timer = 0;
         }
@@ -160,10 +161,26 @@ public class Boss extends Enemy{
         timer++;
         x = 25*(-cos(0.01*timer)+1)*cos(0.1*timer)+370;
         y = 25*(-cos(0.01*timer)+1)*sin(0.1*timer) + height/2;
-        if (timer > 1000){
-          currentPhase = 0;
+        if (timer > 100){
+          currentPhase = 6;
           timer = 0;
         }
+        break;
+      case 6:
+        x = 370;
+        y = height/2;
+        currentPhase = 7;
+        break;
+      case 7:
+        if (timer % 50 == 0){
+          r = 40*(int)random(height/40 - 1.5)-70;
+          s = 40*(int)random(height/40 - 1.5)-70+20;
+        }
+        if (timer % 5 == 0){
+          Bullet b = new EnemyBulletR(370,r,x,y,5,1,900,15);
+          b = new EnemyBulletR(370,s,x,y,-5,1,900,15);
+        }
+        timer++;
         break;
     } 
   }
@@ -210,6 +227,11 @@ public class Boss extends Enemy{
           attack = new Shotgun(x,y,13,4,random(PI),2 * PI / 13,50);
         }
         break;
+      case 6:
+        attack = new Shotgun(x,y,4,1,0,PI/2,50);
+        attack = new Shotgun(x,y,4,2,0,PI/2,50);
+        attack = new Shotgun(x,y,4,3,0,PI/2,50);
+        attack = new Shotgun(x,y,4,4,0,PI/2,50);
       default:
         break;
         
