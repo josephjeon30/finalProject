@@ -122,7 +122,7 @@ void keyReleased(){
 void draw(){ 
   fill(0,0,0,110);
   rect(20,20,700, 710);
-  bm.display();
+  
   currentStage.processenemies();
   
   if (alive){
@@ -137,7 +137,7 @@ void draw(){
     }
 
   }
-  
+  bm.display();
   //crosshair
   fill(color(0));
   ellipse(mouseX,mouseY,4,31);
