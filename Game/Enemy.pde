@@ -96,9 +96,9 @@ public class Boss extends Enemy{
   public void display(){
     super.display();
     fill(150,timer*2);
-    rect(60,670,620,30);
+    rect(60,50,620,30);
     fill(255,0,0,timer*2);
-    rect(65,675,610*((float)HP/maxHP),20);
+    rect(65,55,610*((float)HP/maxHP),20);
   }
   public void move(){
     switch(currentPhase){
