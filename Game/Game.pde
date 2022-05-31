@@ -155,14 +155,29 @@ void renderGUI(){
     rect(0,0,20, height);
     rect(0,0,width, 20);
     rect(0,height-20,width, height);
-    rect(720,0,width, height);  
+    rect(720,0,width, height); 
+    fill(150);
+    rect(750,250,220,30);
+    fill(255);
+    textSize(75);
+    text("bozo",765,90);
+    text("project",733,180);
+    textSize(11);
+    text("HP: "+yoi.HP,760,269);
+    
+    
     if (alive){
+      
+      fill(255,0,0);
+      rect(755,255,210*((float)yoi.HP/100),20);
       fill(255);
-      text("HP: "+yoi.HP,900,100);
+      textSize(11);
+      text("HP: "+yoi.HP,760,269);
     }else{
       fill(0,ticks*2);
       rect(20,20,700, 710);
       fill(255,ticks*2);
+      textSize(11);
       text("thats unfortunate",320,320);
       text("press r to restart",321,340);
     }
@@ -170,7 +185,9 @@ void renderGUI(){
     fill(50);
     rect(0,0,width,height);
     fill(255);
+    textSize(11);
     text("game lol", 475,350); 
+    text("press enter", 468,370); 
   }
 }
 

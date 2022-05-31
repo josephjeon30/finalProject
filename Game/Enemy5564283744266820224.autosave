@@ -4,7 +4,7 @@ public class Enemy implements Damageable{
   public int type;
   public Phase attack;
   float hitRadius = 10;
-  public float timer = 0;
+  public float timer;
   
   public Enemy(){
 
@@ -14,6 +14,7 @@ public class Enemy implements Damageable{
     HP=hp;
     x=spawnX;
     y=spawnY;
+    timer=0;
   }
   
   public void move(){
@@ -29,7 +30,6 @@ public class Enemy implements Damageable{
         fill(234,234,40);
         ellipse(x, y, 25, 60);
         fill(240);
-        textSize(11);
         text("HP: "+HP,30,height-30);
     }
   }
