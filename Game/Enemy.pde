@@ -79,7 +79,7 @@ public class fairy extends Enemy{
 public class Boss extends Enemy{
   public int[] phases;
   public int[] phaseDur;
-  public int currentPhase=0;
+  public int currentPhase=2;
   public int phasecooldown=0;
   float r = 0;
   int countDown = 0;
