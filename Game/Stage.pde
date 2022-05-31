@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.*;
 
 public class Stage{
   public Queue<Enemy> enemies = new LinkedList<Enemy>();

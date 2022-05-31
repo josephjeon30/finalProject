@@ -124,12 +124,7 @@ void draw(){
   rect(20,20,700, 710);
   bm.display();
   currentStage.processenemies();
-  fill(color(255,0,0));
-  ellipse(mouseX,mouseY,30,30);
-  fill(color(255));
-  ellipse(mouseX,mouseY,3,30);
-  ellipse(mouseX,mouseY,30,3);
-  ellipse(mouseX,mouseY,10,10);
+  
   if (alive){
     bm.move();
     yoi.display();
@@ -142,6 +137,15 @@ void draw(){
     }
 
   }
+  
+  //crosshair
+  fill(color(0));
+  ellipse(mouseX,mouseY,4,31);
+  ellipse(mouseX,mouseY,31,4);
+  fill(color(255));
+  ellipse(mouseX,mouseY,3,30);
+  ellipse(mouseX,mouseY,30,3);
+  
   checkStuff();
   ticks++;
   spawndelay++;

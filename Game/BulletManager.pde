@@ -33,18 +33,11 @@ public class BulletManager{
   
   public void detectCollision(){
     for (EnemyBullet eb: enemyBullets){
-      if (dist(eb.x,eb.y, eb.player.x, eb.player.y) < eb.hitRadius + eb.player.hitRadius){
+      if (dist(eb.x,eb.y, eb.player.x, eb.player.y) < eb.hitRadius){
         eb.player.takeDamage(eb.dmg);
         eb.dmg = 0;
       }
-    } 
-//<<<<<<< HEAD
-//    for (PlayerBullet eb: playerBullets){
-//      for(Enemy e : currentStage.enemyonfield){
-//        if (dist(eb.x,eb.y, e.x, e.y) < eb.hitRadius + e.hitRadius){
-//          e.takeDamage(eb.dmg);
-//          eb.dmg=0;
-//=======
+    }
     for (int i = 0; i < playerBullets.size(); i++){
       for (Enemy e : currentStage.enemyonfield){
         PlayerBullet pb = playerBullets.get(i);
