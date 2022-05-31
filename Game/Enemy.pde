@@ -117,7 +117,7 @@ public class Boss extends Enemy{
         break;
       case 1:   //wings
         y = height/2+50*sin(0.1* timer);
-        x = 370 + 330*sin(0.012*timer);
+        x = 370 + 300*sin(0.012*timer);
         timer++;
         if (timer > 1000){
           currentPhase = 2;
@@ -179,6 +179,13 @@ public class Boss extends Enemy{
           int v = 5;
           attack = new Shotgun(x, y, 5, v, 0.01*angle, PI / 20,10);
           attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/20,10);
+        }
+        if(timer % 75 == 0){
+          float newDir = atan((yoi.y-y)/(yoi.x-x));
+          if (yoi.x - x < 0){
+            newDir += PI;
+          }
+          attack = new Shotgun(x, y, 5, 3, newDir, PI/10,50);
         }
         break;
       case 3: //walls
