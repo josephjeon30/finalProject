@@ -1,5 +1,5 @@
 public class Bullet{
-  float border = 500;
+  float border = 250;
   float x, y, dx, dy;
   int dmg;
   float dmgCooldown;
@@ -37,7 +37,7 @@ public class Bullet{
     x += dx;
     y += dy;
     if (Game.ticks - this.spawnTick >= duration) outOfBounds = true;
-    if (x < 0 - border || x > 280 + border || y < 0 - border || y > height + border) outOfBounds = true;
+    if (x < 0 - border || x > 700 + border || y < 0 - border || y > height + border) outOfBounds = true;
   }
   
   public void display(){
@@ -70,7 +70,7 @@ public class PlayerBullet extends Bullet{
   Enemy enemy;
   
   public PlayerBullet(float x, float y, float speed, float angle){
-    this(x, y, speed * cos(angle), speed * sin(angle), 1+(int)random(3), 10.0, 200);
+    this(x, y, speed * cos(angle), speed * sin(angle), 1+(int)random(2), 10.0, 200);
   }
   
   public PlayerBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration){

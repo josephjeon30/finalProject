@@ -32,7 +32,7 @@ public class Enemy implements Damageable{
         ellipse(x, y, 25, 60);
         fill(240);
         textSize(11);
-        text("HP: "+HP,30,height-30);
+        text("HP: "+HP,30,40);
     }
   }
   public void dealDamage(Damageable other,int dmg){
@@ -96,9 +96,9 @@ public class Boss extends Enemy{
   public void display(){
     super.display();
     fill(150,timer*2);
-    rect(60,670,620,30);
+    rect(60,50,620,30);
     fill(255,0,0,timer*2);
-    rect(65,675,610*((float)HP/maxHP),20);
+    rect(65,55,610*((float)HP/maxHP),20);
   }
   public void move(){
     switch(currentPhase){
@@ -117,7 +117,7 @@ public class Boss extends Enemy{
         break;
       case 1:   //wings
         y = height/2+50*sin(0.1* timer);
-        x = 370 + 330*sin(0.012*timer);
+        x = 370 + 300*sin(0.012*timer);
         timer++;
         if (timer > 1000){
           currentPhase = 2;
@@ -180,11 +180,19 @@ public class Boss extends Enemy{
           attack = new Shotgun(x, y, 5, v, 0.01*angle, PI / 20,10);
           attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/20,10);
         }
+        if(timer % 75 == 0){
+          float newDir = atan((yoi.y-y)/(yoi.x-x));
+          if (yoi.x - x < 0){
+            newDir += PI;
+          }
+          attack = new Shotgun(x, y, 5, 3, newDir, PI/10,50);
+        }
         break;
       case 3: //walls
         countDown = (countDown + 1)%100;
         if (timer % 50 == 0){
           r = (PI/4)*(int)random(4);
+          //r = random(PI);
         }
         if (countDown > 50){
           if (timer % 5 == 0){
@@ -194,9 +202,12 @@ public class Boss extends Enemy{
         }
         break;
       case 5:  //absolute bs (bachelor of science)
-        if (timer % 2 == 0){
+        if (timer % 3 == 0){
           int k = 2+(int)random(4);
           attack = new Shotgun(x, y, k,3,random(PI), 2 * PI / k, 10);
+        }
+        if (timer % 40 == 0){
+          attack = new Shotgun(x,y,13,4,random(PI),2 * PI / 13,50);
         }
         break;
       default:
