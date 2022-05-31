@@ -1,5 +1,6 @@
 public class Enemy implements Damageable{
   public float x, y, dx, dy;
+  public int maxHP;
   public int HP;
   public int type;
   public Phase attack;
@@ -11,6 +12,7 @@ public class Enemy implements Damageable{
     this(80,0,0);
   }
   public Enemy(int hp,int spawnX,int spawnY){
+    maxHP=hp;
     HP=hp;
     x=spawnX;
     y=spawnY;
@@ -87,6 +89,13 @@ public class Boss extends Enemy{
     super(500,500,20);
     phases=moves;
     phaseDur=time;
+  }
+  public void display(){
+    super.display();
+    fill(150,timer*2);
+    rect(60,670,620,30);
+    fill(255,0,0,timer*2);
+    rect(65,675,610*((float)HP/maxHP),20);
   }
   public void move(){
     switch(currentPhase){
