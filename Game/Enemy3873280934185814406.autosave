@@ -144,6 +144,7 @@ public class Boss extends Enemy{
         break;
       case 3: //walls
         float r = random(PI);
+        attack = new Wall(width/2, height/2
         break;
       default:
         break;
