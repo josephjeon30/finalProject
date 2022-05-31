@@ -1,5 +1,6 @@
 public class Enemy implements Damageable{
   public float x, y, dx, dy;
+  public int maxHP;
   public int HP;
   public int type;
   public Phase attack;
@@ -11,6 +12,7 @@ public class Enemy implements Damageable{
     this(80,0,0);
   }
   public Enemy(int hp,int spawnX,int spawnY){
+    maxHP=hp;
     HP=hp;
     x=spawnX;
     y=spawnY;
@@ -29,6 +31,7 @@ public class Enemy implements Damageable{
         fill(234,234,40);
         ellipse(x, y, 25, 60);
         fill(240);
+        textSize(11);
         text("HP: "+HP,30,height-30);
     }
   }
@@ -89,6 +92,13 @@ public class Boss extends Enemy{
     super(10000,370,20);
     phases=moves;
     phaseDur=time;
+  }
+  public void display(){
+    super.display();
+    fill(150,timer*2);
+    rect(60,670,620,30);
+    fill(255,0,0,timer*2);
+    rect(65,675,610*((float)HP/maxHP),20);
   }
   public void move(){
     switch(currentPhase){
@@ -183,7 +193,7 @@ public class Boss extends Enemy{
           }
         }
         break;
-      case 5:  //absolute bs
+      case 5:  //absolute bs (bachelor of science)
         if (timer % 2 == 0){
           int k = 2+(int)random(4);
           attack = new Shotgun(x, y, k,3,random(PI), 2 * PI / k, 10);

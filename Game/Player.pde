@@ -33,8 +33,7 @@ public class Player implements Damageable{
     ellipse(x, y+5, 25, 60);
     fill(255,0,0);
     ellipse(x,y,hitRadius,hitRadius);
-    fill(240);
-    text("HP: "+HP,900,100);
+    
   }
   public void dealDamage(Damageable other,int dmg){
     other.takeDamage(dmg);
