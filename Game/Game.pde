@@ -19,8 +19,6 @@ Stage currentStage = new titlestage();
 
 boolean shooting = false;
 
-
-
 Player yoi = new Player();
 
 void setup(){
@@ -108,14 +106,6 @@ void keyReleased(){
   if(key=='s') down=0;
   if(key=='a') left=0;
   if(key=='d') right=0;
-  /**
-  if (key==CODED){
-    if(keyCode==UP) up=0;
-    if(keyCode==DOWN) down=0;
-    if(keyCode==LEFT) left=0;
-    if(keyCode==RIGHT) right=0;
-  }
-  **/
 }
 
 
@@ -123,10 +113,6 @@ void draw(){
   fill(0,0,0,110);
   rect(20,20,700, 710);
   
-<<<<<<< HEAD
-=======
-  currentStage.processenemies();
->>>>>>> da593602b8b9740fb703543d3578a8c65e45f086
   
   if (alive){
     bm.move();
@@ -140,14 +126,10 @@ void draw(){
     }
 
   }
-<<<<<<< HEAD
-  
+
   bm.display();
   currentStage.processenemies();
   
-=======
-  bm.display();
->>>>>>> da593602b8b9740fb703543d3578a8c65e45f086
   //crosshair
   fill(color(0));
   ellipse(mouseX,mouseY,4,31);
