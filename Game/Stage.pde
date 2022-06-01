@@ -13,9 +13,7 @@ public class Stage{
     spawndelay=0;
     switch(stagenum){
       default:
-        int[] moves = {4,5};
-        int[] time = {500,500};
-        Boss egg=new Boss(moves,time);
+        Boss egg=new Boss(0);
         delay.add(200.0);
         enemies.add(egg);
         

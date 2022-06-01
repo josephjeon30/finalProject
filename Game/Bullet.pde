@@ -48,7 +48,7 @@ public class Bullet{
 }
 
 public class EnemyBullet extends Bullet{
-  Player player;
+  
    
   public EnemyBullet(float x, float y, float speed, float angle, float hitRadius){
     this(x, y, speed * cos(angle), speed * sin(angle), 1, 10.0, 200, hitRadius);
@@ -56,7 +56,7 @@ public class EnemyBullet extends Bullet{
   
   public EnemyBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration, float hitRadius){
     super(x, y, dx, dy, dmg, dmgCooldown, duration, hitRadius);
-    player = yoi;
+    //player = yoi;
     bm.addEnemyBullet(this);
   }
   
