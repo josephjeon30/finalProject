@@ -42,9 +42,6 @@ void mouseReleased(){
 **/
 
 void keyPressed(){
-  if (key == SHIFT){
-    focus = true;
-  }
   
   if (key == 'i'){
     shooting = !shooting;
@@ -107,9 +104,7 @@ void keyPressed(){
 }
 
 void keyReleased(){
-  if (key == SHIFT){
-    focus = false;
-  }
+  if(keyCode == SHIFT) focus = false;
   if(key=='w') up=0;
   if(key=='s') down=0;
   if(key=='a') left=0;
@@ -126,11 +121,16 @@ void keyReleased(){
 
 
 void draw(){ 
+  
   fill(0,0,0,110);
   rect(20,20,700, 710);
   
   currentStage.processenemies();
-  
+  if(keyPressed){
+    if(keyCode == SHIFT){
+      focus = true;
+    }
+  }
   if (alive){
     bm.move();
     yoi.display();
