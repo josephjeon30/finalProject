@@ -172,20 +172,6 @@ public class Boss extends Enemy{
         currentPhase = 7;
         break;
       case 7:
-        if (timer % 50 == 0){
-          r = 40*(int)random(height/40 - 1.5)-70;
-          s = 40*(int)random(height/40 - 1.5)-70+20;
-        }
-        if (timer == 0){
-          for (int i = 0; i <= 20; i++){
-            Bullet b = new EnemyBulletR(370,50*i,x,y,1,2000,50);
-          }
-        }
-        if (timer % 5 == 0){
-          Bullet b = new EnemyBulletR(370,r,x,y,5,1,900,15);
-          b = new EnemyBulletR(370,s,x,y,-5,1,900,15);
-        }
-        timer++;
         break;
     } 
   }
@@ -233,10 +219,22 @@ public class Boss extends Enemy{
         }
         break;
       case 6:
-        attack = new Shotgun(x,y,4,1,0,PI/2,50);
-        attack = new Shotgun(x,y,4,2,0,PI/2,50);
-        attack = new Shotgun(x,y,4,3,0,PI/2,50);
-        attack = new Shotgun(x,y,4,4,0,PI/2,50);
+        break;
+      case 7:
+        if (timer % 50 == 0){
+          r = 40*(int)random(height/40 - 1.5)-70;
+          s = 40*(int)random(height/40 - 1.5)-70+20;
+        }
+        if (timer == 0){
+          for (int i = 0; i <= 20; i++){
+            Bullet b = new EnemyBulletR(370,50*i,x,y,1,2000,50);
+          }
+        }
+        if (timer % 5 == 0){
+          Bullet b = new EnemyBulletR(370,r,x,y,5,1,900,15);
+          b = new EnemyBulletR(370,s,x,y,-5,1,900,15);
+        }
+        timer++;
       default:
         break;
         

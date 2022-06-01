@@ -113,10 +113,6 @@ void draw(){
   fill(0,0,0,110);
   rect(20,20,700, 710);
   
-<<<<<<< HEAD
-=======
-  currentStage.processenemies();
->>>>>>> da593602b8b9740fb703543d3578a8c65e45f086
   
   if (alive){
     bm.move();
@@ -130,14 +126,10 @@ void draw(){
     }
 
   }
-<<<<<<< HEAD
-  
+
   bm.display();
   currentStage.processenemies();
   
-=======
-  bm.display();
->>>>>>> da593602b8b9740fb703543d3578a8c65e45f086
   //crosshair
   fill(color(0));
   ellipse(mouseX,mouseY,4,31);
