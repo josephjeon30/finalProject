@@ -19,8 +19,6 @@ Stage currentStage = new titlestage();
 
 boolean shooting = false;
 
-
-
 Player yoi = new Player();
 
 void setup(){
@@ -108,14 +106,6 @@ void keyReleased(){
   if(key=='s') down=0;
   if(key=='a') left=0;
   if(key=='d') right=0;
-  /**
-  if (key==CODED){
-    if(keyCode==UP) up=0;
-    if(keyCode==DOWN) down=0;
-    if(keyCode==LEFT) left=0;
-    if(keyCode==RIGHT) right=0;
-  }
-  **/
 }
 
 

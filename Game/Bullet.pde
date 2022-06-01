@@ -81,6 +81,14 @@ public class EnemyBulletR extends EnemyBullet{
     this.dtheta = vel/r;
   }
   
+  public EnemyBulletR(float x, float y, float x_c, float y_c, int dmg, int duration, float hitRadius){
+    super(x,y,0,0,dmg,0,duration,hitRadius);
+    this.x_c = x_c;
+    this.y_c = y_c;
+    this.r = dist(x,y,x_c,y_c);
+    this.dtheta = PI/240;
+  }
+  
   public void move(){
     x = r*cos(dtheta*(float)timer)+x_c;
     y = r*sin(dtheta*(float)timer)+y_c;
