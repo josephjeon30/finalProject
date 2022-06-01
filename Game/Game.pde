@@ -42,13 +42,6 @@ void mouseReleased(){
 **/
 
 void keyPressed(){
-  if (key == SHIFT){
-    focus = true;
-  }
-  
-  if (key == 'i'){
-    shooting = !shooting;
-  }
   if(key == 'w'){
     if(down != 0) down = 1;
     up += 2;
@@ -107,9 +100,6 @@ void keyPressed(){
 }
 
 void keyReleased(){
-  if (key == SHIFT){
-    focus = false;
-  }
   if(key=='w') up=0;
   if(key=='s') down=0;
   if(key=='a') left=0;
@@ -124,6 +114,23 @@ void keyReleased(){
   **/
 }
 
+void mousePressed(){
+  if(mouseButton == LEFT){
+    shooting=true;
+  }
+  if(mouseButton == RIGHT){
+    focus = true;
+  }
+}
+
+void mouseClicked(){
+  if(mouseButton == LEFT){
+    shooting=false;
+  }
+  if(mouseButton == RIGHT){
+    focus = false;
+  }
+}
 
 void draw(){ 
   fill(0,0,0,110);
