@@ -214,8 +214,9 @@ public class Boss extends Enemy{
           s = 40*(int)random(height/40 - 1.5)-70+20;
         }
         if (timer == 0){
-          for (int i = 0; i <= 20; i++){
-            Bullet b = new EnemyBulletR(370,50*i,x,y,1,2000,50);
+          for (int i = 0; i <= 10; i++){
+            Bullet b = new EnemyBulletR(370,50*i,x,y,10,2000,50);
+            b = new EnemyBulletR(370,-50*i,x,y,10,2000,50);
           }
         }
         if (timer % 5 == 0){
