@@ -19,8 +19,6 @@ Stage currentStage = new titlestage();
 
 boolean shooting = false;
 
-
-
 Player yoi = new Player();
 
 void setup(){
@@ -42,6 +40,9 @@ void mouseReleased(){
 **/
 
 void keyPressed(){
+  if (key == 'i'){
+    shooting = !shooting;
+  }
   if(key == 'w'){
     if(down != 0) down = 1;
     up += 2;
@@ -104,14 +105,6 @@ void keyReleased(){
   if(key=='s') down=0;
   if(key=='a') left=0;
   if(key=='d') right=0;
-  /**
-  if (key==CODED){
-    if(keyCode==UP) up=0;
-    if(keyCode==DOWN) down=0;
-    if(keyCode==LEFT) left=0;
-    if(keyCode==RIGHT) right=0;
-  }
-  **/
 }
 
 void mousePressed(){
@@ -150,7 +143,9 @@ void draw(){
     }
 
   }
+  
   bm.display();
+  
   //crosshair
   fill(color(0));
   ellipse(mouseX,mouseY,4,31);

@@ -32,7 +32,7 @@ public class Enemy implements Damageable{
         ellipse(x, y, 25, 60);
         fill(240);
         textSize(11);
-        text("HP: "+HP,30,height-30);
+        text("HP: "+HP,30,40);
     }
   }
   public void dealDamage(Damageable other,int dmg){
@@ -77,8 +77,8 @@ public class fairy extends Enemy{
   }
 }
 public class Boss extends Enemy{
-  //public int[] phases;
-  //public int[] phaseDur;
+  public int[] phases;
+  public int[] phaseDur;
   public int currentPhase=0;
   public int phasecooldown=0;
   float r = 0;
@@ -89,9 +89,10 @@ public class Boss extends Enemy{
     super(10000,370,20);
     //phases = {new Shotgun(x, y, 5, v, 0.01*angle, PI/24)};
   }
-  public Boss(int startphase){
+  public Boss(int[] moves, int[] time){
     super(10000,370,20);
-    currentPhase=startphase;
+    phases=moves;
+    phaseDur=time;
   }
   public void display(){
     super.display();
@@ -117,7 +118,7 @@ public class Boss extends Enemy{
         break;
       case 1:   //wings
         y = height/2+50*sin(0.1* timer);
-        x = 370 + 330*sin(0.012*timer);
+        x = 370 + 300*sin(0.012*timer);
         timer++;
         if (timer > 1000){
           currentPhase = 2;
@@ -171,11 +172,6 @@ public class Boss extends Enemy{
         currentPhase = 7;
         break;
       case 7:
-        if (timer > 1000){
-          currentPhase = 8;
-          bm.enemyBullets = new LinkedList<EnemyBullet>();
-          timer = 0;
-        }
         break;
     } 
   }
@@ -204,6 +200,7 @@ public class Boss extends Enemy{
         countDown = (countDown + 1)%100;
         if (timer % 50 == 0){
           r = (PI/4)*(int)random(4);
+          //r = random(PI);
         }
         if (countDown > 50){
           if (timer % 5 == 0){
@@ -229,9 +226,8 @@ public class Boss extends Enemy{
           s = 40*(int)random(height/40 - 1.5)-70+20;
         }
         if (timer == 0){
-          for (int i = 0; i <= 10; i++){
-            Bullet b = new EnemyBulletR(370,50*i,x,y,10,2000,50);
-            b = new EnemyBulletR(370,-50*i,x,y,10,2000,50);
+          for (int i = 0; i <= 20; i++){
+            Bullet b = new EnemyBulletR(370,50*i,x,y,1,2000,50);
           }
         }
         if (timer % 5 == 0){
