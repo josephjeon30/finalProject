@@ -63,10 +63,12 @@ public class fairy extends Enemy{
     dy=0;
   }
   public void shoot(){
-    if(timer%2==0){
-      int v = 3;
-      attack = new Shotgun(x, y, 5, v, 0.01*angle, PI/24,10);
-      attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/24,10);
+    if(timer%30==0){
+      float newDir = atan((yoi.y-y)/(yoi.x-x));
+          if (yoi.x - x < 0){
+            newDir += PI;
+          }
+          attack = new Shotgun(x, y, 5, 3, newDir, PI/10,50);
     }
   }  
   public void move(){
