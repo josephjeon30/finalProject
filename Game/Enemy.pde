@@ -119,7 +119,7 @@ public class Boss extends Enemy{
         y = height/2+50*sin(0.1* timer);
         x = 370 + 330*sin(0.012*timer);
         timer++;
-        if (timer > 1000){
+        if (timer > 10){
           currentPhase = 2;
         }
         break;
@@ -139,7 +139,7 @@ public class Boss extends Enemy{
         x = 25*(-cos(0.01*timer)+1)*cos(0.1*timer)+370;
         y = 25*(-cos(0.01*timer)+1)*sin(0.1*timer) + 100;
         timer++;
-        if (timer > 1000){
+        if (timer > 10){
           currentPhase = 4;
           timer = 0;
         }
@@ -156,11 +156,11 @@ public class Boss extends Enemy{
           timer = 0;
         }
         break;
-      case 5:
+      case 5:  //B.S. (bachelor of science)
         timer++;
         x = 25*(-cos(0.01*timer)+1)*cos(0.1*timer)+370;
         y = 25*(-cos(0.01*timer)+1)*sin(0.1*timer) + height/2;
-        if (timer > 1000){
+        if (timer > 10){
           currentPhase = 6;
           timer = 0;
         }
@@ -170,7 +170,7 @@ public class Boss extends Enemy{
         y = height/2;
         currentPhase = 7;
         break;
-      case 7:
+      case 7: //Circular
         if (timer > 1000){
           currentPhase = 8;
           bm.enemyBullets = new LinkedList<EnemyBullet>();
@@ -228,15 +228,31 @@ public class Boss extends Enemy{
           r = 40*(int)random(height/40 - 1.5)-70;
           s = 40*(int)random(height/40 - 1.5)-70+20;
         }
-        if (timer == 0){
-          for (int i = 0; i <= 10; i++){
-            Bullet b = new EnemyBulletR(370,50*i,x,y,10,2000,50);
-            b = new EnemyBulletR(370,-50*i,x,y,10,2000,50);
-          }
-        }
         if (timer % 5 == 0){
           Bullet b = new EnemyBulletR(370,r,x,y,5,1,900,15);
           b = new EnemyBulletR(370,s,x,y,-5,1,900,15);
+        }
+        if (timer == 0){
+          Bullet b;
+          for (int i = 0; i <=12; i++){
+            b = new EnemyBulletR(340+5*i,5*i,x,y,10,2000,10, true);
+          }
+          for (int i = 0; i <= 55; i++){
+            b = new EnemyBulletR(340,5*i,x,y,10,2000,10, true);
+          }
+          b = new EnemyBulletR(355,275,x,y,10,2000,10, true);
+          b = new EnemyBulletR(355,325,x,y,10,2000,10, true);
+          b = new EnemyBulletR(385,325,x,y,10,2000,10, true);
+          b = new EnemyBulletR(385,275,x,y,10,2000,10, true);
+          for (int i = 1; i <= 43; i++){
+            b = new EnemyBulletR(400,60+5*i,x,y,10,2000,10, true);
+          }
+          b = new EnemyBulletR(370,245,x,y,10,2000,60, true);
+          b = new EnemyBulletR(370,205,x,y,10,2000,60, true);
+          b = new EnemyBulletR(370,165,x,y,10,2000,60, true);
+          b = new EnemyBulletR(370,125,x,y,10,2000,60, true);
+          b = new EnemyBulletR(370,85,x,y,10,2000,60, true);
+          b = new EnemyBulletR(355,41,x,y,10,2000,50, true);
         }
         timer++;
       default:

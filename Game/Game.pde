@@ -129,7 +129,7 @@ void draw(){
   fill(0,0,0,110);
   rect(20,20,700, 710);
   
-  currentStage.processenemies();
+  
   
   if (alive){
     bm.move();
@@ -145,6 +145,7 @@ void draw(){
   }
   
   bm.display();
+  currentStage.processenemies();
   
   //crosshair
   fill(color(0));
