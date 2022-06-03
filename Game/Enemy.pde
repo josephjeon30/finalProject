@@ -235,24 +235,24 @@ public class Boss extends Enemy{
         if (timer == 0){
           Bullet b;
           for (int i = 0; i <=12; i++){
-            b = new EnemyBulletR(340+5*i,5*i,x,y,10,2000,10, true);
+            b = new EnemyBulletR(340+5*i,5*i,x,y,50,2000,10, true);
           }
           for (int i = 0; i <= 55; i++){
-            b = new EnemyBulletR(340,5*i,x,y,10,2000,10, true);
+            b = new EnemyBulletR(340,5*i,x,y,50,2000,10, true);
           }
-          b = new EnemyBulletR(355,275,x,y,10,2000,10, true);
-          b = new EnemyBulletR(355,325,x,y,10,2000,10, true);
-          b = new EnemyBulletR(385,325,x,y,10,2000,10, true);
-          b = new EnemyBulletR(385,275,x,y,10,2000,10, true);
+          b = new EnemyBulletR(355,275,x,y,50,2000,10, true);
+          b = new EnemyBulletR(355,325,x,y,50,2000,10, true);
+          b = new EnemyBulletR(385,325,x,y,50,2000,10, true);
+          b = new EnemyBulletR(385,275,x,y,50,2000,10, true);
           for (int i = 1; i <= 43; i++){
             b = new EnemyBulletR(400,60+5*i,x,y,10,2000,10, true);
           }
-          b = new EnemyBulletR(370,245,x,y,10,2000,60, true);
-          b = new EnemyBulletR(370,205,x,y,10,2000,60, true);
-          b = new EnemyBulletR(370,165,x,y,10,2000,60, true);
-          b = new EnemyBulletR(370,125,x,y,10,2000,60, true);
-          b = new EnemyBulletR(370,85,x,y,10,2000,60, true);
-          b = new EnemyBulletR(355,41,x,y,10,2000,50, true);
+          b = new EnemyBulletR(370,245,x,y,50,2000,60, true);
+          b = new EnemyBulletR(370,205,x,y,50,2000,60, true);
+          b = new EnemyBulletR(370,165,x,y,50,2000,60, true);
+          b = new EnemyBulletR(370,125,x,y,50,2000,60, true);
+          b = new EnemyBulletR(370,85,x,y,50,2000,60, true);
+          b = new EnemyBulletR(355,41,x,y,50,2000,50, true);
         }
         timer++;
       default:
