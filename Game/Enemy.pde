@@ -63,10 +63,12 @@ public class fairy extends Enemy{
     dy=0;
   }
   public void shoot(){
-    if(timer%2==0){
-      int v = 3;
-      attack = new Shotgun(x, y, 5, v, 0.01*angle, PI/24,10);
-      attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/24,10);
+    if(timer%30==0){
+      float newDir = atan((yoi.y-y)/(yoi.x-x));
+          if (yoi.x - x < 0){
+            newDir += PI;
+          }
+          attack = new Shotgun(x, y, 5, 3, newDir, PI/10,50);
     }
   }  
   public void move(){
@@ -119,7 +121,7 @@ public class Boss extends Enemy{
         y = height/2+50*sin(0.1* timer);
         x = 370 + 330*sin(0.012*timer);
         timer++;
-        if (timer > 100){
+        if (timer > 1000){
           currentPhase = 2;
         }
         break;
@@ -139,7 +141,7 @@ public class Boss extends Enemy{
         x = 25*(-cos(0.01*timer)+1)*cos(0.1*timer)+370;
         y = 25*(-cos(0.01*timer)+1)*sin(0.1*timer) + 100;
         timer++;
-        if (timer > 100){
+        if (timer > 1000){
           currentPhase = 4;
           timer = 0;
         }
@@ -160,7 +162,7 @@ public class Boss extends Enemy{
         timer++;
         x = 25*(-cos(0.01*timer)+1)*cos(0.1*timer)+370;
         y = 25*(-cos(0.01*timer)+1)*sin(0.1*timer) + height/2;
-        if (timer > 100){
+        if (timer > 1000){
           currentPhase = 6;
           timer = 0;
         }
@@ -171,6 +173,11 @@ public class Boss extends Enemy{
         currentPhase = 7;
         break;
       case 7:
+        if (timer > 1000){
+          currentPhase = 8;
+          bm.enemyBullets = new LinkedList<EnemyBullet>();
+          timer = 0;
+        }
         break;
     } 
   }
@@ -187,6 +194,13 @@ public class Boss extends Enemy{
           attack = new Shotgun(x, y, 5, v, 0.01*angle, PI / 20,10);
           attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/20,10);
         }
+        if(timer % 75 == 0){
+          float newDir = atan((yoi.y-y)/(yoi.x-x));
+          if (yoi.x - x < 0){
+            newDir += PI;
+          }
+          attack = new Shotgun(x, y, 5, 3, newDir, PI/10,50);
+        }
         break;
       case 3: //walls
         countDown = (countDown + 1)%100;
@@ -201,9 +215,12 @@ public class Boss extends Enemy{
         }
         break;
       case 5:  //absolute bs (bachelor of science)
-        if (timer % 2 == 0){
+        if (timer % 3 == 0){
           int k = 2+(int)random(4);
           attack = new Shotgun(x, y, k,3,random(PI), 2 * PI / k, 10);
+        }
+        if (timer % 40 == 0){
+          attack = new Shotgun(x,y,13,4,random(PI),2 * PI / 13,50);
         }
         break;
       case 6:
@@ -214,8 +231,9 @@ public class Boss extends Enemy{
           s = 40*(int)random(height/40 - 1.5)-70+20;
         }
         if (timer == 0){
-          for (int i = 0; i <= 20; i++){
-            Bullet b = new EnemyBulletR(370,50*i,x,y,1,2000,50);
+          for (int i = 0; i <= 10; i++){
+            Bullet b = new EnemyBulletR(370,50*i,x,y,10,2000,50);
+            b = new EnemyBulletR(370,-50*i,x,y,10,2000,50);
           }
         }
         if (timer % 5 == 0){

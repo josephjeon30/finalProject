@@ -40,6 +40,9 @@ void mouseReleased(){
 **/
 
 void keyPressed(){
+  if (key == 'i'){
+    shooting = !shooting;
+  }
   if(key == 'w'){
     if(down != 0) down = 1;
     up += 2;
