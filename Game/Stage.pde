@@ -12,6 +12,10 @@ public class Stage{
     stagenum=num;
     spawndelay=0;
     switch(stagenum){
+      case 0:
+        fairy a = new fairy(100,100,-20);
+        delay.add(100.0);
+        enemies.add(a);
       default:
         Boss egg=new Boss(0);
         delay.add(200.0);

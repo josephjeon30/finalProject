@@ -31,8 +31,8 @@ public class Enemy implements Damageable{
         fill(234,234,40);
         ellipse(x, y, 25, 60);
         fill(240);
-        textSize(11);
-        text("HP: "+HP,30,height-30);
+        //textSize(11);
+        //text("HP: "+HP,30,height-30);
     }
   }
   public void dealDamage(Damageable other,int dmg){
@@ -59,8 +59,8 @@ public class fairy extends Enemy{
   }
   public fairy(int h, int x, int y){
     super(h,x,y);
-    dx=5;
-    dy=0;
+    dx=0;
+    dy=5;
   }
   public void shoot(){
     if(timer%30==0){
@@ -73,8 +73,14 @@ public class fairy extends Enemy{
   }  
   public void move(){
     //if(x<5||x>995) dx*=-1;
-    y = 350 + 100*sin(0.1* timer);
-    x = 500 + 400*sin(0.012*timer);
+    if(timer%60==0){
+      dy--;
+    }
+    if(y<-50){
+      HP=0;
+    }
+    y+=dy;
+    //x = 500 + 400*sin(0.012*timer);
     timer++;
   }
 }
