@@ -73,6 +73,7 @@ public class EnemyBulletR extends EnemyBullet{
   float startAngle;
   float dtheta;
   float timer = 0;
+  color c = color(255);
   
   public EnemyBulletR(float x, float y, float x_c, float y_c, float vel, int dmg, int duration, float hitRadius){
     super(x,y,0,0,dmg,0,duration,hitRadius);
@@ -98,11 +99,21 @@ public class EnemyBulletR extends EnemyBullet{
     this.dtheta = PI/240;
   }
   
+  public EnemyBulletR(float x, float y, float x_c, float y_c, int dmg, int duration, float hitRadius, boolean extra){
+    this(x,y,x_c,y_c,dmg,duration,hitRadius);
+    if (extra) this.c = color(255,0,0);
+  }
+  
   public void move(){
     x = r*cos(startAngle + dtheta*(float)timer)+x_c;
     y = r*sin(startAngle + dtheta*(float)timer)+y_c;
     if (Game.ticks - this.spawnTick >= duration) outOfBounds = true;
     timer++;
+  }
+  
+  public void display(){
+    fill(c);
+    ellipse(x, y, hitRadius, hitRadius);
   }
 }
 
