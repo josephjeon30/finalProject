@@ -2,7 +2,6 @@ public class Bullet{
   float border = 250;
   float x, y, dx, dy;
   int dmg;
-  float dmgCooldown;
   int duration;
   boolean outOfBounds = false;
   float hitRadius;
@@ -18,16 +17,15 @@ public class Bullet{
   }
     
   public Bullet(float x, float y, float speed, float angle, float hitRadius){
-    this(x, y, speed * cos(angle), speed * sin(angle), 10, 10.0, 5, hitRadius);
+    this(x, y, speed * cos(angle), speed * sin(angle), 10, 5, hitRadius);
   }
   
-  public Bullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration, float hitRadius){
+  public Bullet(float x, float y, float dx, float dy, int dmg, int duration, float hitRadius){
     this.x = x;
     this.y = y;
     this.dx = dx;
     this.dy = dy;
     this.dmg = dmg;
-    this.dmgCooldown = dmgCooldown;
     this.duration = duration;
     this.hitRadius = hitRadius;
     spawnTick = Game.ticks;
@@ -51,11 +49,11 @@ public class EnemyBullet extends Bullet{
   
    
   public EnemyBullet(float x, float y, float speed, float angle, float hitRadius){
-    this(x, y, speed * cos(angle), speed * sin(angle), 1, 10.0, 200, hitRadius);
+    this(x, y, speed * cos(angle), speed * sin(angle), 1, 200, hitRadius);
   }
   
-  public EnemyBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration, float hitRadius){
-    super(x, y, dx, dy, dmg, dmgCooldown, duration, hitRadius);
+  public EnemyBullet(float x, float y, float dx, float dy, int dmg, int duration, float hitRadius){
+    super(x, y, dx, dy, dmg, duration, hitRadius);
     //player = yoi;
     bm.addEnemyBullet(this);
   }
@@ -76,7 +74,7 @@ public class EnemyBulletR extends EnemyBullet{
   color c = color(255);
   
   public EnemyBulletR(float x, float y, float x_c, float y_c, float vel, int dmg, int duration, float hitRadius){
-    super(x,y,0,0,dmg,0,duration,hitRadius);
+    super(x,y,0,0,dmg,duration,hitRadius);
     this.x_c = x_c;
     this.y_c = y_c;
     this.startAngle = atan((y-y_c)/(x-x_c));
@@ -88,7 +86,7 @@ public class EnemyBulletR extends EnemyBullet{
   }
   
   public EnemyBulletR(float x, float y, float x_c, float y_c, int dmg, int duration, float hitRadius){
-    super(x,y,0,0,dmg,0,duration,hitRadius);
+    super(x,y,0,0,dmg,duration,hitRadius);
     this.x_c = x_c;
     this.y_c = y_c;
     this.startAngle = atan((y-y_c)/(x-x_c));
@@ -117,15 +115,21 @@ public class EnemyBulletR extends EnemyBullet{
   }
 }
 
+public class EnemyBulletA extends EnemyBullet{
+  public EnemyBulletA(float x, float y, float dx, float dy, int dmg, int duration, float hitRadius){
+  
+  }
+}
+
 public class PlayerBullet extends Bullet{
   Enemy enemy;
   
   public PlayerBullet(float x, float y, float speed, float angle){
-    this(x, y, speed * cos(angle), speed * sin(angle), 1+(int)random(2), 10.0, 200);
+    this(x, y, speed * cos(angle), speed * sin(angle), 1+(int)random(2), 200);
   }
   
-  public PlayerBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration){
-    super(x, y, dx, dy, dmg, dmgCooldown, duration, 20.0);
+  public PlayerBullet(float x, float y, float dx, float dy, int dmg, int duration){
+    super(x, y, dx, dy, dmg, duration, 20.0);
     bm.addPlayerBullet(this);
   }
   
