@@ -19,8 +19,6 @@ Stage currentStage = new titlestage();
 
 boolean shooting = false;
 
-
-
 Player yoi = new Player();
 
 void setup(){
@@ -42,7 +40,10 @@ void mouseReleased(){
 **/
 
 void keyPressed(){
+<<<<<<< HEAD
   
+=======
+>>>>>>> c3485d512d3da7d41a62e4ce139a6251c2ecff1a
   if (key == 'i'){
     shooting = !shooting;
   }
@@ -104,21 +105,33 @@ void keyPressed(){
 }
 
 void keyReleased(){
+<<<<<<< HEAD
   if(keyCode == SHIFT) focus = false;
+=======
+>>>>>>> c3485d512d3da7d41a62e4ce139a6251c2ecff1a
   if(key=='w') up=0;
   if(key=='s') down=0;
   if(key=='a') left=0;
   if(key=='d') right=0;
-  /**
-  if (key==CODED){
-    if(keyCode==UP) up=0;
-    if(keyCode==DOWN) down=0;
-    if(keyCode==LEFT) left=0;
-    if(keyCode==RIGHT) right=0;
-  }
-  **/
 }
 
+void mousePressed(){
+  if(mouseButton == LEFT){
+    shooting=true;
+  }
+  if(mouseButton == RIGHT){
+    focus = true;
+  }
+}
+
+void mouseClicked(){
+  if(mouseButton == LEFT){
+    shooting=false;
+  }
+  if(mouseButton == RIGHT){
+    focus = false;
+  }
+}
 
 void draw(){ 
   
@@ -143,7 +156,9 @@ void draw(){
     }
 
   }
+  
   bm.display();
+  
   //crosshair
   fill(color(0));
   ellipse(mouseX,mouseY,4,31);

@@ -66,6 +66,46 @@ public class EnemyBullet extends Bullet{
   }
 }
 
+public class EnemyBulletR extends EnemyBullet{
+  float r;
+  float x_c;
+  float y_c;
+  float startAngle;
+  float dtheta;
+  float timer = 0;
+  
+  public EnemyBulletR(float x, float y, float x_c, float y_c, float vel, int dmg, int duration, float hitRadius){
+    super(x,y,0,0,dmg,0,duration,hitRadius);
+    this.x_c = x_c;
+    this.y_c = y_c;
+    this.startAngle = atan((y-y_c)/(x-x_c));
+    if (x - x_c < 0){
+      this.startAngle += PI;
+    }
+    this.r = dist(x,y,x_c,y_c);
+    this.dtheta = vel/r;
+  }
+  
+  public EnemyBulletR(float x, float y, float x_c, float y_c, int dmg, int duration, float hitRadius){
+    super(x,y,0,0,dmg,0,duration,hitRadius);
+    this.x_c = x_c;
+    this.y_c = y_c;
+    this.startAngle = atan((y-y_c)/(x-x_c));
+    if (x - x_c < 0){
+      this.startAngle += PI;
+    }
+    this.r = dist(x,y,x_c,y_c);
+    this.dtheta = PI/240;
+  }
+  
+  public void move(){
+    x = r*cos(startAngle + dtheta*(float)timer)+x_c;
+    y = r*sin(startAngle + dtheta*(float)timer)+y_c;
+    if (Game.ticks - this.spawnTick >= duration) outOfBounds = true;
+    timer++;
+  }
+}
+
 public class PlayerBullet extends Bullet{
   Enemy enemy;
   
