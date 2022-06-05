@@ -16,6 +16,23 @@ public class Stage{
         fairy a = new fairy(100,100,-20);
         delay.add(100.0);
         enemies.add(a);
+        fairy b = new fairy(100,640,-20);
+        delay.add(1.0);
+        enemies.add(b);
+        ghost c = new ghost(100,370,-20);
+        delay.add(100.0);
+        enemies.add(c);
+        ghost d = new ghost(100,370,-20);
+        delay.add(50.0);
+        enemies.add(d);
+        ghost e = new ghost(100,370,-20);
+        delay.add(50.0);
+        enemies.add(e);
+        ghost f = new ghost(100,370,-20);
+        delay.add(50.0);
+        enemies.add(f);
+        break;
+      
       default:
         Boss egg=new Boss(0);
         delay.add(200.0);

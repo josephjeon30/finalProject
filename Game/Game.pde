@@ -40,10 +40,6 @@ void mouseReleased(){
 **/
 
 void keyPressed(){
-<<<<<<< HEAD
-  
-=======
->>>>>>> c3485d512d3da7d41a62e4ce139a6251c2ecff1a
   if (key == 'i'){
     shooting = !shooting;
   }
@@ -105,10 +101,6 @@ void keyPressed(){
 }
 
 void keyReleased(){
-<<<<<<< HEAD
-  if(keyCode == SHIFT) focus = false;
-=======
->>>>>>> c3485d512d3da7d41a62e4ce139a6251c2ecff1a
   if(key=='w') up=0;
   if(key=='s') down=0;
   if(key=='a') left=0;

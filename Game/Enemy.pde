@@ -49,6 +49,24 @@ public class Enemy implements Damageable{
   //public void setDY(float k){}
   
 }
+public class ghost extends Enemy{
+  public ghost(int h,int x,int y){
+    super(h,x,y);
+    dy=2;
+    dx=0;
+  }
+  public void shoot(){
+    //EnemyBullet b = new EnemyBullet(x,y,dx,dy,10,1000,1000,25);
+    //bm.addEnemyBullet(b);
+  }
+  public void move(){
+    if(y>790)HP=0;
+     x=370 + 30*sin(0.012*timer);
+     y+=dy;
+     //x+=dx;
+     timer++;
+  }
+}
 public class fairy extends Enemy{
   //int tick = 0;
   
@@ -73,8 +91,8 @@ public class fairy extends Enemy{
   }  
   public void move(){
     //if(x<5||x>995) dx*=-1;
-    if(timer%60==0){
-      dy--;
+    if(timer%5==0){
+      dy-=0.1;
     }
     if(y<-50){
       HP=0;
