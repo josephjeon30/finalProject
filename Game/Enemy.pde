@@ -42,7 +42,9 @@ public class Enemy implements Damageable{
     HP-=dmg;
   }
   public void shoot(){}
-
+  public boolean collisions(Player other){
+    return (dist(x,y, yoi.x, yoi.y) < hitRadius/2+yoi.hitRadius/2);
+  }
   //public void setX(float k){}
   //public void setY(float k){}
   //public void setDX(float k){}
@@ -52,12 +54,18 @@ public class Enemy implements Damageable{
 public class ghost extends Enemy{
   public ghost(int h,int x,int y){
     super(h,x,y);
+    hitRadius=30;
     dy=2;
     dx=0;
+  }
+  public void display(){
+    fill(210,240,240);
+    ellipse(x,y,hitRadius,hitRadius);
   }
   public void shoot(){
     //EnemyBullet b = new EnemyBullet(x,y,dx,dy,10,1000,1000,25);
     //bm.addEnemyBullet(b);
+    if(collisions(yoi)) yoi.takeDamage(1);
   }
   public void move(){
     if(y>790)HP=0;

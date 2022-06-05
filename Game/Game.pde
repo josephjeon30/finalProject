@@ -116,7 +116,7 @@ void mousePressed(){
   }
 }
 
-void mouseClicked(){
+void mouseReleased(){
   if(mouseButton == LEFT){
     shooting=false;
   }
