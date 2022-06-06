@@ -1,5 +1,4 @@
 BulletManager bm = new BulletManager();
-float angle = 0;
 boolean alive = true;
 boolean gamestart = false;
 
@@ -224,7 +223,6 @@ public void checkStuff(){
 
   }
   
-  //angle -= 0.7;
   
   //if(up > 0 || down > 0){
   //  if(up > down) moveY = -5;

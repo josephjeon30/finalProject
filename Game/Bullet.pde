@@ -46,8 +46,6 @@ public class Bullet{
 }
 
 public class EnemyBullet extends Bullet{
-  
-   
   public EnemyBullet(float x, float y, float speed, float angle, int dmg, int duration, float hitRadius){
     super(x, y, speed * cos(angle), speed * sin(angle), dmg, duration, hitRadius);
     bm.addEnemyBullet(this);
@@ -111,17 +109,25 @@ public class EnemyBulletR extends EnemyBullet{
 }
 
 public class EnemyBulletA extends EnemyBullet{
+  float v;
   float vf;
   float accel;
   boolean inc;
-  public EnemyBulletA(float x, float y, float v1, float vf, float accel, float angle, int dmg, int duration, float hitRadius){
-    super(x,y,v1,angle,dmg,duration,hitRadius);
+  float angle;
+  public EnemyBulletA(float x, float y, float v, float vf, float accel, float angle, int dmg, int duration, float hitRadius){
+    super(x,y,v,angle,dmg,duration,hitRadius);
+    this.v = v;
     this.vf = vf;
+    this.angle = angle;
     this.accel = accel;
   }
   
   public void move(){
-    
+    x += v*cos(angle);
+    y += v*sin(angle);
+    if (v < vf) v += accel;
+    if (Game.ticks - this.spawnTick >= duration) outOfBounds = true;
+    //if (x < 0 - border || x > 700 + border || y < 0 - border || y > height + border) outOfBounds = true;
   }
 }
 

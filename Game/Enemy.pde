@@ -191,15 +191,19 @@ public class Boss extends Enemy{
       case 1: //wings
         if(timer%2==0) {
           int v = 5;
-          attack = new Shotgun(x, y, 5, v, 0.01*angle, PI / 20,10);
-          attack = new Shotgun(x, y, 5, v, 0.01*angle+ PI, PI/20,10);
+          attack = new Shotgun(x, y, 5, v, -0.01*timer, PI / 20,10);
+          attack = new Shotgun(x, y, 5, v, -0.01*timer+ PI, PI/20,10);
         }
         if(timer % 75 == 0){
+          
           float newDir = atan((yoi.y-y)/(yoi.x-x));
           if (yoi.x - x < 0){
             newDir += PI;
           }
+          /**
           attack = new Shotgun(x, y, 5, 3, newDir, PI/10,50);
+          **/
+          attack = new Shotgun(x,y,newDir);
         }
         break;
       case 3: //walls
