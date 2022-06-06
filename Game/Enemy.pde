@@ -121,7 +121,7 @@ public class Boss extends Enemy{
         y = height/2+50*sin(0.1* timer);
         x = 370 + 330*sin(0.012*timer);
         timer++;
-        if (timer > 10){
+        if (timer > 1000){
           currentPhase = 2;
         }
         break;
@@ -141,7 +141,7 @@ public class Boss extends Enemy{
         x = 25*(-cos(0.01*timer)+1)*cos(0.1*timer)+370;
         y = 25*(-cos(0.01*timer)+1)*sin(0.1*timer) + 100;
         timer++;
-        if (timer > 10){
+        if (timer > 1000){
           currentPhase = 4;
           timer = 0;
         }
@@ -162,7 +162,7 @@ public class Boss extends Enemy{
         timer++;
         x = 25*(-cos(0.01*timer)+1)*cos(0.1*timer)+370;
         y = 25*(-cos(0.01*timer)+1)*sin(0.1*timer) + height/2;
-        if (timer > 10){
+        if (timer > 1000){
           currentPhase = 6;
           timer = 0;
         }
@@ -249,12 +249,14 @@ public class Boss extends Enemy{
           for (int i = 1; i <= 43; i++){
             b = new EnemyBulletR(400,60+5*i,x,y,10,2000,10, true);
           }
+          /**
           b = new EnemyBulletR(370,245,x,y,50,2000,60, true);
           b = new EnemyBulletR(370,205,x,y,50,2000,60, true);
           b = new EnemyBulletR(370,165,x,y,50,2000,60, true);
           b = new EnemyBulletR(370,125,x,y,50,2000,60, true);
           b = new EnemyBulletR(370,85,x,y,50,2000,60, true);
           b = new EnemyBulletR(355,41,x,y,50,2000,50, true);
+          **/
         }
         timer++;
       default:

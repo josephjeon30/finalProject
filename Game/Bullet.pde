@@ -48,13 +48,8 @@ public class Bullet{
 public class EnemyBullet extends Bullet{
   
    
-  public EnemyBullet(float x, float y, float speed, float angle, float hitRadius){
-    this(x, y, speed * cos(angle), speed * sin(angle), 1, 200, hitRadius);
-  }
-  
-  public EnemyBullet(float x, float y, float dx, float dy, int dmg, int duration, float hitRadius){
-    super(x, y, dx, dy, dmg, duration, hitRadius);
-    //player = yoi;
+  public EnemyBullet(float x, float y, float speed, float angle, int dmg, int duration, float hitRadius){
+    super(x, y, speed * cos(angle), speed * sin(angle), dmg, duration, hitRadius);
     bm.addEnemyBullet(this);
   }
   
@@ -116,8 +111,17 @@ public class EnemyBulletR extends EnemyBullet{
 }
 
 public class EnemyBulletA extends EnemyBullet{
-  public EnemyBulletA(float x, float y, float dx, float dy, int dmg, int duration, float hitRadius){
+  float vf;
+  float accel;
+  boolean inc;
+  public EnemyBulletA(float x, float y, float v1, float vf, float accel, float angle, int dmg, int duration, float hitRadius){
+    super(x,y,v1,angle,dmg,duration,hitRadius);
+    this.vf = vf;
+    this.accel = accel;
+  }
   
+  public void move(){
+    
   }
 }
 
