@@ -2,6 +2,7 @@ BulletManager bm = new BulletManager();
 float angle = 0;
 boolean alive = true;
 boolean gamestart = false;
+PImage egg;
 
 static int ticks = 0;
 static int spawndelay = 0;
