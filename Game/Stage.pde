@@ -31,6 +31,10 @@ public class Stage{
         ghost f = new ghost(100,370,-20);
         delay.add(50.0);
         enemies.add(f);
+        delay.add(480.0);
+        enemies.add(new fairy(100,100,-20,0));
+        delay.add(0.0);
+        enemies.add(new fairy(100,640,-20,0));
         break;
       
       default:
