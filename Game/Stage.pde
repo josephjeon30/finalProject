@@ -16,8 +16,8 @@ public class Stage{
         fairy a = new fairy(100,100,-20,1);
         delay.add(100.0);
         enemies.add(a);
-        fairy b = new fairy(100,640,-20,0);
-        delay.add(1.0);
+        fairy b = new fairy(100,640,-20,2);
+        delay.add(0.0);
         enemies.add(b);
         ghost c = new ghost(100,370,-20);
         delay.add(100.0);
@@ -43,7 +43,7 @@ public class Stage{
   
   public void spawn(){
     if(enemies.size()>0){
-      if(spawndelay==delay.peek()){
+      if(spawndelay>=delay.peek()){
         enemyonfield.add(enemies.remove());
         spawndelay=0;
         delay.remove();

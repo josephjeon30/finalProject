@@ -99,20 +99,27 @@ public class fairy extends Enemy{
     }
   }  
   public void move(){
+    timer++;
+    if(y<-50){
+      HP=0;
+    }
     switch(moving){
       case 1:
         x=cos(-0.01*timer+4.19)*(200-350*sin(-0.01*timer+4.19))+370;
         y=sin(-0.01*timer+4.19)*(200-350*sin(-0.01*timer+4.19))+400;
+        break;
+      case 2:
+        x=cos(0.01*timer+5.19)*(200-350*sin(0.01*timer+5.19))+370;
+        y=sin(0.01*timer+5.19)*(200-350*sin(0.01*timer+5.19))+400;
+        break;
       default:
         if(timer%60==0){
           dy--;
         }
-        if(y<-50){
-          HP=0;
-        }
+        
         y+=dy;
         //x = 500 + 400*sin(0.012*timer);
-        timer++;
+        
 
     }
 
