@@ -95,14 +95,14 @@ public class fairy extends Enemy{
           if (yoi.x - x < 0){
             newDir += PI;
           }
-          attack = new Shotgun(x, y, 5, 3, newDir, PI/10,50);
+          attack = new Shotgun(x, y, 4, 3, newDir, PI/10,20);
     }
   }  
   public void move(){
     switch(moving){
       case 1:
-        x=100*cos(300-600*sin(0.00001*timer))+370;
-        y=-100*sin(300-600*sin(0.00001*timer))+200;
+        x=cos(-0.01*timer+4.19)*(200-350*sin(-0.01*timer+4.19))+370;
+        y=sin(-0.01*timer+4.19)*(200-350*sin(-0.01*timer+4.19))+400;
       default:
         if(timer%60==0){
           dy--;

@@ -16,7 +16,7 @@ public class Stage{
         fairy a = new fairy(100,100,-20,1);
         delay.add(100.0);
         enemies.add(a);
-        fairy b = new fairy(100,640,-20);
+        fairy b = new fairy(100,640,-20,0);
         delay.add(1.0);
         enemies.add(b);
         ghost c = new ghost(100,370,-20);
