@@ -179,6 +179,10 @@ public class Boss extends Enemy{
           timer = 0;
         }
         break;
+      case 8:
+        x = 370;
+        y = height/2;
+        break;
     } 
   }
   public void shoot(){
@@ -189,7 +193,7 @@ public class Boss extends Enemy{
     }**/
     switch(currentPhase){
       case 1: //wings
-        if(timer%2==0) {
+        if(timer%3==0) {
           int v = 5;
           attack = new Shotgun(x, y, 5, v, -0.01*timer, PI / 20,10);
           attack = new Shotgun(x, y, 5, v, -0.01*timer+ PI, PI/20,10);
@@ -200,10 +204,7 @@ public class Boss extends Enemy{
           if (yoi.x - x < 0){
             newDir += PI;
           }
-          /**
           attack = new Shotgun(x, y, 5, 3, newDir, PI/10,50);
-          **/
-          attack = new Shotgun(x,y,newDir);
         }
         break;
       case 3: //walls
@@ -263,6 +264,13 @@ public class Boss extends Enemy{
           **/
         }
         timer++;
+        break;
+      case 8:
+        if (timer%2 == 0){
+          attack = new Shotgun(x,y,99*timer,3,2*PI/3);
+        }
+        timer++;
+        break;
       default:
         break;
         

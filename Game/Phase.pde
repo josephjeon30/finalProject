@@ -11,7 +11,7 @@ public class Shotgun extends Phase{
   public Shotgun(float x, float y, float dir, int count, float spread){
     float startDir = dir - (((float)count / 2) * spread);
     for (int i = 0; i < count; i++){
-      bm.addEnemyBullet(new EnemyBulletA(x, y, -5, 5, 0.05, startDir + (i * spread),1,200,50));
+      bm.addEnemyBullet(new EnemyBulletA(x, y, -5.3, 3, 0.05, startDir + (i * spread),1,200,40));
       //delay.add(0.0);
     }
   }

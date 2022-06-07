@@ -127,7 +127,7 @@ public class EnemyBulletA extends EnemyBullet{
     y += v*sin(angle);
     if (v < vf) v += accel;
     if (Game.ticks - this.spawnTick >= duration) outOfBounds = true;
-    //if (x < 0 - border || x > 700 + border || y < 0 - border || y > height + border) outOfBounds = true;
+    if (x < 0 - border || x > 700 + border || y < 0 - border || y > height + border) outOfBounds = true;
   }
 }
 
