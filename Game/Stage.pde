@@ -13,7 +13,7 @@ public class Stage{
     spawndelay=0;
     switch(stagenum){
       case 0:
-        fairy a = new fairy(100,100,-20);
+        fairy a = new fairy(100,100,-20,1);
         delay.add(100.0);
         enemies.add(a);
         fairy b = new fairy(100,640,-20);

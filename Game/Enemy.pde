@@ -6,7 +6,7 @@ public class Enemy implements Damageable{
   public Phase attack;
   float hitRadius = 10;
   public float timer = 0;
-  
+  public int moving;
   public Enemy(){
 
     this(80,0,0);
@@ -83,10 +83,11 @@ public class fairy extends Enemy{
     dx=5;
     dy=0;
   }
-  public fairy(int h, int x, int y){
+  public fairy(int h, int x, int y, int movepattern){
     super(h,x,y);
     dx=0;
     dy=5;
+    moving=movepattern;
   }
   public void shoot(){
     if(timer%30==0){
@@ -98,16 +99,23 @@ public class fairy extends Enemy{
     }
   }  
   public void move(){
-    //if(x<5||x>995) dx*=-1;
-    if(timer%5==0){
-      dy-=0.1;
+    switch(moving){
+      case 1:
+        x=100*cos(300-600*sin(0.00001*timer))+370;
+        y=-100*sin(300-600*sin(0.00001*timer))+200;
+      default:
+        if(timer%60==0){
+          dy--;
+        }
+        if(y<-50){
+          HP=0;
+        }
+        y+=dy;
+        //x = 500 + 400*sin(0.012*timer);
+        timer++;
+
     }
-    if(y<-50){
-      HP=0;
-    }
-    y+=dy;
-    //x = 500 + 400*sin(0.012*timer);
-    timer++;
+
   }
 }
 public class Boss extends Enemy{
