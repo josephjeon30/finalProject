@@ -35,6 +35,8 @@ public class Stage{
         enemies.add(new fairy(100,100,-20,0));
         delay.add(0.0);
         enemies.add(new fairy(100,640,-20,0));
+        delay.add(200.0);
+        enemies.add(new Boss(0));
         break;
       
       default:

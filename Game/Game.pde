@@ -127,7 +127,7 @@ void mouseReleased(){
 }
 
 void draw(){ 
-  
+  spawndelay++;
   fill(0,0,0,110);
   rect(20,20,700, 710);
   
@@ -162,7 +162,7 @@ void draw(){
   
   checkStuff();
   ticks++;
-  spawndelay++;
+  
   //text(currentStage.stagenum,50,50);
   renderGUI();
 }
