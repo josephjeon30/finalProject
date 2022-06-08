@@ -12,6 +12,33 @@ public class Stage{
     stagenum=num;
     spawndelay=0;
     switch(stagenum){
+      case 0:
+        fairy a = new fairy(100,100,-20,1);
+        delay.add(100.0);
+        enemies.add(a);
+        fairy b = new fairy(100,640,-20,2);
+        delay.add(0.0);
+        enemies.add(b);
+        ghost c = new ghost(100,370,-20);
+        delay.add(100.0);
+        enemies.add(c);
+        ghost d = new ghost(100,370,-20);
+        delay.add(50.0);
+        enemies.add(d);
+        ghost e = new ghost(100,370,-20);
+        delay.add(50.0);
+        enemies.add(e);
+        ghost f = new ghost(100,370,-20);
+        delay.add(50.0);
+        enemies.add(f);
+        delay.add(280.0);
+        enemies.add(new fairy(100,100,-20,0));
+        delay.add(0.0);
+        enemies.add(new fairy(100,640,-20,0));
+        delay.add(400.0);
+        enemies.add(new Boss(0));
+        break;
+      
       default:
         Boss egg=new Boss(0);
         delay.add(200.0);
@@ -22,7 +49,7 @@ public class Stage{
   
   public void spawn(){
     if(enemies.size()>0){
-      if(spawndelay==delay.peek()){
+      if(spawndelay>=delay.peek()){
         enemyonfield.add(enemies.remove());
         spawndelay=0;
         delay.remove();

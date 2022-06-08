@@ -2,6 +2,7 @@ BulletManager bm = new BulletManager();
 float angle = 0;
 boolean alive = true;
 boolean gamestart = false;
+PImage egg;
 
 static int ticks = 0;
 static int spawndelay = 0;
@@ -116,7 +117,7 @@ void mousePressed(){
   }
 }
 
-void mouseClicked(){
+void mouseReleased(){
   if(mouseButton == LEFT){
     shooting=false;
   }
@@ -126,11 +127,12 @@ void mouseClicked(){
 }
 
 void draw(){ 
+  spawndelay++;
   fill(0,0,0,110);
   rect(20,20,700, 710);
   
-  
-  
+
+  currentStage.processenemies();
   if (alive){
     bm.move();
     yoi.display();
@@ -157,7 +159,7 @@ void draw(){
   
   checkStuff();
   ticks++;
-  spawndelay++;
+  
   //text(currentStage.stagenum,50,50);
   renderGUI();
 }

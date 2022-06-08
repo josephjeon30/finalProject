@@ -6,7 +6,7 @@ public class Enemy implements Damageable{
   public Phase attack;
   float hitRadius = 10;
   public float timer = 0;
-  
+  public int moving;
   public Enemy(){
 
     this(80,0,0);
@@ -31,8 +31,8 @@ public class Enemy implements Damageable{
         fill(234,234,40);
         ellipse(x, y, 25, 60);
         fill(240);
-        textSize(11);
-        text("HP: "+HP,30,height-30);
+        //textSize(11);
+        //text("HP: "+HP,30,height-30);
     }
   }
   public void dealDamage(Damageable other,int dmg){
@@ -42,12 +42,38 @@ public class Enemy implements Damageable{
     HP-=dmg;
   }
   public void shoot(){}
-
+  public boolean collisions(Player other){
+    return (dist(x,y, yoi.x, yoi.y) < hitRadius/2+yoi.hitRadius/2);
+  }
   //public void setX(float k){}
   //public void setY(float k){}
   //public void setDX(float k){}
   //public void setDY(float k){}
   
+}
+public class ghost extends Enemy{
+  public ghost(int h,int x,int y){
+    super(h,x,y);
+    hitRadius=30;
+    dy=2;
+    dx=0;
+  }
+  public void display(){
+    fill(210,240,240);
+    ellipse(x,y,hitRadius,hitRadius);
+  }
+  public void shoot(){
+    //EnemyBullet b = new EnemyBullet(x,y,dx,dy,10,1000,1000,25);
+    //bm.addEnemyBullet(b);
+    if(collisions(yoi)) yoi.takeDamage(1);
+  }
+  public void move(){
+    if(y>790)HP=0;
+     x=370 + 30*sin(0.012*timer);
+     y+=dy;
+     //x+=dx;
+     timer++;
+  }
 }
 public class fairy extends Enemy{
   //int tick = 0;
@@ -57,25 +83,46 @@ public class fairy extends Enemy{
     dx=5;
     dy=0;
   }
-  public fairy(int h, int x, int y){
+  public fairy(int h, int x, int y, int movepattern){
     super(h,x,y);
-    dx=5;
-    dy=0;
+    dx=0;
+    dy=5;
+    moving=movepattern;
   }
   public void shoot(){
-    if(timer%30==0){
+    if(timer%50==0){
       float newDir = atan((yoi.y-y)/(yoi.x-x));
           if (yoi.x - x < 0){
             newDir += PI;
           }
-          attack = new Shotgun(x, y, 5, 3, newDir, PI/10,50);
+          attack = new Shotgun(x, y, 2, 3, newDir, PI/10,20);
     }
   }  
   public void move(){
-    //if(x<5||x>995) dx*=-1;
-    y = 350 + 100*sin(0.1* timer);
-    x = 500 + 400*sin(0.012*timer);
     timer++;
+    if(y<-50){
+      HP=0;
+    }
+    switch(moving){
+      case 1:
+        x=cos(-0.01*timer+4.19)*(200-350*sin(-0.01*timer+4.19))+370;
+        y=sin(-0.01*timer+4.19)*(200-350*sin(-0.01*timer+4.19))+400;
+        break;
+      case 2:
+        x=cos(0.01*timer+5.19)*(200-350*sin(0.01*timer+5.19))+370;
+        y=sin(0.01*timer+5.19)*(200-350*sin(0.01*timer+5.19))+400;
+        break;
+      default:
+        if(timer%40==0){
+          dy--;
+        }
+        
+        y+=dy;
+        //x = 500 + 400*sin(0.012*timer);
+        
+
+    }
+
   }
 }
 public class Boss extends Enemy{
