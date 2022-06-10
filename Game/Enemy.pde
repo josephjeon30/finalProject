@@ -7,6 +7,7 @@ public class Enemy implements Damageable{
   float hitRadius = 10;
   public float timer = 0;
   
+  
   public Enemy(){
 
     this(80,0,0);
@@ -79,17 +80,13 @@ public class fairy extends Enemy{
   }
 }
 public class Boss extends Enemy{
-  //public int[] phases;
-  //public int[] phaseDur;
   public int currentPhase=0;
-  public int phasecooldown=0;
   float r = 0;
   float s = 0;
   int countDown = 0;
   
   public Boss(){
     super(10000,370,20);
-    //phases = {new Shotgun(x, y, 5, v, 0.01*angle, PI/24)};
   }
   public Boss(int startphase){
     super(10000,370,20);
@@ -167,18 +164,7 @@ public class Boss extends Enemy{
           timer = 0;
         }
         break;
-      case 6:
-        x = 370;
-        y = height/2;
-        currentPhase = 7;
-        break;
-      case 7: //Circular
-        if (timer > 1000){
-          currentPhase = 8;
-          bm.enemyBullets = new LinkedList<EnemyBullet>();
-          timer = 0;
-        }
-        break;
+      
       case 8:
         x = 370;
         y = height/2;
@@ -186,11 +172,6 @@ public class Boss extends Enemy{
     } 
   }
   public void shoot(){
-    /**
-    if(phasecooldown==phaseDur[currentPhase]){//each phase should have it's own duration
-      currentPhase=(int)(Math.random() * phases.length);
-      phasecooldown=0;
-    }**/
     switch(currentPhase){
       case 1: //wings
         if(timer%3==0) {
@@ -228,9 +209,84 @@ public class Boss extends Enemy{
           attack = new Shotgun(x,y,13,4,random(PI),2 * PI / 13,50);
         }
         break;
-      case 6:
+      
+      case 8:
+        if (timer%2 == 0){
+          attack = new Shotgun(x,y,99*timer,3,2*PI/3);
+        }
+        timer++;
         break;
-      case 7:
+      default:
+        break;
+        
+    }
+  }
+}
+
+public class Boss2 extends Enemy{
+  public int currentPhase=0;
+  float r = 0;
+  float s = 0;
+  int countDown = 0;
+  
+  public Boss2(){
+    super(10000,370,20);
+  }
+  public Boss2(int startphase){
+    super(10000,370,20);
+    currentPhase=startphase;
+  }
+  public void display(){
+    super.display();
+    fill(150,timer*2);
+    rect(60,50,620,30);
+    fill(255,0,0,timer*2);
+    rect(65,55,610*((float)HP/maxHP),20);
+  }
+  public void move(){
+    switch(currentPhase){
+      case 0:
+        x = 370;
+        y = height/2;
+        currentPhase = 1;
+        break;
+      case 1: //Circular
+        if (timer > 100){
+          currentPhase = 2;
+          bm.enemyBullets = new LinkedList<EnemyBullet>();
+          timer = 0;
+        }
+        break;
+      case 2:  //reset
+        if (dist(x,y,370,100)>10){
+          dx = 0.03*(370 - x);
+          dy = 0.03*(100 - y);
+          x += dx;
+          y += dy;
+        }
+        else{
+          currentPhase = 3;
+          timer = 0;
+        }
+        break;
+      case 3: //chase
+        timer++;
+        
+        float newDir = atan((yoi.y-y)/(yoi.x-x));
+        if (yoi.x - x < 0){
+          newDir += PI;
+        }
+        x += 3*cos(newDir);
+        y += 3*sin(newDir);
+        break;
+        
+    } 
+  }
+  public void shoot(){
+    switch(currentPhase){
+      case 0:
+        break;
+      case 1:
         if (timer % 50 == 0){
           r = 40*(int)random(height/40 - 1.5)-70;
           s = 40*(int)random(height/40 - 1.5)-70+20;
@@ -254,27 +310,72 @@ public class Boss extends Enemy{
           for (int i = 1; i <= 43; i++){
             b = new EnemyBulletR(400,60+5*i,x,y,10,2000,10, true);
           }
-          /**
-          b = new EnemyBulletR(370,245,x,y,50,2000,60, true);
-          b = new EnemyBulletR(370,205,x,y,50,2000,60, true);
-          b = new EnemyBulletR(370,165,x,y,50,2000,60, true);
-          b = new EnemyBulletR(370,125,x,y,50,2000,60, true);
-          b = new EnemyBulletR(370,85,x,y,50,2000,60, true);
-          b = new EnemyBulletR(355,41,x,y,50,2000,50, true);
-          **/
         }
         timer++;
         break;
-      case 8:
-        if (timer%2 == 0){
-          attack = new Shotgun(x,y,99*timer,3,2*PI/3);
+      case 2:
+        break;
+      case 3:
+        float spread = 20;
+        float a = 0.1;
+        if (timer % 10 == 0){
+          bm.addEnemyBullet(new EnemyBullet(x, y, 0, 0,20,300,10));
+          bm.addEnemyBullet(new EnemyBullet(x, y, 0, 0,20,200,20));
+          bm.addEnemyBullet(new EnemyBullet(x, y, 0, 0,20,100,30));
         }
-        timer++;
+        if (timer % 40 == 20){
+          //right
+          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y-2*spread,0,5,a,0,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x-spread,y-spread,0,5,a,0,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,0,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x-spread,y+spread,0,5,a,0,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y+2*spread,0,5,a,0,1,200,20));
+          //left
+          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y-2*spread,0,5,a,PI,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x+spread,y-spread,0,5,a,PI,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,PI,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x+spread,y+spread,0,5,a,PI,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y+2*spread,0,5,a,PI,1,200,20));
+          //top
+          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y+2*spread,0,5,a,3*PI/2,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x-spread,y+spread,0,5,a,3*PI/2,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,3*PI/2,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x+spread,y+spread,0,5,a,3*PI/2,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y+2*spread,0,5,a,3*PI/2,1,200,20));
+          //bottom
+          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y-2*spread,0,5,a,PI/2,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x-spread,y-spread,0,5,a,PI/2,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,PI/2,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x+spread,y-spread,0,5,a,PI/2,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y-2*spread,0,5,a,PI/2,1,200,20));
+        }
+        if (timer % 40 == 0){
+          //tr
+          bm.addEnemyBullet(new EnemyBulletA(x,y+2*spread,0,5,0.1,7*PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x,y+spread,0,5,0.1,7*PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,0.1,7*PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x-spread,y,0,5,0.1,7*PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y,0,5,0.1,7*PI/4,1,200,20));
+          //tl
+          bm.addEnemyBullet(new EnemyBulletA(x,y+2*spread,0,5,a,5*PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x,y+spread,0,5,a,5*PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,5*PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x+spread,y,0,5,a,5*PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y,0,5,a,5*PI/4,1,200,20));
+          //br
+          bm.addEnemyBullet(new EnemyBulletA(x,y-2*spread,0,5,a,PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x,y-spread,0,5,a,PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x-spread,y,0,5,a,PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y,0,5,a,PI/4,1,200,20));
+          //bl
+          bm.addEnemyBullet(new EnemyBulletA(x,y-2*spread,0,5,a,3*PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x,y-spread,0,5,a,3*PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,3*PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x+spread,y,0,5,a,3*PI/4,1,200,20));
+          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y,0,5,a,3*PI/4,1,200,20));
+        }
         break;
-      default:
-        break;
-        
     }
-    phasecooldown++;
   }
 }

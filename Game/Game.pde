@@ -20,12 +20,15 @@ boolean shooting = false;
 
 Player yoi = new Player();
 
+
 void setup(){
   size(1000, 750);
   noCursor();
   noStroke();
   fill(128,0,0);
   rect(0,0,width, height);
+  imageMode(CENTER);
+
 }
 
 /**

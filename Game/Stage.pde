@@ -12,11 +12,18 @@ public class Stage{
     stagenum=num;
     spawndelay=0;
     switch(stagenum){
-      default:
-        Boss egg=new Boss(0);
+      case 0:
+        enemies.add(new Boss2(0));
         delay.add(200.0);
-        enemies.add(egg);
-        
+        break;
+      case 1:
+        enemies.add(new Boss(0));
+        delay.add(200.0);
+        break;
+      default:
+        enemies.add(new Boss(0));
+        delay.add(200.0);
+        break;
     }
   }
   
