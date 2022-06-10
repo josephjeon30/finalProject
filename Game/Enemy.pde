@@ -113,7 +113,7 @@ public class fairy extends Enemy{
         y=sin(0.01*timer+5.19)*(200-350*sin(0.01*timer+5.19))+400;
         break;
       default:
-        if(timer%40==0){
+        if(timer%30==0){
           dy--;
         }
         

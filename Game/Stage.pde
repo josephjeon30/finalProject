@@ -2,7 +2,9 @@ import java.util.*;
 
 public class Stage{
   public Queue<Enemy> enemies = new LinkedList<Enemy>();
+  public Queue<Phase> phases = new LinkedList<Phase>();
   public Queue<Float> delay = new LinkedList<Float>();
+  public Phase stagePart;
   public ArrayList<Enemy> enemyonfield = new ArrayList<Enemy>();
   //int enemycount=0;
   int stagenum;
@@ -13,30 +15,12 @@ public class Stage{
     spawndelay=0;
     switch(stagenum){
       case 0:
-        fairy a = new fairy(100,100,-20,1);
-        delay.add(100.0);
-        enemies.add(a);
-        fairy b = new fairy(100,640,-20,2);
-        delay.add(0.0);
-        enemies.add(b);
-        ghost c = new ghost(100,370,-20);
-        delay.add(100.0);
-        enemies.add(c);
-        ghost d = new ghost(100,370,-20);
-        delay.add(50.0);
-        enemies.add(d);
-        ghost e = new ghost(100,370,-20);
-        delay.add(50.0);
-        enemies.add(e);
-        ghost f = new ghost(100,370,-20);
-        delay.add(50.0);
-        enemies.add(f);
-        delay.add(280.0);
-        enemies.add(new fairy(100,100,-20,0));
-        delay.add(0.0);
-        enemies.add(new fairy(100,640,-20,0));
-        delay.add(400.0);
-        enemies.add(new Boss(0));
+        phases.add(new twofairylima4ghostsmid());
+        //delay.add(380.0);
+        phases.add(new twofairies());
+       // delay.add(300.0);
+        phases.add(new bossboi());
+        stagePart=phases.remove();
         break;
       
       default:
@@ -48,12 +32,18 @@ public class Stage{
   }
   
   public void spawn(){
-    if(enemies.size()>0){
-      if(spawndelay>=delay.peek()){
-        enemyonfield.add(enemies.remove());
+    
+    //enemies = phases.peek().enemies;
+    //delay=phases.peek().delay;
+    if(stagePart.enemies.size()>0){
+      if(spawndelay>=stagePart.delay.peek()){
+        enemyonfield.add(stagePart.enemies.remove());
         spawndelay=0;
-        delay.remove();
+        stagePart.delay.remove();
       }
+    }else{
+      if(enemyonfield.size()==0)
+      stagePart=phases.remove();
     }
   }
   public void processenemies(){
@@ -61,7 +51,7 @@ public class Stage{
       Enemy egg = enemyonfield.get(e);
       if (egg.HP<=0){
         enemyonfield.remove(e);
-        if(enemies.size()==0&&enemyonfield.size()==0) currentStage = new Stage(stagenum+1);
+        if(phases.peek().enemies.size()==0&&enemyonfield.size()==0) currentStage = new Stage(stagenum+1);
       }else{
         egg.display();
         if (alive){
