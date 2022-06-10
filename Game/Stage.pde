@@ -4,6 +4,7 @@ public class Stage{
   public Queue<Enemy> enemies = new LinkedList<Enemy>();
   public Queue<Phase> phases = new LinkedList<Phase>();
   public Queue<Float> delay = new LinkedList<Float>();
+  public Phase stagePart;
   public ArrayList<Enemy> enemyonfield = new ArrayList<Enemy>();
   //int enemycount=0;
   int stagenum;
@@ -18,7 +19,8 @@ public class Stage{
         //delay.add(380.0);
         phases.add(new twofairies());
        // delay.add(300.0);
-        phases.add(new bossboi());;
+        phases.add(new bossboi());
+        stagePart=phases.remove();
         break;
       
       default:
@@ -30,17 +32,18 @@ public class Stage{
   }
   
   public void spawn(){
+    
     //enemies = phases.peek().enemies;
     //delay=phases.peek().delay;
-    if(phases.peek().enemies.size()>0){
-      if(spawndelay>=phases.peek().delay.peek()){
-        enemyonfield.add(phases.peek().enemies.remove());
+    if(stagePart.enemies.size()>0){
+      if(spawndelay>=stagePart.delay.peek()){
+        enemyonfield.add(stagePart.enemies.remove());
         spawndelay=0;
-        phases.peek().delay.remove();
+        stagePart.delay.remove();
       }
     }else{
       if(enemyonfield.size()==0)
-      phases.remove();
+      stagePart=phases.remove();
     }
   }
   public void processenemies(){
