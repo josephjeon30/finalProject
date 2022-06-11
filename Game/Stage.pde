@@ -1,4 +1,4 @@
-import java.util.*;
+  import java.util.*;
 
 public class Stage{
   public Queue<Enemy> enemies = new LinkedList<Enemy>();
@@ -22,11 +22,14 @@ public class Stage{
         phases.add(new bossboi());
         stagePart=phases.remove();
         break;
-      
+      case 1:
+        phases.add(new acrosscreen());
+        phases.add(new kamikaze());
+        stagePart=phases.remove();
+        break;
       default:
-        Boss egg=new Boss(0);
-        delay.add(200.0);
-        enemies.add(egg);
+        phases.add(new bossboi());
+        stagePart=phases.remove();
         
     }
   }
@@ -51,7 +54,7 @@ public class Stage{
       Enemy egg = enemyonfield.get(e);
       if (egg.HP<=0){
         enemyonfield.remove(e);
-        if(phases.peek().enemies.size()==0&&enemyonfield.size()==0) currentStage = new Stage(stagenum+1);
+        if(phases.size()==0&&enemyonfield.size()==0) currentStage = new Stage(stagenum+1);
       }else{
         egg.display();
         if (alive){

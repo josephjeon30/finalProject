@@ -64,7 +64,7 @@ void keyPressed(){
     if (keyCode==ENTER){
       gamestart=true;
       ticks=0;
-      currentStage=new Stage(0);
+      currentStage=new Stage(1);
       yoi = new Player();
     }
   }
@@ -132,7 +132,7 @@ void draw(){
   rect(20,20,700, 710);
   
 
-  currentStage.processenemies();
+  //currentStage.processenemies();
   if (alive){
     bm.move();
     yoi.display();
