@@ -49,18 +49,38 @@ public class acrosscreen extends Phase{
     enemies.add(new fairy(100,750,-20,3));
     delay.add(0.0);
     enemies.add(new fairy(100,-20,-20,4));
-    delay.add(50.0);
+    delay.add(25.0);
     enemies.add(new fairy(100,750,-20,3));
     delay.add(0.0);
     enemies.add(new fairy(100,-20,-20,4));
-     delay.add(50.0);
+     delay.add(25.0);
     enemies.add(new fairy(100,750,-20,3));
     delay.add(0.0);
     enemies.add(new fairy(100,-20,-20,4));
-     delay.add(50.0);
+     delay.add(25.0);
     enemies.add(new fairy(100,750,-20,3));
     delay.add(0.0);
     enemies.add(new fairy(100,-20,-20,4));
+  }
+}
+public class kamikaze extends Phase{
+  public kamikaze(){
+    delay.add(0.0);
+    enemies.add(new kama(100,30,-20));
+    delay.add(0.0);
+    enemies.add(new kama(100,110,-20));
+    delay.add(25.0);
+    enemies.add(new kama(100,190,-20));
+    delay.add(0.0);
+    enemies.add(new kama(100,270,-20));
+     delay.add(25.0);
+    enemies.add(new kama(100,350,-20));
+    delay.add(0.0);
+    enemies.add(new kama(100,430,-20));
+     delay.add(25.0);
+    enemies.add(new kama(100,510,-20));
+    delay.add(0.0);
+    enemies.add(new kama(100,590,-20));
   }
 }
 public class Shotgun extends Phase{

@@ -75,6 +75,45 @@ public class ghost extends Enemy{
      timer++;
   }
 }
+public class kama extends Enemy{
+  float newDir;
+  public kama(int h,int x,int y){
+    super(h,x,y);
+    hitRadius=30;
+    dy=5;
+    dx=0;
+  }
+  public void display(){
+    fill(210,240,240);
+    ellipse(x,y,hitRadius,hitRadius);
+  }
+  public void shoot(){
+    //EnemyBullet b = new EnemyBullet(x,y,dx,dy,10,1000,1000,25);
+    //bm.addEnemyBullet(b);
+    if(collisions(yoi)) yoi.takeDamage(10);
+  }
+  public void move(){
+    if(y>790||y<-60)HP=0;
+    if(timer<150){
+      if(timer%30==0&&dy>0){
+          dy--;
+        }
+      y+=dy;
+    }else if(timer<200){
+     x+=((int)random(3)-1);
+     y+=+((int)random(3)-1);
+     //x+=dx;
+    }else{
+      if(timer==200){
+      newDir = atan((yoi.y-y)/(yoi.x-x));
+      }
+      x+=cos(newDir)*20*newDir;
+      y+=sin(newDir)*20*newDir;
+    }
+     timer++;
+
+  }
+}
 public class fairy extends Enemy{
   //int tick = 0;
   
@@ -100,7 +139,7 @@ public class fairy extends Enemy{
   }  
   public void move(){
     timer++;
-    if(y<-50){
+    if(y<-50||x<-50||x>800){
       HP=0;
     }
     switch(moving){
@@ -113,12 +152,12 @@ public class fairy extends Enemy{
         y=sin(0.01*timer+5.19)*(200-350*sin(0.01*timer+5.19))+400;
         break;
       case 3:
-        x=cos(0.01*timer)*760;
-        y=sin(0.01*timer)*760;
+        x=cos(0.01*timer)*600;
+        y=sin(0.01*timer)*600;
         break;
       case 4:
-        x=cos(-0.01*timer+3.14)*(2*760*cos(-0.01*timer+3.14));
-        y=sin(-0.01*timer+3.14)*(2*760*cos(-0.01*timer+3.14));
+        x=cos(-0.008*timer+4.6)*(2*600*cos(-0.008*timer+4.6))+100;
+        y=sin(-0.008*timer+4.6)*(2*600*cos(-0.008*timer+4.6))-100;
         break;
       default:
         if(timer%30==0){

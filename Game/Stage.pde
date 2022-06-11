@@ -24,6 +24,7 @@ public class Stage{
         break;
       case 1:
         phases.add(new acrosscreen());
+        phases.add(new kamikaze());
         stagePart=phases.remove();
         break;
       default:
