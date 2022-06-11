@@ -64,7 +64,7 @@ void keyPressed(){
     if (keyCode==ENTER){
       gamestart=true;
       ticks=0;
-      currentStage=new Stage(0);
+      currentStage=new Stage(1);
       yoi = new Player();
     }
   }

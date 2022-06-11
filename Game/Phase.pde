@@ -43,6 +43,26 @@ public class bossboi extends Phase{
     enemies.add(new Boss(0));
   }
 }
+public class acrosscreen extends Phase{
+  public acrosscreen(){
+    delay.add(0.0);
+    enemies.add(new fairy(100,750,-20,3));
+    delay.add(0.0);
+    enemies.add(new fairy(100,-20,-20,4));
+    delay.add(50.0);
+    enemies.add(new fairy(100,750,-20,3));
+    delay.add(0.0);
+    enemies.add(new fairy(100,-20,-20,4));
+     delay.add(50.0);
+    enemies.add(new fairy(100,750,-20,3));
+    delay.add(0.0);
+    enemies.add(new fairy(100,-20,-20,4));
+     delay.add(50.0);
+    enemies.add(new fairy(100,750,-20,3));
+    delay.add(0.0);
+    enemies.add(new fairy(100,-20,-20,4));
+  }
+}
 public class Shotgun extends Phase{
   public Shotgun(float x, float y, int count, float speed, float dir, float spread, float hitRadius){
     float startDir = dir - (((float)count / 2) * spread);
