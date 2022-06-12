@@ -6,6 +6,7 @@ public class Bullet{
   boolean outOfBounds = false;
   float hitRadius;
   int spawnTick;
+  color c;
   //PImage img;
   
   public Bullet(){
@@ -29,6 +30,7 @@ public class Bullet{
     this.duration = duration;
     this.hitRadius = hitRadius;
     spawnTick = Game.ticks;
+    this.c = color(255);
   }
   
   public void move(){
@@ -39,7 +41,7 @@ public class Bullet{
   }
   
   public void display(){
-    fill(255);
+    fill(c);
     ellipse(x, y, hitRadius, hitRadius);
   }
   
@@ -123,6 +125,11 @@ public class EnemyBulletA extends EnemyBullet{
     this.accel = accel;
   }
   
+  public EnemyBulletA(float x, float y, float v, float vf, float accel, float angle, int dmg, int duration, float hitRadius, color c){
+    this(x,y,v,vf,accel,angle,dmg,duration,hitRadius);
+    this.c = c;
+  }
+  
   public void move(){
     x += v*cos(angle);
     y += v*sin(angle);
@@ -136,7 +143,7 @@ public class PlayerBullet extends Bullet{
   Enemy enemy;
   
   public PlayerBullet(float x, float y, float speed, float angle){
-    this(x, y, speed * cos(angle), speed * sin(angle), 1+(int)random(2), 200);
+    this(x, y, speed * cos(angle), speed * sin(angle), 1+(int)random(2)+1000, 200);
   }
   
   public PlayerBullet(float x, float y, float dx, float dy, int dmg, int duration){
