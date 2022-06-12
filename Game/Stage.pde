@@ -19,15 +19,16 @@ public class Stage{
         //delay.add(380.0);
         phases.add(new twofairies());
        // delay.add(300.0);
-        phases.add(new bossboi());
+        phases.add(new Angel());
         stagePart=phases.remove();
         break;
-      
+      case 1:
+        phases.add(new Ifrit());
+        stagePart=phases.remove();
+        break;
       default:
-        Boss egg=new Boss(0);
-        delay.add(200.0);
-        enemies.add(egg);
-        
+        phases.add(new Ifrit());
+        break;
     }
   }
   
@@ -42,8 +43,8 @@ public class Stage{
         stagePart.delay.remove();
       }
     }else{
-      if(enemyonfield.size()==0)
-      stagePart=phases.remove();
+      if(enemyonfield.size()==0&&phases.size()!=0)
+        stagePart=phases.remove();
     }
   }
   public void processenemies(){
@@ -51,7 +52,10 @@ public class Stage{
       Enemy egg = enemyonfield.get(e);
       if (egg.HP<=0){
         enemyonfield.remove(e);
-        if(phases.peek().enemies.size()==0&&enemyonfield.size()==0) currentStage = new Stage(stagenum+1);
+        //phases.peek().enemies.size()==0
+        if (phases.peek() != null){
+          if(phases.peek().enemies.size()==0&&enemyonfield.size()==0) currentStage = new Stage(stagenum+1);
+        }
       }else{
         egg.display();
         if (alive){

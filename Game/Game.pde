@@ -1,5 +1,4 @@
 BulletManager bm = new BulletManager();
-float angle = 0;
 boolean alive = true;
 boolean gamestart = false;
 PImage egg;
@@ -22,12 +21,15 @@ boolean shooting = false;
 
 Player yoi = new Player();
 
+
 void setup(){
   size(1000, 750);
   noCursor();
   noStroke();
   fill(128,0,0);
   rect(0,0,width, height);
+  imageMode(CENTER);
+
 }
 
 /**
@@ -64,7 +66,7 @@ void keyPressed(){
     if (keyCode==ENTER){
       gamestart=true;
       ticks=0;
-      currentStage=new Stage(0);
+      currentStage=new Stage(1);
       yoi = new Player();
     }
   }
@@ -226,7 +228,6 @@ public void checkStuff(){
 
   }
   
-  //angle -= 0.7;
   
   //if(up > 0 || down > 0){
   //  if(up > down) moveY = -5;
