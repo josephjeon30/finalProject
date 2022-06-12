@@ -1,5 +1,4 @@
 BulletManager bm = new BulletManager();
-float angle = 0;
 boolean alive = true;
 boolean gamestart = false;
 
@@ -21,12 +20,15 @@ boolean shooting = false;
 
 Player yoi = new Player();
 
+
 void setup(){
   size(1000, 750);
   noCursor();
   noStroke();
   fill(128,0,0);
   rect(0,0,width, height);
+  imageMode(CENTER);
+
 }
 
 /**
@@ -224,7 +226,6 @@ public void checkStuff(){
 
   }
   
-  //angle -= 0.7;
   
   //if(up > 0 || down > 0){
   //  if(up > down) moveY = -5;
