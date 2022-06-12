@@ -110,7 +110,6 @@ public class EnemyBulletR extends EnemyBullet{
   }
 }
 
-/**
 public class EnemyBulletA extends EnemyBullet{
   float v;
   float vf;
@@ -137,7 +136,7 @@ public class EnemyBulletA extends EnemyBullet{
     if (Game.ticks - this.spawnTick >= duration) outOfBounds = true;
     if (x < 0 - border || x > 700 + border || y < 0 - border || y > height + border) outOfBounds = true;
   }
-}**/
+}
 
 public class PlayerBullet extends Bullet{
   Enemy enemy;
