@@ -335,8 +335,8 @@ public class Boss2 extends Enemy{
         break;
       case 1:
         if (timer % 50 == 0){
-          r = 40*(int)random(height/40 - 1.5)-70;
-          s = 40*(int)random(height/40 - 1.5)-70+20;
+          r = 40*(int)random(height/40 - 1.5)-90;
+          s = 40*(int)random(height/40 - 1.5)-90+20;
         }
         if (timer % 5 == 0){
           Bullet b = new EnemyBulletR(370,r,x,y,5,1,900,15);
@@ -357,6 +357,7 @@ public class Boss2 extends Enemy{
           for (int i = 1; i <= 43; i++){
             b = new EnemyBulletR(400,60+5*i,x,y,10,2000,10, true);
           }
+
         }
         timer++;
         break;
