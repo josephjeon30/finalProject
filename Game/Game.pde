@@ -5,7 +5,7 @@ boolean gamestart = false;
 
 static int ticks = 0;
 static int spawndelay = 0;
-
+boolean focus = false;
 int moveX = 0;
 int moveY = 0;
 int up = 0;
@@ -18,8 +18,6 @@ int ybound=730;
 Stage currentStage = new titlestage();
 
 boolean shooting = false;
-
-
 
 Player yoi = new Player();
 
@@ -42,7 +40,6 @@ void mouseReleased(){
 **/
 
 void keyPressed(){
-
   if (key == 'i'){
     shooting = !shooting;
   }
@@ -108,20 +105,30 @@ void keyReleased(){
   if(key=='s') down=0;
   if(key=='a') left=0;
   if(key=='d') right=0;
-  /**
-  if (key==CODED){
-    if(keyCode==UP) up=0;
-    if(keyCode==DOWN) down=0;
-    if(keyCode==LEFT) left=0;
-    if(keyCode==RIGHT) right=0;
-  }
-  **/
 }
 
+void mousePressed(){
+  if(mouseButton == LEFT){
+    shooting=true;
+  }
+  if(mouseButton == RIGHT){
+    focus = true;
+  }
+}
+
+void mouseClicked(){
+  if(mouseButton == LEFT){
+    shooting=false;
+  }
+  if(mouseButton == RIGHT){
+    focus = false;
+  }
+}
 
 void draw(){ 
   fill(0,0,0,110);
   rect(20,20,700, 710);
+  
   
   
   if (alive){
@@ -191,34 +198,54 @@ void renderGUI(){
     fill(50);
     rect(0,0,width,height);
     fill(255);
-    textSize(20);
+    textSize(11);
     text("game lol", 475,350); 
-    text("press enter", 460,379); 
+    text("press enter", 468,370); 
   }
 }
 
 public void checkStuff(){
   if(up>0||down>0){
   if(up>down){
-    moveY=-5;
+    if(focus){
+      moveY=-2;
+    }else{
+      moveY=-5;
+    }
   }else if(down>up){
-    moveY=5;
+    if(focus){
+      moveY=2;
+    }else{
+      moveY=5;
+    }
   }
   }else{
     moveY=0;
 
   }
   
-  angle -= 0.7;
+  //angle -= 0.7;
   
-  if(up > 0 || down > 0){
-    if(up > down) moveY = -5;
-    else if(down>up) moveY = 5;
-  }
-  else moveY=0;
+  //if(up > 0 || down > 0){
+  //  if(up > down) moveY = -5;
+  //  else if(down>up) moveY = 5;
+  //}
+  //else moveY=0;
   if(left>0 || right>0){
-    if(left > right) moveX=-5;
-    else if(right > left) moveX = 5;
+    if(left > right) {
+      if(focus){
+      moveX=-2;
+    }else{
+      moveX=-5;
+    }
+    }
+    else if(right > left) {
+      if(focus){
+      moveX=2;
+    }else{
+      moveX=5;
+    }
+    }
   }
   else moveX = 0; 
 }

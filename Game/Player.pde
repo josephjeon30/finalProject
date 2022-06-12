@@ -30,7 +30,7 @@ public class Player implements Damageable{
   }
   public void display(){
     fill(255,234,156);
-    ellipse(x, y+5, 25, 60);
+    ellipse(x, y, 25, 60);
     fill(255,0,0);
     ellipse(x,y,hitRadius,hitRadius);
     
@@ -41,7 +41,7 @@ public class Player implements Damageable{
   public void takeDamage(int dmg){
     HP-=dmg;  
     fill(155,134,56);
-    ellipse(x, y+5, 25, 60);
+    ellipse(x, y, 25, 60);
     fill(255,0,0);
     ellipse(x,y,hitRadius,hitRadius);
     
