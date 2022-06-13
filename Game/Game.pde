@@ -2,7 +2,7 @@ BulletManager bm = new BulletManager();
 boolean alive = true;
 boolean gamestart = false;
 PImage egg;
-
+boolean joseph = true;
 static int ticks = 0;
 static int spawndelay = 0;
 boolean focus = false;
@@ -43,9 +43,7 @@ void mouseReleased(){
 **/
 
 void keyPressed(){
-  if (key == 'i'){
-    shooting = !shooting;
-  }
+  
   if(key == 'w'){
     if(down != 0) down = 1;
     up += 2;
@@ -68,6 +66,9 @@ void keyPressed(){
       ticks=0;
       currentStage=new Stage(0);
       yoi = new Player();
+    }
+    if (key == 'k'){
+      joseph = !joseph;
     }
   }
   if (!alive){
@@ -188,7 +189,11 @@ void renderGUI(){
     if (alive){
       
       fill(255,0,0);
+      if(joseph){
       rect(755,255,210*((float)yoi.HP/100),20);
+      }else{
+        rect(755,255,210*((float)yoi.HP/100000),20);
+      }
       fill(255);
       textSize(11);
       text("HP: "+yoi.HP,760,269);
@@ -207,6 +212,14 @@ void renderGUI(){
     textSize(11);
     text("game lol", 475,350); 
     text("press enter", 468,370); 
+    if(joseph){
+      text("current difficulty: joseph", 430,390); 
+      text("press k if you're a scrub", 432,410); 
+    }else{
+      text("current difficulty: baby", 440,390); 
+      text("press k if you're nuts", 444,410); 
+    }
+    
   }
 }
 
