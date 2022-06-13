@@ -1,6 +1,7 @@
 public class Player implements Damageable{
   public float x, y, dx, dy;
   public int HP;
+  public int maxHP;
   public int wallLevel;
   public Phase attack;
   float hitRadius = 10;
@@ -12,8 +13,10 @@ public class Player implements Damageable{
     dy=0;
     if(joseph){
       HP=100;
+      maxHP = 100;
     }else{
-      HP=100000;
+      HP=Integer.MAX_VALUE;
+      maxHP = Integer.MAX_VALUE;
     }
     wallLevel = 10;
   }
@@ -32,7 +35,7 @@ public class Player implements Damageable{
       }
     }
     if (HP < 0) HP = 0;
-    if (HP > 100) HP = 100;
+    if (HP > maxHP) HP = maxHP;
   }
   public void display(){
     fill(255,234,156);

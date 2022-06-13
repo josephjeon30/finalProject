@@ -3,6 +3,8 @@ boolean alive = true;
 boolean gamestart = false;
 PImage egg;
 boolean joseph = true;
+PImage[] elira;
+
 static int ticks = 0;
 static int spawndelay = 0;
 boolean focus = false;
@@ -29,7 +31,12 @@ void setup(){
   fill(128,0,0);
   rect(0,0,width, height);
   imageMode(CENTER);
-
+  elira = new PImage[5];
+  elira[0] = loadImage("e.png");
+  elira[1] = loadImage("l.png");
+  elira[2] = loadImage("i.png");
+  elira[3] = loadImage("r.png");
+  elira[4] = loadImage("a.png");
 }
 
 /**
@@ -43,7 +50,9 @@ void mouseReleased(){
 **/
 
 void keyPressed(){
-  
+  if (key == 'i'){
+    shooting = !shooting;
+  }
   if(key == 'w'){
     if(down != 0) down = 1;
     up += 2;
@@ -146,7 +155,7 @@ void draw(){
     if (shooting){
       if (ticks % 5 == 0) yoi.shoot();
     }
-    if (ticks % 20 == 0){
+    if (ticks % 200 == 0 && yoi.HP != yoi.maxHP){
       yoi.HP++;
     }
   }

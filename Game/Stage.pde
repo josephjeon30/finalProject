@@ -15,8 +15,8 @@ public class Stage{
     spawndelay=0;
     switch(stagenum){
       case 0:
-        //phases.add(new twofairylima4ghostsmid());
-        //phases.add(new twofairies());
+        phases.add(new twofairylima4ghostsmid());
+        phases.add(new twofairies());
         phases.add(new Angel());
         stagePart=phases.remove();
         break;
@@ -27,8 +27,7 @@ public class Stage{
         stagePart=phases.remove();
         break;
       default:
-        phases.add(new Ifrit());
-        stagePart=phases.remove();
+        stagenum = stagenum % 2;
         break;
     }
   }
