@@ -95,7 +95,7 @@ public class Angel extends Phase{
 public class Ifrit extends Phase{
   public Ifrit(){
     delay.add(0.0);
-    enemies.add(new Boss2(8));
+    enemies.add(new Boss2(0));
   }
 }
 

@@ -540,9 +540,12 @@ public class Boss2 extends Enemy{
   }
   public void move(){
     timer++;
+    if (currentPhase < 10 && this.HP < this.maxHP/10){
+      currentPhase = 10;
+    }
     switch(currentPhase){
       case 0:  //reset 
-        if (dist(x,y,370,height/2)>10 || timer > 100){
+        if (dist(x,y,370,height/2)>10 || timer < 100){
           dx = 0.03*(370 - x);
           dy = 0.03*(height/2 - y);
           x += dx;
@@ -561,7 +564,7 @@ public class Boss2 extends Enemy{
         }
         break;
       case 2:  //reset
-        if (dist(x,y,370,100)>10||timer > 100){
+        if (dist(x,y,370,100)>10||timer < 100){
           dx = 0.03*(370 - x);
           dy = 0.03*(100 - y);
           x += dx;
@@ -579,6 +582,23 @@ public class Boss2 extends Enemy{
         }
         x += 3*cos(newDir);
         y += 3*sin(newDir);
+        if (timer > 1000){
+          currentPhase = 4;
+          bm.enemyBullets = new LinkedList<EnemyBullet>();
+          timer = 0;
+        }
+        break;
+      case 4:  //reset
+        if (dist(x,y,370,100)>10||timer < 100){
+          dx = 0.03*(370 - x);
+          dy = 0.03*(100 - y);
+          x += dx;
+          y += dy;
+        }
+        else{
+          currentPhase = 5;
+          timer = 0;
+        }
         break;
       case 5:
         if (timer == 1){
@@ -592,9 +612,13 @@ public class Boss2 extends Enemy{
           dy *= -1;
         }
         super.move();
+        if (timer > 1000){
+          currentPhase = 6;
+          timer = 0;
+        }
         break;
       case 6:
-        if (dist(x,y,370,200)>10||timer > 100){
+        if (dist(x,y,370,200)>10||timer < 100){
           dx = 0.03*(370 - x);
           dy = 0.03*(200 - y);
           x += dx;
@@ -606,9 +630,13 @@ public class Boss2 extends Enemy{
         }
         break;
       case 7:
+        if (timer > 1000){
+          currentPhase = 8;
+          timer = 0;
+        }
         break;
       case 8:
-        if (dist(x,y,370,200)>10||timer > 100){
+        if (dist(x,y,370,200)>10||timer < 100){
           dx = 0.03*(370 - x);
           dy = 0.03*(200 - y);
           x += dx;
@@ -616,10 +644,14 @@ public class Boss2 extends Enemy{
         }
         else{
           currentPhase = 9;
-          timer = 0;
+          timer = 1000;
         }
         break;
       case 9:
+        if (timer > 1000){
+          currentPhase = 0;
+          timer = 0;
+        }
         break;
       case 10:  //death
         timer = 420;
@@ -748,9 +780,9 @@ public class Boss2 extends Enemy{
       case 5:  //PHD
         if (timer % 100 == 0){
           float newDir = atan((yoi.y-y)/(yoi.x-x));
-            if (yoi.x - x < 0){
-              newDir += PI;
-            }
+          if (yoi.x - x < 0){
+            newDir += PI;
+          }
           Bullet b;
           b = new EnemyBulletA(x,y,-20,20,2,newDir,20,100,200,255,0,0);
           b = new EnemyBulletA(x,y,-20,17.5,2,newDir,20,100,175,255,50,0);
@@ -773,7 +805,7 @@ public class Boss2 extends Enemy{
         }
         break;
       case 9:
-        if (timer < 2000){
+        if (timer < 751){
           if (timer % 150 == 0){
             int k = (int)random(5);
             for (int i = 0; i < 5; i++){
@@ -782,6 +814,9 @@ public class Boss2 extends Enemy{
               }
             }
           }
+        }
+        else if (timer > 1000){
+          
         }
         break;
     }
