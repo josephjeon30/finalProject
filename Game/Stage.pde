@@ -27,7 +27,6 @@ public class Stage{
         stagePart=phases.remove();
         break;
       default:
-        stagenum = stagenum % 2;
         break;
     }
   }
@@ -52,7 +51,7 @@ public class Stage{
       Enemy egg = enemyonfield.get(e);
       if (egg.HP<=0){
         enemyonfield.remove(e);
-        if(phases.size()==0&&enemyonfield.size()==0) currentStage = new Stage(stagenum+1);
+        if(phases.size()==0&&enemyonfield.size()==0) currentStage = new Stage((stagenum+1)%2);
       }else{
         egg.display();
         if (alive){
