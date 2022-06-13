@@ -39,5 +39,14 @@ Development Log:
 		5/27: Player now displays when it is taking damage, and new Boss phase is added: wings (because it looks like wings)
 		5/28: PlayerBullet disappears after hitting an enemy
 		5/30: Added two new phases: walls and B.S. (Bachelor of Science)
+        5/31: Small tweeks to phases; new phase: circular
+        6/1: Circular phase buffed, small tweeks on other phases
+        6/2: Fixed the rotation bullet, added a sword to the circular phase
+        6/3: Removed dmgCooldown, worked on big sword.
+        6/6: Added a bullet that accelerates, added them to wings boss phase
+        6/7: Implemented accelBullet to boss phases
+        6/10: Created a second boss, added a burning trail phase
+        6/11: Worked on boss phases
+        6/12: Worked on boss phases
 
 Link to Design Document Google Doc: https://docs.google.com/document/d/1C8VrfNshymGc3sOVWaJeR7DfTx7KVn6Xtgiy1MUR6_M/edit?usp=sharing
