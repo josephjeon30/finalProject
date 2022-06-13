@@ -15,22 +15,21 @@ public class Stage{
     spawndelay=0;
     switch(stagenum){
       case 0:
-        phases.add(new twofairylima4ghostsmid());
-        //delay.add(380.0);
-        phases.add(new twofairies());
-       // delay.add(300.0);
-        phases.add(new bossboi());
+        //phases.add(new twofairylima4ghostsmid());
+        //phases.add(new twofairies());
+        phases.add(new Angel());
         stagePart=phases.remove();
         break;
       case 1:
         phases.add(new acrosscreen());
         phases.add(new kamikaze());
+        phases.add(new Ifrit());
         stagePart=phases.remove();
         break;
       default:
-        phases.add(new bossboi());
+        phases.add(new Ifrit());
         stagePart=phases.remove();
-        
+        break;
     }
   }
   
@@ -45,8 +44,8 @@ public class Stage{
         stagePart.delay.remove();
       }
     }else{
-      if(enemyonfield.size()==0)
-      stagePart=phases.remove();
+      if(enemyonfield.size()==0&&phases.size()!=0)
+        stagePart=phases.remove();
     }
   }
   public void processenemies(){
