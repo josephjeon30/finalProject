@@ -18,6 +18,18 @@ Development Log:
         5/28: Boss phase cycling system, stage spawns in a boss, stage loops (progresses to a new but identical stage) when the boss dies.
         5/29: changed the visuals of the game screen. when the player dies, the game switches to a game over screen and allows you to restart the stage you died on.
         5/30: created a "title screen". The player character moves into the screen instead of just spawning in.
+        5/31: fixed the player hitbox.
+        6/1: focus mode added; shooting and focus mapped to mouse click.
+        6/2: worked on the shooting for the fairy mob enemy
+        6/3: edited the color of the player in focus mode; worked on the movement of the fairy; started the first level in stage.
+        6/5: new ghost enemy; enemy can now deal damage when touching player; shooting and focus stop when mouse not clicked.
+        6/6: fairies can move in different patterns now
+        6/7: added move patterns for the fairy and extended the first level
+        6/8: tweaks on enemies and extended first level
+        6/10: changed the way stages work so that they process through sets of enemies rather than all of them.
+        6/11: stages progress with the new phase system; new kama enemy; new stage part preset.
+        6/12: varied difficulty (only changes player stats, the laziest kind of varied difficulty). 
+        
     
 	Joseph
 		5/23: Filled out basic information for the README file, and created Game, Bullet, and Phase classes, filling out a few methods. A basic shotgun is able to be fired
