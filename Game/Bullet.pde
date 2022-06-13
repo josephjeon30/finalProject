@@ -91,9 +91,14 @@ public class EnemyBulletR extends EnemyBullet{
     this.r = dist(x,y,x_c,y_c);
     this.dtheta = PI/240;
   }
-  
   public EnemyBulletR(float x, float y, float x_c, float y_c, int dmg, int duration, float hitRadius, boolean extra){
     this(x,y,x_c,y_c,dmg,duration,hitRadius);
+    if (extra) this.c = color(255,0,0);
+  }
+  
+  public EnemyBulletR(float x, float y, float x_c, float y_c, float k, int dmg, int duration, float hitRadius, boolean extra){
+    this(x,y,x_c,y_c,dmg,duration,hitRadius);
+    this.dtheta = k*-PI/300;
     if (extra) this.c = color(255,0,0);
   }
   
@@ -116,6 +121,7 @@ public class EnemyBulletA extends EnemyBullet{
   float accel;
   boolean inc;
   float angle;
+  color c = color(255);
   public EnemyBulletA(float x, float y, float v, float vf, float accel, float angle, int dmg, int duration, float hitRadius){
     super(x,y,v,angle,dmg,duration,hitRadius);
     this.v = v;
@@ -124,9 +130,9 @@ public class EnemyBulletA extends EnemyBullet{
     this.accel = accel;
   }
   
-  public EnemyBulletA(float x, float y, float v, float vf, float accel, float angle, int dmg, int duration, float hitRadius, color c){
+  public EnemyBulletA(float x, float y, float v, float vf, float accel, float angle, int dmg, int duration, float hitRadius, float red, float green, float blue){
     this(x,y,v,vf,accel,angle,dmg,duration,hitRadius);
-    this.c = c;
+    this.c = color(red,green,blue);
   }
   
   public void move(){
@@ -136,13 +142,18 @@ public class EnemyBulletA extends EnemyBullet{
     if (Game.ticks - this.spawnTick >= duration) outOfBounds = true;
     if (x < 0 - border || x > 700 + border || y < 0 - border || y > height + border) outOfBounds = true;
   }
+  
+  public void display(){
+    fill(c);
+    ellipse(x, y, hitRadius, hitRadius);
+  }
 }
 
 public class PlayerBullet extends Bullet{
   Enemy enemy;
   
   public PlayerBullet(float x, float y, float speed, float angle){
-    this(x, y, speed * cos(angle), speed * sin(angle), 1+(int)random(2)+1000, 200);
+    this(x, y, speed * cos(angle), speed * sin(angle), 1+(int)random(2), 200);
   }
   
   public PlayerBullet(float x, float y, float dx, float dy, int dmg, int duration){

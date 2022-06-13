@@ -43,8 +43,7 @@ public class BulletManager{
         PlayerBullet pb = playerBullets.get(i);
         if (dist(pb.x,pb.y, e.x, e.y) < pb.hitRadius + e.hitRadius){
           e.takeDamage(pb.dmg);
-          playerBullets.remove(i);
-
+          playerBullets.get(i).dmg = 0;
         }
       }
     } 

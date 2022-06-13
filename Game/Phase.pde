@@ -37,6 +37,54 @@ public class twofairies extends Phase{
     enemies.add(new fairy(100,640,-20,0));
   }
 }
+
+
+public class acrosscreen extends Phase{
+  public acrosscreen(){
+    delay.add(0.0);
+    enemies.add(new fairy(100,750,-20,3));
+    delay.add(0.0);
+    enemies.add(new fairy(100,-20,-20,4));
+    delay.add(25.0);
+    enemies.add(new fairy(100,750,-20,3));
+    delay.add(0.0);
+    enemies.add(new fairy(100,-20,-20,4));
+     delay.add(25.0);
+    enemies.add(new fairy(100,750,-20,3));
+    delay.add(0.0);
+    enemies.add(new fairy(100,-20,-20,4));
+     delay.add(25.0);
+    enemies.add(new fairy(100,750,-20,3));
+    delay.add(0.0);
+    enemies.add(new fairy(100,-20,-20,4));
+  }
+}
+public class kamikaze extends Phase{
+  public kamikaze(){
+    delay.add(0.0);enemies.add(new kama(100,100,-20));
+    delay.add(0.0);enemies.add(new kama(100,180,-20));
+    delay.add(0.0);enemies.add(new kama(100,100,-100));
+    delay.add(0.0);enemies.add(new kama(100,180,-100));
+    
+    delay.add(25.0);enemies.add(new kama(100,240,-20));
+    delay.add(0.0);enemies.add(new kama(100,320,-20));
+    delay.add(0.0);enemies.add(new kama(100,240,-100));
+    delay.add(0.0);enemies.add(new kama(100,320,-100));
+    
+    delay.add(25.0);enemies.add(new kama(100,380,-20));
+    delay.add(0.0);enemies.add(new kama(100,460,-20));
+    delay.add(0.0);enemies.add(new kama(100,380,-100));
+    delay.add(0.0);enemies.add(new kama(100,460,-100));
+    
+    delay.add(25.0);enemies.add(new kama(100,520,-20));
+    delay.add(0.0);enemies.add(new kama(100,600,-20));
+    delay.add(0.0);enemies.add(new kama(100,520,-100));
+    delay.add(0.0);enemies.add(new kama(100,600,-100));
+  }
+}
+
+//BOSSES
+
 public class Angel extends Phase{
   public Angel(){
     delay.add(0.0);
@@ -51,6 +99,7 @@ public class Ifrit extends Phase{
   }
 }
 
+
 public class Shotgun extends Phase{
   public Shotgun(float x, float y, float dir, int count, float spread){
     float startDir = dir - (((float)count / 2) * spread);
@@ -60,10 +109,22 @@ public class Shotgun extends Phase{
     }
   }
   public Shotgun(float x, float y, int count, float speed, float dir, float spread, float hitRadius){
+    this(x,y,count,speed,dir,spread,hitRadius,200);
+  }
+  
+  public Shotgun(float x, float y, int count, float speed, float dir, float spread, float hitRadius, int duration){
     float startDir = dir - (((float)count / 2) * spread);
-    for (int i = 0; i < count; i++){
-      bm.addEnemyBullet(new EnemyBullet(x, y, speed, startDir + (i * spread),1,200,hitRadius));
-      //delay.add(0.0);
+    if (count % 2 == 0){
+      for (int i = 0; i < count; i++){
+        bm.addEnemyBullet(new EnemyBullet(x, y, speed, startDir + (i * spread),1,duration,hitRadius));
+        //delay.add(0.0);
+      }
+    }
+    else{
+      for (int i = 0; i < count; i++){
+        bm.addEnemyBullet(new EnemyBullet(x, y, speed, startDir + (i * spread)+spread/2,1,duration,hitRadius));
+        //delay.add(0.0);
+      }
     }
   }
 }

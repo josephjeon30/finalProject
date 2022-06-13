@@ -66,7 +66,7 @@ void keyPressed(){
     if (keyCode==ENTER){
       gamestart=true;
       ticks=0;
-      currentStage=new Stage(1);
+      currentStage=new Stage(0);
       yoi = new Player();
     }
   }
@@ -131,10 +131,10 @@ void mouseReleased(){
 void draw(){ 
   spawndelay++;
   fill(0,0,0,110);
-  rect(20,20,700, 710);
+  rect(20,20,700,710);
   
 
-  currentStage.processenemies();
+  //currentStage.processenemies();
   if (alive){
     bm.move();
     yoi.display();
@@ -145,7 +145,9 @@ void draw(){
     if (shooting){
       if (ticks % 5 == 0) yoi.shoot();
     }
-
+    if (ticks % 20 == 0){
+      yoi.HP++;
+    }
   }
   
   bm.display();

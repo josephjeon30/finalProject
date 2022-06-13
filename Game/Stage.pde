@@ -1,4 +1,4 @@
-import java.util.*;
+  import java.util.*;
 
 public class Stage{
   public Queue<Enemy> enemies = new LinkedList<Enemy>();
@@ -15,19 +15,20 @@ public class Stage{
     spawndelay=0;
     switch(stagenum){
       case 0:
-        phases.add(new twofairylima4ghostsmid());
-        //delay.add(380.0);
-        phases.add(new twofairies());
-       // delay.add(300.0);
+        //phases.add(new twofairylima4ghostsmid());
+        //phases.add(new twofairies());
         phases.add(new Angel());
         stagePart=phases.remove();
         break;
       case 1:
+        phases.add(new acrosscreen());
+        phases.add(new kamikaze());
         phases.add(new Ifrit());
         stagePart=phases.remove();
         break;
       default:
         phases.add(new Ifrit());
+        stagePart=phases.remove();
         break;
     }
   }
@@ -52,10 +53,7 @@ public class Stage{
       Enemy egg = enemyonfield.get(e);
       if (egg.HP<=0){
         enemyonfield.remove(e);
-        //phases.peek().enemies.size()==0
-        if (phases.peek() != null){
-          if(phases.peek().enemies.size()==0&&enemyonfield.size()==0) currentStage = new Stage(stagenum+1);
-        }
+        if(phases.size()==0&&enemyonfield.size()==0) currentStage = new Stage(stagenum+1);
       }else{
         egg.display();
         if (alive){
