@@ -15,14 +15,14 @@ public class Stage{
     spawndelay=0;
     switch(stagenum){
       case 0:
-        //phases.add(new twofairylima4ghostsmid());
-        //phases.add(new twofairies());
+        phases.add(new twofairylima4ghostsmid());
+        phases.add(new twofairies());
         phases.add(new Angel());
         stagePart=phases.remove();
         break;
       case 1:
-        phases.add(new acrosscreen());
-        phases.add(new kamikaze());
+        //phases.add(new acrosscreen());
+        //phases.add(new kamikaze());
         phases.add(new Ifrit());
         stagePart=phases.remove();
         break;

@@ -1,7 +1,7 @@
 BulletManager bm = new BulletManager();
 boolean alive = true;
 boolean gamestart = false;
-PImage egg;
+PImage[] elira;
 
 static int ticks = 0;
 static int spawndelay = 0;
@@ -29,7 +29,12 @@ void setup(){
   fill(128,0,0);
   rect(0,0,width, height);
   imageMode(CENTER);
-
+  elira = new PImage[5];
+  elira[0] = loadImage("e.png");
+  elira[1] = loadImage("l.png");
+  elira[2] = loadImage("i.png");
+  elira[3] = loadImage("r.png");
+  elira[4] = loadImage("a.png");
 }
 
 /**
@@ -66,7 +71,7 @@ void keyPressed(){
     if (keyCode==ENTER){
       gamestart=true;
       ticks=0;
-      currentStage=new Stage(0);
+      currentStage=new Stage(1);
       yoi = new Player();
     }
   }
@@ -145,7 +150,7 @@ void draw(){
     if (shooting){
       if (ticks % 5 == 0) yoi.shoot();
     }
-    if (ticks % 20 == 0){
+    if (ticks % 200 == 0){
       yoi.HP++;
     }
   }

@@ -75,6 +75,46 @@ public class ghost extends Enemy{
      timer++;
   }
 }
+
+public class Bomb extends Enemy{
+  public Bomb(int h,int x,int y, float dx, float dy){
+    super(h,x,y);
+    this.dx = dx;
+    this.dy = dy;
+    hitRadius=30;
+  }
+  
+  public void display(){
+    fill(255);
+    ellipse(x,y,hitRadius,hitRadius);
+    fill(0);
+    ellipse(x,y,hitRadius-10,hitRadius-1);
+  }
+  
+  public void shoot(){
+    if(collisions(yoi)) yoi.takeDamage(10);
+    if (this.y >= height+50) {
+      float newDir = -PI/2;
+      Bullet b;
+      b = new EnemyBulletA(x,y,0,20,2,newDir,20,100,200,255,0,0);
+      b = new EnemyBulletA(x,y,0,17.5,2,newDir,20,100,175,255,50,0);
+      b = new EnemyBulletA(x,y,0,15,2,newDir,20,100,150,255,100,0);
+      b = new EnemyBulletA(x,y,0,12.5,2,newDir,20,100,125,255,140,0);
+      b = new EnemyBulletA(x,y,0,11,2,newDir,20,200,100,255,175,0);
+      b = new EnemyBulletA(x,y,0,9,2,newDir,20,200,75,255,200,0);
+      b = new EnemyBulletA(x,y,0,7,2,newDir,20,200,50,255,220,0);
+      b = new EnemyBulletA(x,y,0,5,2,newDir,20,200,25,255,255,0);
+      HP = 0;
+    }
+  }
+  
+  public void move(){
+    dy += 0.1;
+    x += dx;
+    y += dy;
+  }
+}
+
 public class kama extends Enemy{
   float newDir;
   public kama(int h,int x,int y){
@@ -203,6 +243,7 @@ public class Boss extends Enemy{
   public int currentPhase=0;
   float r = 0;
   float s = 0;
+  int t = 0;
   int countDown = 0;
   
   public Boss(){
@@ -218,10 +259,18 @@ public class Boss extends Enemy{
     rect(60,50,620,30);
     fill(255,0,0,timer*2);
     rect(65,55,610*((float)HP/maxHP),20);
+    if (timer > 1000){
+      if (timer % 50 < 20){
+        fill(0);
+        rect(0,0,width,height);
+        image(elira[t],370,height/2);  
+      }
+      if (timer % 50 == 30) t = (t + 1) % 5;
+    }
   }
   public void move(){
     timer++;
-    if (currentPhase != 9 && this.HP < this.maxHP/4){
+    if (currentPhase <9 && this.HP < this.maxHP/4){
       currentPhase = 8;
     }
     switch(currentPhase){
@@ -363,6 +412,7 @@ public class Boss extends Enemy{
         }
         break;
       case 10:  //death
+        timer = 420;
         if (dist(x,y,370,height/2)>10){
           dx = 0.03*(370 - x);
           dy = 0.03*(height/2 - y);
@@ -441,12 +491,24 @@ public class Boss extends Enemy{
             attack = new Shotgun(x, y, 5, v, 0, PI / 20,10);
             attack = new Shotgun(x, y, 5, v, PI, PI/20,10);
           }
-          if (timer % 50 == 0){
+          if (timer % 100 == 0){
+            bm.enemyBullets = new LinkedList<EnemyBullet>();
             float newDir = atan((yoi.y-y)/(yoi.x-x));
             if (yoi.x - x < 0){
               newDir += PI;
             }
-            Bullet b = new EnemyBulletA(x,y,-20,20,2,newDir,20,200,100,255,0,0);
+            Bullet b;
+            b = new EnemyBulletA(x,y,-20,10,2,newDir,20,100,200,255,255,0);
+          }
+          if (timer % 100 == 50){
+            bm.enemyBullets = new LinkedList<EnemyBullet>();
+            r = (PI/4)*(int)random(4);
+          }
+          if (timer % 100 > 50){
+            if (timer % 5 == 0){
+              attack = new Wall(370 - 400*cos(r) + 35*cos(r + PI/2), 350 - 400*sin(r)+35*sin(r + PI/2), 20, 3, r, 70,20);
+              attack = new Wall(370 + 400*cos(r), 350 + 400*sin(r), 20, 3, r+PI, 70,20);
+            }
           }
         }
         break;
@@ -461,7 +523,6 @@ public class Boss2 extends Enemy{
   public int currentPhase=0;
   float r = 0;
   float s = 0;
-  int countDown = 0;
   
   public Boss2(){
     super(10000,370,20);
@@ -481,7 +542,7 @@ public class Boss2 extends Enemy{
     timer++;
     switch(currentPhase){
       case 0:  //reset 
-        if (dist(x,y,370,height/2)>10 || timer < 100){
+        if (dist(x,y,370,height/2)>10 || timer > 100){
           dx = 0.03*(370 - x);
           dy = 0.03*(height/2 - y);
           x += dx;
@@ -500,7 +561,7 @@ public class Boss2 extends Enemy{
         }
         break;
       case 2:  //reset
-        if (dist(x,y,370,100)>10){
+        if (dist(x,y,370,100)>10||timer > 100){
           dx = 0.03*(370 - x);
           dy = 0.03*(100 - y);
           x += dx;
@@ -519,7 +580,56 @@ public class Boss2 extends Enemy{
         x += 3*cos(newDir);
         y += 3*sin(newDir);
         break;
-        
+      case 5:
+        if (timer == 1){
+          dy = 2;
+          dx = 2;
+        }
+        if (x < 0 || x > 740){
+          dx *= -1;
+        }
+        if (y < 0 || y > height) {
+          dy *= -1;
+        }
+        super.move();
+        break;
+      case 6:
+        if (dist(x,y,370,200)>10||timer > 100){
+          dx = 0.03*(370 - x);
+          dy = 0.03*(200 - y);
+          x += dx;
+          y += dy;
+        }
+        else{
+          currentPhase = 7;
+          timer = 0;
+        }
+        break;
+      case 7:
+        break;
+      case 8:
+        if (dist(x,y,370,200)>10||timer > 100){
+          dx = 0.03*(370 - x);
+          dy = 0.03*(200 - y);
+          x += dx;
+          y += dy;
+        }
+        else{
+          currentPhase = 9;
+          timer = 0;
+        }
+        break;
+      case 9:
+        break;
+      case 10:  //death
+        timer = 420;
+        if (dist(x,y,370,height/2)>10){
+          dx = 0.03*(370 - x);
+          dy = 0.03*(height/2 - y);
+          x += dx;
+          y += dy;
+        }
+        break;
     } 
   }
   public void shoot(){
@@ -570,7 +680,7 @@ public class Boss2 extends Enemy{
         }
       case 2:
         break;
-      case 3:
+      case 3:  //squarze
         float spread = 25;
         float a = 0.01;
         if (timer % 20 == 0){
@@ -580,59 +690,100 @@ public class Boss2 extends Enemy{
         }
         if (timer % 40 == 20){
           float c = random(45)+210;
+          float d = random(255);
           //right
-          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y-2*spread,0,5,a,0,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x-spread,y-spread,0,5,a,0,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,0,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x-spread,y+spread,0,5,a,0,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y+2*spread,0,5,a,0,1,200,20,c,0,0));
+          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y-2*spread,0,5,a,0,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x-spread,y-spread,0,5,a,0,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,0,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x-spread,y+spread,0,5,a,0,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y+2*spread,0,5,a,0,1,200,20,c,d,0));
           //left
-          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y-2*spread,0,5,a,PI,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x+spread,y-spread,0,5,a,PI,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,PI,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x+spread,y+spread,0,5,a,PI,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y+2*spread,0,5,a,PI,1,200,20,c,0,0));
+          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y-2*spread,0,5,a,PI,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x+spread,y-spread,0,5,a,PI,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,PI,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x+spread,y+spread,0,5,a,PI,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y+2*spread,0,5,a,PI,1,200,20,c,d,0));
           //top
-          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y+2*spread,0,5,a,3*PI/2,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x-spread,y+spread,0,5,a,3*PI/2,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,3*PI/2,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x+spread,y+spread,0,5,a,3*PI/2,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y+2*spread,0,5,a,3*PI/2,1,200,20,c,0,0));
+          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y+2*spread,0,5,a,3*PI/2,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x-spread,y+spread,0,5,a,3*PI/2,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,3*PI/2,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x+spread,y+spread,0,5,a,3*PI/2,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y+2*spread,0,5,a,3*PI/2,1,200,20,c,d,0));
           //bottom
-          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y-2*spread,0,5,a,PI/2,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x-spread,y-spread,0,5,a,PI/2,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,PI/2,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x+spread,y-spread,0,5,a,PI/2,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y-2*spread,0,5,a,PI/2,1,200,20,c,0,0));
+          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y-2*spread,0,5,a,PI/2,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x-spread,y-spread,0,5,a,PI/2,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,PI/2,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x+spread,y-spread,0,5,a,PI/2,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y-2*spread,0,5,a,PI/2,1,200,20,c,d,0));
         }
         if (timer % 40 == 0){
-          color c = color(random(45)+209,0,0);
+          float c = random(45)+210;
+          float d = random(255);
           //tr
-          bm.addEnemyBullet(new EnemyBulletA(x,y+2*spread,0,5,a,7*PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x,y+spread,0,5,a,7*PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,7*PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x-spread,y,0,5,a,7*PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y,0,5,a,7*PI/4,1,200,20,c,0,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y+2*spread,0,5,a,7*PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y+spread,0,5,a,7*PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,7*PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x-spread,y,0,5,a,7*PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y,0,5,a,7*PI/4,1,200,20,c,d,0));
           //tl
-          bm.addEnemyBullet(new EnemyBulletA(x,y+2*spread,0,5,a,5*PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x,y+spread,0,5,a,5*PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,5*PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x+spread,y,0,5,a,5*PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y,0,5,a,5*PI/4,1,200,20,c,0,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y+2*spread,0,5,a,5*PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y+spread,0,5,a,5*PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,5*PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x+spread,y,0,5,a,5*PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y,0,5,a,5*PI/4,1,200,20,c,d,0));
           //br
-          bm.addEnemyBullet(new EnemyBulletA(x,y-2*spread,0,5,a,PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x,y-spread,0,5,a,PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x-spread,y,0,5,a,PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y,0,5,a,PI/4,1,200,20,c,0,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y-2*spread,0,5,a,PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y-spread,0,5,a,PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x-spread,y,0,5,a,PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x-2*spread,y,0,5,a,PI/4,1,200,20,c,d,0));
           //bl
-          bm.addEnemyBullet(new EnemyBulletA(x,y-2*spread,0,5,a,3*PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x,y-spread,0,5,a,3*PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,3*PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x+spread,y,0,5,a,3*PI/4,1,200,20,c,0,0));
-          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y,0,5,a,3*PI/4,1,200,20,c,0,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y-2*spread,0,5,a,3*PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y-spread,0,5,a,3*PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x,y,0,5,a,3*PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x+spread,y,0,5,a,3*PI/4,1,200,20,c,d,0));
+          bm.addEnemyBullet(new EnemyBulletA(x+2*spread,y,0,5,a,3*PI/4,1,200,20,c,d,0));
         }
         break; 
+      case 5:  //PHD
+        if (timer % 100 == 0){
+          float newDir = atan((yoi.y-y)/(yoi.x-x));
+            if (yoi.x - x < 0){
+              newDir += PI;
+            }
+          Bullet b;
+          b = new EnemyBulletA(x,y,-20,20,2,newDir,20,100,200,255,0,0);
+          b = new EnemyBulletA(x,y,-20,17.5,2,newDir,20,100,175,255,50,0);
+          b = new EnemyBulletA(x,y,-20,15,2,newDir,20,100,150,255,100,0);
+          b = new EnemyBulletA(x,y,-20,12.5,2,newDir,20,100,125,255,140,0);
+          b = new EnemyBulletA(x,y,-20,11,2,newDir,20,200,100,255,175,0);
+          b = new EnemyBulletA(x,y,-20,9,2,newDir,20,200,75,255,200,0);
+          b = new EnemyBulletA(x,y,-20,7,2,newDir,20,200,50,255,220,0);
+          b = new EnemyBulletA(x,y,-20,5,2,newDir,20,200,25,255,255,0);
+        }
+        if (timer % 3 == 0){
+          attack = new Shotgun(x,y,3,2,random(2*PI),2*PI/3,15,200,255,0,0);
+          attack = new Shotgun(x,y,3,1.75,random(2*PI),2*PI/3,12,200,255,125,0);
+          attack = new Shotgun(x,y,3,1.5,random(2*PI),2*PI/3,10,200,255,255,0);
+        }
+        break;
+      case 7:
+        if (timer % 25 == 0){
+          currentStage.enemyonfield.add(new Bomb(10000,(int)x,(int)y,random(6)-3,-5));
+        }
+        break;
+      case 9:
+        if (timer < 2000){
+          if (timer % 150 == 0){
+            int k = (int)random(5);
+            for (int i = 0; i < 5; i++){
+              if (k != i){
+                currentStage.enemyonfield.add(new Bomb(10000,740/5 * i + 740/10,0,0,0));
+              }
+            }
+          }
+        }
+        break;
     }
   }
 }

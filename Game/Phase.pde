@@ -95,7 +95,7 @@ public class Angel extends Phase{
 public class Ifrit extends Phase{
   public Ifrit(){
     delay.add(0.0);
-    enemies.add(new Boss2(0));
+    enemies.add(new Boss2(8));
   }
 }
 
@@ -116,13 +116,29 @@ public class Shotgun extends Phase{
     float startDir = dir - (((float)count / 2) * spread);
     if (count % 2 == 0){
       for (int i = 0; i < count; i++){
-        bm.addEnemyBullet(new EnemyBullet(x, y, speed, startDir + (i * spread),1,duration,hitRadius));
+        bm.addEnemyBullet(new EnemyBullet(x, y, speed, startDir + (i * spread),1,duration,hitRadius,255,255,255));
         //delay.add(0.0);
       }
     }
     else{
       for (int i = 0; i < count; i++){
-        bm.addEnemyBullet(new EnemyBullet(x, y, speed, startDir + (i * spread)+spread/2,1,duration,hitRadius));
+        bm.addEnemyBullet(new EnemyBullet(x, y, speed, startDir + (i * spread)+spread/2,1,duration,hitRadius,255,255,255));
+        //delay.add(0.0);
+      }
+    }
+  }
+  
+  public Shotgun(float x, float y, int count, float speed, float dir, float spread, float hitRadius, int duration,float r, float g, float b){
+    float startDir = dir - (((float)count / 2) * spread);
+    if (count % 2 == 0){
+      for (int i = 0; i < count; i++){
+        bm.addEnemyBullet(new EnemyBullet(x, y, speed, startDir + (i * spread),1,duration,hitRadius,r,g,b));
+        //delay.add(0.0);
+      }
+    }
+    else{
+      for (int i = 0; i < count; i++){
+        bm.addEnemyBullet(new EnemyBullet(x, y, speed, startDir + (i * spread)+spread/2,1,duration,hitRadius,r,g,b));
         //delay.add(0.0);
       }
     }
