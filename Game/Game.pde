@@ -188,7 +188,11 @@ void renderGUI(){
     if (alive){
       
       fill(255,0,0);
+      if(joseph){
       rect(755,255,210*((float)yoi.HP/100),20);
+      }else{
+        rect(755,255,210*((float)yoi.HP/100000),20);
+      }
       fill(255);
       textSize(11);
       text("HP: "+yoi.HP,760,269);
