@@ -3,7 +3,7 @@ float angle = 0;
 boolean alive = true;
 boolean gamestart = false;
 PImage egg;
-boolean joseph = true;
+
 static int ticks = 0;
 static int spawndelay = 0;
 boolean focus = false;
@@ -13,8 +13,8 @@ int up = 0;
 int down = 0;
 int left = 0;
 int right = 0;
-int xbound=700;
-int ybound=730;
+//int xbound=700;
+//int ybound=730;
 
 Stage currentStage = new titlestage();
 
@@ -41,7 +41,9 @@ void mouseReleased(){
 **/
 
 void keyPressed(){
-  
+  if (key == 'i'){
+    shooting = !shooting;
+  }
   if(key == 'w'){
     if(down != 0) down = 1;
     up += 2;
@@ -64,9 +66,6 @@ void keyPressed(){
       ticks=0;
       currentStage=new Stage(1);
       yoi = new Player();
-    }
-    if (key == 'k'){
-      joseph = !joseph;
     }
   }
   if (!alive){
@@ -132,12 +131,8 @@ void draw(){
   fill(0,0,0,110);
   rect(20,20,700, 710);
   
-  currentStage.processenemies();
-  if(keyPressed){
-    if(keyCode == SHIFT){
-      focus = true;
-    }
-  }
+
+  //currentStage.processenemies();
   if (alive){
     bm.move();
     yoi.display();
@@ -152,6 +147,7 @@ void draw(){
   }
   
   bm.display();
+  currentStage.processenemies();
   
   //crosshair
   fill(color(0));
@@ -207,14 +203,6 @@ void renderGUI(){
     textSize(11);
     text("game lol", 475,350); 
     text("press enter", 468,370); 
-    if(joseph){
-      text("current difficulty: joseph", 430,390); 
-      text("press k if you're a scrub", 432,410); 
-    }else{
-      text("current difficulty: baby", 440,390); 
-      text("press k if you're nuts", 444,410); 
-    }
-    
   }
 }
 

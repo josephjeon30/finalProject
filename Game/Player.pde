@@ -10,7 +10,11 @@ public class Player implements Damageable{
     y=800;
     dx=0;
     dy=0;
-    HP=100;
+    if(joseph){
+      HP=100;
+    }else{
+      HP=100000;
+    }
     wallLevel = 10;
   }
   

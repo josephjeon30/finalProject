@@ -111,6 +111,7 @@ public class PlayerBullet extends Bullet{
   
   public PlayerBullet(float x, float y, float speed, float angle){
     this(x, y, speed * cos(angle), speed * sin(angle), 1+(int)random(2), 10.0, 200);
+    if(!joseph) dmg = 10;
   }
   
   public PlayerBullet(float x, float y, float dx, float dy, int dmg, float dmgCooldown, int duration){
